@@ -1,0 +1,47 @@
+1.
+- metode som laster inn alle bilder for augmentering.
+- metoder for sequential augmentere ett bilde of returnere flere?
+- print_explenation metode som printer ut hva parameterene gjør.
+- print_example metode som printer et eksempel på hvordan det kan gjøres.
+- Metode som viser en serie med augmenterte bilder
+- Metodefor å vise en av hver type augmenterte bilder
+
+
+2.
+- resize_images metode som endrer størrelsen på alle bildene i en folder
+- En funksjon for "view" som gjør at man ser bildene i matplotlib ellerno. Og så en funksjon for "apply" som gjør at man skriver bildene til folder. Da kan man altså se på dem og gjøre endringer før man velger å skrive de til folder.
+
+
+3.
+- Hvis tid gjøre augmenteringen fungerende med boundary boxes.
+- En read_all_files metode
+
+
+4.
+Splitt augmentor til å inkludere to packages i en slik mappestruktur:
+- augmentor
+    - augmenting
+    - quickview
+
+- Ha en subpackage "quickview" som skal brukes i starten bare for å lese fil og se på bildene.
+    - Skal kunne lese alle filene
+    - Skal kunne lese alle navnene til filene
+    - Skal kunne vise alle fil/filnavn
+    - Skal kunne vise hvert 10'ende (x'ende) fil/filnavn
+- Ha en subpackage "augmenting" som gjør alt angående augmentering i tillegg til å vise deler av det.
+    - Augmentering
+
+Alt som er i en package blir implementert i samme directory. Det er hvordan det skal se ut i Python packages.
+
+
+5.
+- Endre navnet fra augmetio til image_worker
+
+
+
+Rapport
+- Skrive om related works.
+    - Skrive om bilde augmentering så langt.. Hva som er knotete med det.
+    - Skrive om deler av prosjektet. ALtså burde jeg burke matplotlib eller seaborn..
+- Skrive om hva feedback jeg fikk fra user-testing
+- Skrive om resultatet
