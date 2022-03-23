@@ -1,9 +1,9 @@
 
 """
 Scenario 1:
-Initialize the augmentor
+Initialize the augmentor from augmenting to be ready for use
 """
-
-from image_worker import augmenting as a
+from image_worker import augmenting
 # Initialize the augmentor
-aug = a.Augmentor()
+a = augmenting.Augmentor()
+

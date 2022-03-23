@@ -1,4 +1,1 @@
-
-class Augmentor:
-    def __init__(self):
-        print("Augmentor initialized")
+from image_worker.augmenting.augmentor import *

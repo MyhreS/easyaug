@@ -1,8 +1,8 @@
 """
 Scenario 2:
-Initialize the quickviewer
+Initialize the viewer from quickview to be ready for use.
 """
 
-from image_worker import quickview as q
-# Initialize the augmento
-aug = q.Quickviewer()
+from image_worker import quickview
+# Initialize the viewer
+viewer = quickview.Viewer()
