@@ -4,4 +4,6 @@ Quickly view the 10 images from your folder to get an idea of what you are worki
 """
 
 from image_worker import quickview
-quickview.Viewer()
+viewer = quickview.Viewer()
+
+viewer.read_all_images()

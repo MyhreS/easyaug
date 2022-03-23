@@ -42,6 +42,7 @@ class Viewer:
 
     def view_image_names(self, image_names=None):
         print("Image names:")
+        # Show image_names
 
 
 
