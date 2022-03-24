@@ -37,6 +37,58 @@ Alt som er i en package blir implementert i samme directory. Det er hvordan det 
 5.
 - Endre navnet fra augmetio til image_worker
 
+6.
+- La augmentering når bildene er augmentert autmatisk legge de over i en egen folder som den lager selv. F.eks. train_augmented.
+Så det skal være muligheten til å sette path til images eller hvorenn man ønsker:
+Eksempel 1:
+Før:
+-images
+    -train
+        -bird
+        -dog
+    -valid
+        -bird
+        -dog
+    -test
+        -bird
+        -dog
+Etter:
+-images_augmented
+    -train
+        -bird
+        -dog
+    -valid
+        -bird
+        -dog
+    -test
+        -bird
+        -dog
+Eksempel 2:
+-images
+    -train
+        -bird
+        -dog
+    -valid
+        -bird
+        -dog
+    -test
+        -bird
+        -dog
+Etter:
+-images_augmented
+    -train_augmented
+        -bird
+        -dog
+
+7.
+-read_all_imagenames skal lese alle bildene inkludert dem som er i folderene nedover i hierakiet.
+
+
+
+
+
+
+
 
 
 Rapport
@@ -45,3 +97,4 @@ Rapport
     - Skrive om deler av prosjektet. ALtså burde jeg burke matplotlib eller seaborn..
 - Skrive om hva feedback jeg fikk fra user-testing
 - Skrive om resultatet
+- Design = Scenarios
