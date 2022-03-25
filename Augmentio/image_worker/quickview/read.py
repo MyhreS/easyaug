@@ -5,86 +5,86 @@ import imageio
 
 def read_all_images(path, type_of_image):
     # Getting all image names.
-    image_names = read_all_imagenames(path, type_of_image)
+    imagenames = read_all_imagenames(path, type_of_image)
 
     # Checking if no images are found.
-    no_images_error_handling(len(image_names))
+    no_images_error_handling(len(imagenames))
 
     # Getting all images by image names.
     images = []
-    for image_name in image_names:
+    for image_name in imagenames:
         images.append(read_a_image(image_name))
     return images
 
 
 def read_every_x_image(path, x, type_of_image):
     # Getting all image names.
-    image_names = read_all_imagenames(path, type_of_image)
+    imagenames = read_all_imagenames(path, type_of_image)
 
     # Checking if no images are found.
-    no_images_error_handling(len(image_names))
+    no_images_error_handling(len(imagenames))
     # Checking for errors on user input of x
-    x_error_handling(x, len(image_names))
+    x_error_handling(x, len(imagenames))
 
     # Getting every x image
     images = []
-    for index in range(0, len(image_names), x):
-        images.append(read_a_image(image_names[index]))
+    for index in range(0, len(imagenames), x):
+        images.append(read_a_image(imagenames[index]))
     return images
 
 
 def read_first_x_images(path, x, type_of_image):
     # Getting all image names.
-    image_names = read_all_imagenames(path, type_of_image)
+    imagenames = read_all_imagenames(path, type_of_image)
 
     # Checking if no images are found.
-    no_images_error_handling(len(image_names))
+    no_images_error_handling(len(imagenames))
     # Checking for errors on user input of x
-    x_error_handling(x, len(image_names))
+    x_error_handling(x, len(imagenames))
 
     # Getting first x images.
     images = []
     for index in range(0, x):
-        images.append(read_a_image(image_names[index]))
+        images.append(read_a_image(imagenames[index]))
     return images
 
 
 def read_last_x_images(path, x, type_of_image):
     # Getting all image names.
-    image_names = read_all_imagenames(path, type_of_image)
+    imagenames = read_all_imagenames(path, type_of_image)
 
     # Checking if no images are found.
-    no_images_error_handling(len(image_names))
+    no_images_error_handling(len(imagenames))
     # Checking for errors on user input of x
-    x_error_handling(x, len(image_names))
+    x_error_handling(x, len(imagenames))
 
     # Getting last x images.
     images = []
-    for index in range(len(image_names)-x, len(image_names)):
-        images.append(read_a_image(image_names[index]))
+    for index in range(len(imagenames)-x, len(imagenames)):
+        images.append(read_a_image(imagenames[index]))
     return images
 
 
 def read_x_images(path, x, type_of_image):
     # Getting all image names.
-    image_names = read_all_imagenames(path, type_of_image)
+    imagenames = read_all_imagenames(path, type_of_image)
 
     # Checking if no images are found.
-    no_images_error_handling(len(image_names))
+    no_images_error_handling(len(imagenames))
     # Checking for errors on user input of x
-    x_error_handling(x, len(image_names))
+    x_error_handling(x, len(imagenames))
 
     images = []
     if x == 0:
-        index = int(len(image_names) / 2)
-        images.append(read_a_image(image_names[index]))
+        index = int(len(imagenames) / 2)
+        images.append(read_a_image(imagenames[index]))
     else:
         # Finding how much to step for each iteration to read x images.
-        step = int((len(image_names)+x)/x)
+        step = int((len(imagenames)+x)/x)
 
         # Getting 10 images with equal space inbetween.
-        for index in range(0, len(image_names), step):
-            images.append(read_a_image(image_names[index]))
+        for index in range(0, len(imagenames), step):
+            images.append(read_a_image(imagenames[index]))
     return images
 
 
@@ -98,24 +98,24 @@ def read_all_imagenames(path, type_of_image):
         path = path+"/"
 
     # Find the images in this folder.
-    image_names = []
+    imagenames = []
     if type_of_image is None:
-        image_names = glob.glob(path + "*")
+        imagenames = glob.glob(path + "*")
     elif type_of_image == "jpg" or type_of_image == "png":
-        image_names = glob.glob(path + "*."+type_of_image)
+        imagenames = glob.glob(path + "*."+type_of_image)
 
     # If it finds a folder it will go into that and get those images too. Recursive.
     is_directories = []
-    for image_name in image_names:
+    for image_name in imagenames:
         if os.path.isdir(image_name):
             is_directories.append(image_name)
-            image_names += read_all_imagenames(image_name, type_of_image)
+            imagenames += read_all_imagenames(image_name, type_of_image)
 
     # Removes the directory paths.
     for is_directory in is_directories:
-        image_names.remove(is_directory)
+        imagenames.remove(is_directory)
 
-    return image_names
+    return imagenames
 
 def no_images_error_handling(length_of_list):
     if length_of_list < 1:
@@ -132,48 +132,48 @@ def x_error_handling(x, length_of_list=None):
 
 def read_every_x_imagename(path, x, type_of_image):
     # Getting all image names.
-    image_names = read_all_imagenames(path, type_of_image)
+    imagenames = read_all_imagenames(path, type_of_image)
 
     # Checking if no images are found.
-    no_images_error_handling(len(image_names))
+    no_images_error_handling(len(imagenames))
     # Checking for errors on user input of x
-    x_error_handling(x, len(image_names))
+    x_error_handling(x, len(imagenames))
 
     # Getting every x imagename
-    image_names_v2 = []
-    for index in range(0, len(image_names), x):
-        image_names_v2.append(image_names[index])
+    imagenames_v2 = []
+    for index in range(0, len(imagenames), x):
+        imagenames_v2.append(imagenames[index])
 
-    return image_names_v2
+    return imagenames_v2
 
 
 def read_first_x_imagenames(path, x, type_of_image):
     # Getting all image names.
-    image_names = read_all_imagenames(path, type_of_image)
+    imagenames = read_all_imagenames(path, type_of_image)
 
     # Checking if no images are found.
-    no_images_error_handling(len(image_names))
+    no_images_error_handling(len(imagenames))
     # Checking for errors on user input of x
-    x_error_handling(x, len(image_names))
+    x_error_handling(x, len(imagenames))
 
     # Getting first x imagenames.
-    image_names_v2 = []
+    imagenames_v2 = []
     for index in range(0, x):
-        image_names_v2.append(image_names[index])
-    return image_names_v2
+        imagenames_v2.append(imagenames[index])
+    return imagenames_v2
 
 
 def read_last_x_imagenames(path, x, type_of_image):
     # Getting all image names.
-    image_names = read_all_imagenames(path, type_of_image)
+    imagenames = read_all_imagenames(path, type_of_image)
 
     # Checking if no images are found.
-    no_images_error_handling(len(image_names))
+    no_images_error_handling(len(imagenames))
     # Checking for errors on user input of x
-    x_error_handling(x, len(image_names))
+    x_error_handling(x, len(imagenames))
 
     # Getting last x imagenames.
-    image_names_v2 = []
-    for index in range(len(image_names) - x, len(image_names)):
-        image_names_v2.append(image_names[index])
-    return image_names_v2
+    imagenames_v2 = []
+    for index in range(len(imagenames) - x, len(imagenames)):
+        imagenames_v2.append(imagenames[index])
+    return imagenames_v2

@@ -1,4 +1,5 @@
 from image_worker.quickview import read
+from image_worker.quickview import view
 
 class Viewer:
     def __init__(self):
@@ -63,6 +64,7 @@ class Viewer:
 
 
     def view_images(self, images=None):
+        view.view_images(self.images)
         print("Images:")
         # Show images
 
