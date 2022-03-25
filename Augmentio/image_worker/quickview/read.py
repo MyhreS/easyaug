@@ -12,8 +12,8 @@ def read_all_images(path, type_of_image):
 
     # Getting all images by image names.
     images = []
-    for image_name in imagenames:
-        images.append(read_a_image(image_name))
+    for imagename in imagenames:
+        images.append(read_a_image(imagename))
     return images
 
 
@@ -89,7 +89,9 @@ def read_x_images(path, x, type_of_image):
 
 
 def read_a_image(image_path):
-    return imageio.imread(image_path)
+    image = imageio.imread(image_path)
+    image._name = image_path
+    return image
 
 
 def read_all_imagenames(path, type_of_image):
@@ -119,7 +121,7 @@ def read_all_imagenames(path, type_of_image):
 
 def no_images_error_handling(length_of_list):
     if length_of_list < 1:
-        raise ValueError("No images found.")
+        raise ValueError("No imagenames or images found.")
 
 
 def x_error_handling(x, length_of_list=None):

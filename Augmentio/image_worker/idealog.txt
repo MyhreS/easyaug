@@ -83,7 +83,8 @@ Etter:
 7.
 -read_all_imagenames skal lese alle bildene inkludert dem som er i folderene nedover i hierakiet.
 
-
+8.
+Make a read file that can go though each image when pressing button
 
 
 
