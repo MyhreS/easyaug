@@ -128,3 +128,52 @@ def x_error_handling(x, length_of_list=None):
             raise ValueError("x cannot be larger than amount of images.")
     if x < 1:
         raise ValueError("x cannot be smaller than 0.")
+
+
+def read_every_x_imagename(path, x, type_of_image):
+    # Getting all image names.
+    image_names = read_all_imagenames(path, type_of_image)
+
+    # Checking if no images are found.
+    no_images_error_handling(len(image_names))
+    # Checking for errors on user input of x
+    x_error_handling(x, len(image_names))
+
+    # Getting every x imagename
+    image_names_v2 = []
+    for index in range(0, len(image_names), x):
+        image_names_v2.append(image_names[index])
+
+    return image_names_v2
+
+
+def read_first_x_imagenames(path, x, type_of_image):
+    # Getting all image names.
+    image_names = read_all_imagenames(path, type_of_image)
+
+    # Checking if no images are found.
+    no_images_error_handling(len(image_names))
+    # Checking for errors on user input of x
+    x_error_handling(x, len(image_names))
+
+    # Getting first x imagenames.
+    image_names_v2 = []
+    for index in range(0, x):
+        image_names_v2.append(image_names[index])
+    return image_names_v2
+
+
+def read_last_x_imagenames(path, x, type_of_image):
+    # Getting all image names.
+    image_names = read_all_imagenames(path, type_of_image)
+
+    # Checking if no images are found.
+    no_images_error_handling(len(image_names))
+    # Checking for errors on user input of x
+    x_error_handling(x, len(image_names))
+
+    # Getting last x imagenames.
+    image_names_v2 = []
+    for index in range(len(image_names) - x, len(image_names)):
+        image_names_v2.append(image_names[index])
+    return image_names_v2

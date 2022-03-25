@@ -3,7 +3,7 @@ from image_worker.quickview import read
 class Viewer:
     def __init__(self):
         self.images = []
-        self.image_names = []
+        self.imagenames = []
         print("Quickview initialized")
 
     def read_all_images(self, path, type_of_image=None):
@@ -40,21 +40,27 @@ class Viewer:
         return self.images
 
     def read_all_imagenames(self, path, type_of_image=None):
-        self.image_names = read.read_all_imagenames(path, type_of_image)
-        read.no_images_error_handling(len(self.image_names))
-        return self.image_names
+        self.imagenames = read.read_all_imagenames(path, type_of_image)
+        read.no_images_error_handling(len(self.imagenames))
+        return self.imagenames
+
 
     def read_every_x_imagename(self, path, x, type_of_image=None):
-        print(path)
-        # Return image_names
+        self.imagenames = read.read_every_x_imagename(path, x, type_of_image)
+        read.no_images_error_handling(len(self.imagenames))
+        return self.imagenames
 
+    # TODO: These next functions
     def read_first_x_imagenames(self, path, x, type_of_image=None):
-        print(path)
-        # Return image_names
+        self.imagenames = read.read_first_x_imagenames(path, x, type_of_image)
+        read.no_images_error_handling(len(self.imagenames))
+        return self.imagenames
 
     def read_last_x_imagenames(self, path, x, type_of_image=None):
-        print(path)
-        # Return image_names
+        self.imagenames = read.read_last_x_imagenames(path, x, type_of_image)
+        read.no_images_error_handling(len(self.imagenames))
+        return self.imagenames
+
 
     def view_images(self, images=None):
         print("Images:")
