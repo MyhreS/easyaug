@@ -7,8 +7,8 @@ def read_all_images(path, type_of_image):
     # Getting all image names.
     image_names = read_all_imagenames(path, type_of_image)
 
-    # Checking for errors on user input
-    error_handling(image_names)
+    # Checking if no images are found.
+    no_images_error_handling(len(image_names))
 
     # Getting all images by image names.
     images = []
@@ -21,8 +21,10 @@ def read_every_x_image(path, x, type_of_image):
     # Getting all image names.
     image_names = read_all_imagenames(path, type_of_image)
 
-    # Checking for errors on user input
-    error_handling(image_names, x)
+    # Checking if no images are found.
+    no_images_error_handling(len(image_names))
+    # Checking for errors on user input of x
+    x_error_handling(x, len(image_names))
 
     # Getting every x image
     images = []
@@ -35,12 +37,10 @@ def read_first_x_images(path, x, type_of_image):
     # Getting all image names.
     image_names = read_all_imagenames(path, type_of_image)
 
-    # Checking for errors on user input
-    error_handling(image_names, x)
-
-    # If first x is larger than the amount of images it will be set to the amount of images.
-    if x > len(image_names):
-        x = len(image_names)
+    # Checking if no images are found.
+    no_images_error_handling(len(image_names))
+    # Checking for errors on user input of x
+    x_error_handling(x, len(image_names))
 
     # Getting first x images.
     images = []
@@ -53,12 +53,10 @@ def read_last_x_images(path, x, type_of_image):
     # Getting all image names.
     image_names = read_all_imagenames(path, type_of_image)
 
-    # Checking for errors on user input
-    error_handling(image_names, x)
-
-    # If first x is larger than the amount of images it will be set to the amount of images.
-    if x > len(image_names):
-        x = len(image_names)
+    # Checking if no images are found.
+    no_images_error_handling(len(image_names))
+    # Checking for errors on user input of x
+    x_error_handling(x, len(image_names))
 
     # Getting last x images.
     images = []
@@ -71,25 +69,22 @@ def read_x_images(path, x, type_of_image):
     # Getting all image names.
     image_names = read_all_imagenames(path, type_of_image)
 
-    # Checking for errors on user input
-    error_handling(image_names, x)
-
-    # If first x is larger than the amount of images it will be set to the amount of images.
-    if x > len(image_names):
-        x = len(image_names)
+    # Checking if no images are found.
+    no_images_error_handling(len(image_names))
+    # Checking for errors on user input of x
+    x_error_handling(x, len(image_names))
 
     images = []
-    if x > 1:
+    if x == 0:
+        index = int(len(image_names) / 2)
+        images.append(read_a_image(image_names[index]))
+    else:
         # Finding how much to step for each iteration to read x images.
         step = int((len(image_names)+x)/x)
 
         # Getting 10 images with equal space inbetween.
         for index in range(0, len(image_names), step):
             images.append(read_a_image(image_names[index]))
-    else:
-        index = int(len(image_names)/2)
-        images.append(read_a_image(image_names[index]))
-
     return images
 
 
@@ -122,11 +117,14 @@ def read_all_imagenames(path, type_of_image):
 
     return image_names
 
+def no_images_error_handling(length_of_list):
+    if length_of_list < 1:
+        raise ValueError("No images found.")
 
-def error_handling(image_names, x=None):
-    if x is not None:
-        if x < 1:
-            raise ValueError("X must be larger than 0.")
 
-    if len(image_names) == 0:
-        raise Exception("There was not found any images.")
+def x_error_handling(x, length_of_list=None):
+    if length_of_list is not None:
+        if x > length_of_list:
+            raise ValueError("x cannot be larger than amount of images.")
+    if x < 1:
+        raise ValueError("x cannot be smaller than 0.")
