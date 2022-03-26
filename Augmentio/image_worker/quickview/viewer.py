@@ -5,7 +5,7 @@ class Viewer:
     def __init__(self):
         self.images = []
         self.imagenames = []
-        print("Quickview initialized")
+        print("Quickview initialized.")
 
     def read_all_images(self, path, type_of_image=None):
         self.images = read.read_all_images(path, type_of_image)
@@ -30,15 +30,6 @@ class Viewer:
         read.no_images_error_handling(len(self.images))
         print("Read", len(self.images), "images.")
         return self.images
-
-    # Fails at read 50 images of in total 64 images
-    # Fails at read 20 images of in total 64 images
-    """
-    def read_x_images(self, path, x, type_of_image=None):
-        self.images = read.read_x_images(path, x, type_of_image)
-        read.no_images_error_handling(len(self.images))
-        return self.images
-    """
 
     def read_a_image(self, path):
         self.images.append(read.read_a_image(path))

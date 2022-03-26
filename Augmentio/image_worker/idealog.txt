@@ -84,8 +84,11 @@ Etter:
 -read_all_imagenames skal lese alle bildene inkludert dem som er i folderene nedover i hierakiet.
 
 8.
-Make a read file that can go though each image when pressing button
+- Hvis mulig. Lag en read file slik at du kan iterere gjennom bilder ved å trykke på en knapp.
 
+9.
+- Hvis mulig. Lag en get_stats() i quickview. Denne finner ulike stats fra bildene som er funnet.
+Som f.eks. hvor mange det er. Hvilke størrelser de er i osv.
 
 
 
