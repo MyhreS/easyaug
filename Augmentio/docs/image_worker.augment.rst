@@ -1,5 +1,5 @@
-image\_worker.augmenting package
-================================
+image\_worker.augment
+=====================
 
 Submodules
 ----------
@@ -13,5 +13,5 @@ image\_worker.augment.augmenter module
 Module contents
 ---------------
 
-.. automodule:: image_worker.augmenting
+.. automodule:: image_worker.augment
    :members:
