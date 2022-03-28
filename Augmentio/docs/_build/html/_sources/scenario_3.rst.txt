@@ -1,0 +1,7 @@
+scenario\_3 module
+==================
+
+.. automodule:: scenario_3
+   :members:
+   :undoc-members:
+   :show-inheritance:

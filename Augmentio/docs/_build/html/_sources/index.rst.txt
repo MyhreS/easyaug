@@ -7,10 +7,11 @@ Welcome to Image worker's documentation!
 ========================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
 
    tutorial
+   modules
 
 Indices and tables
 ==================

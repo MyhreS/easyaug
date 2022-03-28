@@ -126,10 +126,12 @@ def no_images_error_handling(length_of_list):
 
 def x_error_handling(x, length_of_list=None):
     if length_of_list is not None:
+        if not isinstance(x, int):
+            raise ValueError("x must be an integer.")
         if x > length_of_list:
             raise ValueError("x cannot be larger than amount of images.")
-    if x < 1:
-        raise ValueError("x cannot be smaller than 0.")
+        if x < 1:
+            raise ValueError("x cannot be smaller than 1.")
 
 
 def read_every_x_imagename(path, x, type_of_image):
