@@ -6,3 +6,4 @@ from image_worker.augment import Augmenter
 augmenter = Augmenter()
 augmenter.specify_path('dataset/train/acinonyx-jubatus')
 augmenter.do_gaussianBlur(0, 3)
+augmenter.run_view()

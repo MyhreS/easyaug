@@ -1,26 +1,26 @@
-from image_worker.augment import view
+from image_worker.augment import run_view
 from image_worker.augment import augmenting_types
 from imgaug import augmenters as iaa
 
 class Augmenter:
     def __init__(self):
-        self.images_path = None
+        self.path = None
         self.type_of_image = None
         self.todo = iaa.Sequential() # For each image in the specified path, do the augmenting added to the ttodo list.
 
         print("Augmenter initialized")
 
-    def specify_path(self, images_path, type_of_image=None):
+    def specify_path(self, path, type_of_image=None):
 
         if type_of_image is not None:
             if type_of_image != "jpg" or type_of_image != "png":
                 raise ValueError("Type of image must be None, jpg or png")
-        if images_path is None:
+        if path is None:
             raise ValueError("No path specified")
-        elif type(images_path) is not str:
+        elif type(path) is not str:
             raise ValueError("Path must be a string")
         else:
-            self.images_path = images_path
+            self.path = path
             self.type_of_image = type_of_image
             print("Path specified")
 
@@ -30,12 +30,12 @@ class Augmenter:
 
     def run_view(self):
         # Raises ValueError if something is wrong.
-        if self.images_path is None:
+        if self.path is None:
             raise ValueError("No path specified")
-        elif self.todo.is_empty():
+        elif len(self.todo) == 0:
             raise ValueError("No augmentation specified")
         else:
-            view.view_augment(self.images_path, self.type_of_image, self.todo)
+            run_view.view_augment(self.path, self.type_of_image, self.todo)
 
         # Run the view
 

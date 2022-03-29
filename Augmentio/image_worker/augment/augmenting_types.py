@@ -21,6 +21,7 @@ def gaussianBlur(guassian_intensity_from, guassian_intensity_to):
 
     # Creating the guassian blur augmentation
     augmenting = iaa.GaussianBlur(sigma=(guassian_intensity_from, guassian_intensity_to))
+    augmenting._name = "GaussianBlur"
     return augmenting
 
 
