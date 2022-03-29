@@ -90,6 +90,20 @@ Etter:
 - Hvis mulig. Lag en get_stats() i quickview. Denne finner ulike stats fra bildene som er funnet.
 Som f.eks. hvor mange det er. Hvilke størrelser de er i osv.
 
+10.
+Lag en balancing funksjon til augmenter.
+
+11.
+Å spesifisere path er ulikt på windows og mac. Mulig alt med path på gjøres endres for at det skal passe til hver OS.
+
+12.
+Lag show_stats i augmenter. Denne viser info som f.eks. hvor mange bilder som kommer til å bli laget etter augmentering.
+
+13.
+Endre path i viewer til å ikke være i hver read med i en specify path funksjon som i augmenter.
+
+14.
+Fjern return in reads i viewer. Det er unødvendig. Kan også endre på view_images osv til å ikke ha parameter som mottar images.
 
 
 

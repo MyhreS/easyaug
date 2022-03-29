@@ -1,3 +1,8 @@
-from image_worker.quickview import Viewer
+"""
+Use the augmenter and add two types of augmentation to images and test how they will will look like
+"""
 
-viewer = Viewer()
+from image_worker.augment import Augmenter
+augmenter = Augmenter()
+augmenter.specify_path('dataset/train/acinonyx-jubatus')
+augmenter.do_gaussianBlur(0, 3)

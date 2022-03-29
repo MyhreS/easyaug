@@ -116,7 +116,6 @@ def read_all_imagenames(path, type_of_image):
     # Removes the directory paths.
     for is_directory in is_directories:
         imagenames.remove(is_directory)
-
     return imagenames
 
 def no_images_error_handling(length_of_list):
