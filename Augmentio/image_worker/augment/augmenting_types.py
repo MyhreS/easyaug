@@ -1,59 +1,124 @@
 from imgaug import augmenters as iaa
 
-def gaussianBlur(guassian_intensity_from, guassian_intensity_to):
-    # If guassian_intensity_from/to is an integer then make it a float
-    if isinstance(guassian_intensity_from, int):
-        guassian_intensity_from = float(guassian_intensity_from)
-    if isinstance(guassian_intensity_to, int):
-        guassian_intensity_to = float(guassian_intensity_to)
+# Functions that makes image clearer or blurrier.
+def gaussianBlur(intensity_from, intensity_to):
+    # If intensity_from is int then make it a float.
+    if isinstance(intensity_from, int):
+        intensity_from = float(intensity_from)
+    # If intensity_to is int then make it a float.
+    if isinstance(intensity_to, int):
+        intensity_to = float(intensity_to)
 
-    # Checking for parameter errors
-    if guassian_intensity_from is None or guassian_intensity_to is None:
-        raise ValueError("guassian_intensity_from and guassian_intensity_to cannot be None.")
-    if not isinstance(guassian_intensity_from, float) or not isinstance(guassian_intensity_to, float):
-        raise ValueError("guassian_intensity_from and guassian_intensity_to must be a float.")
-    if guassian_intensity_from < 0 or guassian_intensity_to < 0:
-        raise ValueError("guassian_intensity_from and guassian_intensity_to must be greater than 0.")
-    if guassian_intensity_from > 3.0 or guassian_intensity_to > 3.0:
-        raise ValueError("guassian_intensity_from and guassian_intensity_to must be less than 3.0.")
-    if guassian_intensity_from > guassian_intensity_to:
-        raise ValueError("guassian_intensity_from must be less than guassian_intensity_to.")
+    # If insensity_from/to is not a float then raise an error.
+    if not isinstance(intensity_from, float) or not isinstance(intensity_to, float):
+        raise ValueError("intensity_from and intensity_to must be floats.")
+
+    # If intensity_from is larger than intensity_to then raise an error.
+    if intensity_from > intensity_to:
+        raise ValueError("intensity_from must be less than intensity_to.")
+
+    # If intensity_from is less than 0 then raise an error.
+    if intensity_from < 0:
+        raise ValueError("intensity_from must be greater than 0.")
 
     # Creating the guassian blur augmentation
-    augmenting = iaa.GaussianBlur(sigma=(guassian_intensity_from, guassian_intensity_to))
+    augmenting = iaa.GaussianBlur(sigma=(intensity_from, intensity_to))
     return augmenting
 
+def sharpen(intensity_from, intensity_to):
+    # If intensity_from is int then make it a float.
+    if isinstance(intensity_from, int):
+        intensity_from = float(intensity_from)
+    # If intensity_to is int then make it a float.
+    if isinstance(intensity_to, int):
+        intensity_to = float(intensity_to)
 
-def rotation(rotation_from, rotation_to):
+    # If insensity_from/to is not a float then raise an error.
+    if not isinstance(intensity_from, float) or not isinstance(intensity_to, float):
+        raise ValueError("intensity_from and intensity_to must be floats.")
+
+    # If intensity_from is larger than intensity_to then raise an error.
+    if intensity_from > intensity_to:
+        raise ValueError("intensity_from must be less than intensity_to.")
+
+    # If intensity_from is less than 0 then raise an error.
+    if intensity_from < 0:
+        raise ValueError("intensity_from must be greater than 0.")
+    # If intensity_to is more than 1 then raise an error.
+    if intensity_to > 1:
+        raise ValueError("intensity_to must be less than 1.")
+
+    # Creating the sharpen augmentation
+    augmenting = iaa.Sharpen(intensity_from, intensity_to)
+    return augmenting
+
+def saltAndPepper(intensity):
+    # If intensity is int then make it a float.
+    if isinstance(intensity, int):
+        intensity = float(intensity)
+
+    # If intensity is not a float then raise an error.
+    if not isinstance(intensity, float):
+        raise ValueError("intensity must be a float.")
+
+    # If intensity is less than 0 then raise an error.
+    if intensity < 0:
+        raise ValueError("intensity must be greater than 0.")
+    # If intensity is more than 1 then raise an error.
+    if intensity > 1:
+        raise ValueError("intensity must be less than 1.")
+
+    # Creating the salt and pepper augmentation
+    augmenting = iaa.SaltAndPepper(intensity)
+    return augmenting
+
+def additiveGuassianNoise(intensity_from, intensity_to):
+    # If intensity_from is float then make it a float.
+    if isinstance(intensity_from, float):
+        intensity_from = float(intensity_from)
+    # If intensity_to is float then make it a float.
+    if isinstance(intensity_to, float):
+        intensity_to = float(intensity_to)
+
+    # If insensity_from/to is not a float then raise an error.
+    if not isinstance(intensity_from, int) or not isinstance(intensity_to, int):
+        raise ValueError("intensity_from and intensity_to must be ints.")
+
+    # If intensity_from is larger than intensity_to then raise an error.
+    if intensity_from > intensity_to:
+        raise ValueError("intensity_from must be less than intensity_to.")
+
+    # If intensity_from is less than 0 then raise an error.
+    if intensity_from < 0:
+        raise ValueError("intensity_from must be greater than 0.")
+
+    # Creating the additive guassian noise augmentation
+    augmenting = iaa.AdditiveGaussianNoise(scale=(intensity_from, intensity_to))
+    return augmenting
+
+# Functions that changes the position of the image.
+def rotation(rotation_left, rotation_right):
     # If rotation_from/to is an integer then make it a float
-    if isinstance(rotation_from, int):
-        rotation_from = float(rotation_from)
-    if isinstance(rotation_to, int):
-        rotation_to = float(rotation_to)
+    if isinstance(rotation_left, int):
+        rotation_left = float(rotation_left)
+    if isinstance(rotation_right, int):
+        rotation_right = float(rotation_right)
 
     # Checking for parameter errors
-    if rotation_from is None or rotation_to is None:
+    if rotation_left is None or rotation_right is None:
         raise ValueError("rotation_from and rotation_to cannot be None.")
-    if not isinstance(rotation_from, float) or not isinstance(rotation_to, float):
+    if not isinstance(rotation_left, float) or not isinstance(rotation_right, float):
         raise ValueError("rotation_from and rotation_to must be a float.")
-    if rotation_from < 0 or rotation_to < 0:
+    if rotation_left < 0 or rotation_right < 0:
         raise ValueError("rotation_from and rotation_to must be greater than 0.")
-    if rotation_from > 360 or rotation_to > 360:
-        raise ValueError("rotation_from and rotation_to must be less than 360.")
-    if rotation_from > rotation_to:
+    if rotation_left > 180 or rotation_right > 180:
+        raise ValueError("rotation_from and rotation_to must be less than 180.")
+    if rotation_left > rotation_right:
         raise ValueError("rotation_from must be less than rotation_to.")
 
     # Creating the rotation augmentation
-    augmenting = iaa.Affine(rotate=(rotation_from, rotation_to))
+    augmenting = iaa.Rotate((-rotation_left, rotation_right))
     return augmenting
-
-
-def guassianBlur_and_rotation(guassian_intensity_from, guassian_intensity_to, rotation_from, rotation_to):
-    sequential = iaa.Sequential()
-    sequential.add(gaussianBlur(guassian_intensity_from, guassian_intensity_to))
-    sequential.add(rotation(rotation_from, rotation_to))
-    return sequential
-
 
 def pad(left, right, top, bottom):
     # If left/right/top/bottom is an float then make it an integer
@@ -103,7 +168,6 @@ def pad(left, right, top, bottom):
 
     return augmenting
 
-
 def scale(zoom_out, zoom_in):
     # If zoom_out is int then make it a float
     if isinstance(zoom_out, int):
@@ -123,3 +187,24 @@ def scale(zoom_out, zoom_in):
     # Creating the scale augmentation
     augmenting = iaa.Affine(scale=(zoom_out, zoom_in))
     return augmenting
+
+
+# Combined functions
+def guassianBlur_and_rotate(guassianBlur_intensity_from, guassianBlur_intensity_to, rotate_rotation_left, rotate_rotation_right):
+    sequential = iaa.Sequential()
+    sequential.add(gaussianBlur(guassianBlur_intensity_from, guassianBlur_intensity_to))
+    sequential.add(rotation(rotate_rotation_left, rotate_rotation_right))
+    return sequential
+
+def guassianBlur_and_scale(guassianBlur_intensity_from, guassianBlur_intensity_to, scale_zoom_out, scale_zoom_in):
+    sequential = iaa.Sequential()
+    sequential.add(gaussianBlur(guassianBlur_intensity_from, guassianBlur_intensity_to))
+    sequential.add(scale(scale_zoom_out, scale_zoom_in))
+    return sequential
+
+
+def rotate_and_scale(rotate_rotation_left, rotate_rotation_right, scale_zoom_out, scale_zoom_in):
+    sequential = iaa.Sequential()
+    sequential.add(rotation(rotate_rotation_left, rotate_rotation_right))
+    sequential.add(scale(scale_zoom_out, scale_zoom_in))
+    return sequential
