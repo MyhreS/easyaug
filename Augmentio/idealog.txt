@@ -105,6 +105,12 @@ Endre path i viewer til å ikke være i hver read med i en specify path funksjon
 14.
 Fjern return in reads i viewer. Det er unødvendig. Kan også endre på view_images osv til å ikke ha parameter som mottar images.
 
+15.
+En subpackage 'preprocess' skal inkludere funksjonene resize, balance, resize_with_boundarybox.
+
+16.
+Husk at alle augmenteringsfunskjoner som endrer plasseringen av bildene vil ødelegge for boudary boxes labels.
+
 
 
 

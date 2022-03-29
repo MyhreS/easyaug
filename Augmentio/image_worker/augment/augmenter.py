@@ -6,7 +6,8 @@ class Augmenter:
     def __init__(self):
         self.path = None
         self.type_of_image = None
-        self.todo = iaa.Sequential() # For each image in the specified path, do the augmenting added to the ttodo list.
+        self.augmentation_todo = iaa.Sequential() # For each image in the specified path, do the augmenting added to the ttodo list.
+        self.todo_names = [] # Names of each of the augmentation_todo.
 
         print("Augmenter initialized")
 
@@ -24,25 +25,51 @@ class Augmenter:
             self.type_of_image = type_of_image
             print("Path specified")
 
+    # Functions that makes image clearer or blurrier.
     def do_gaussianBlur(self, guassian_intensity_from, guassian_intensity_to):
         augmenting = augmenting_types.gaussianBlur(guassian_intensity_from, guassian_intensity_to)
-        self.todo.add(augmenting)
+        self.augmentation_todo.add(augmenting)
+        self.todo_names.append("Gaussian Blur")
+
+    def do_sharpen(self, intensity_from, intensity_to):
+        augmenting = augmenting_types.sharpen(intensity_from, intensity_to)
+        self.augmentation_todo.add(augmenting)
+        self.todo_names.append("Sharpen")
+
+    # Functions that changes the position of the image.
+    def do_rotation(self, rotation_from, rotation_to):
+        augmenting = augmenting_types.rotation(rotation_from, rotation_to)
+        self.augmentation_todo.add(augmenting)
+        self.todo_names.append("Rotation")
+
+    def do_pad(self, left=20, right=20, top=20, bottom=20):
+        augmenting = augmenting_types.pad(left, right, top, bottom)
+        self.augmentation_todo.add(augmenting)
+        self.todo_names.append("Pad")
+
+    def do_scale(self, zoom_out=0.5, zoom_in=1.5):
+        augmenting = augmenting_types.scale(zoom_out, zoom_in)
+        self.augmentation_todo.add(augmenting)
+        self.todo_names.append("Scale")
+
+
+    # Combined functions
+    def do_guassianBlur_and_rotation(self, guassian_intensity_from, guassian_intensity_to, rotation_from, rotation_to):
+        augmenting = augmenting_types.guassianBlur_and_rotation(guassian_intensity_from, guassian_intensity_to, rotation_from, rotation_to)
+        self.augmentation_todo.add(augmenting)
+        self.todo_names.append("Gaussian Blur and Rotation")
+
+
 
     def run_view(self):
         # Raises ValueError if something is wrong.
         if self.path is None:
             raise ValueError("No path specified")
-        elif len(self.todo) == 0:
+        elif len(self.augmentation_todo) == 0:
             raise ValueError("No augmentation specified")
         else:
-            run_view.view_augment(self.path, self.type_of_image, self.todo)
+            run_view.view_augment(self.path, self.type_of_image, self.augmentation_todo, self.todo_names)
 
-        # Run the view
-
-        # Shows a plot of 9 images with their respective augmented versions
-        # For example shows 9 images a plot with guassian blur and 9 images in a plot with rotation
-        # The header for the plot is the name type of augmentation.
-        # Does not write the augmented images to disk. Just shows the images.
 
     def run_augment(self, images=None):
         # Runs the augmentation on the images

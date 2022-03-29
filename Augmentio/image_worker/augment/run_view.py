@@ -7,7 +7,7 @@ import imageio
 from matplotlib import pyplot as plt
 
 
-def view_augment(images_path, type_of_image, todo):
+def view_augment(images_path, type_of_image, augmentation_todo, todo_names):
     # Reads all the images in the folder.
     imagenames = read_all_imagenames(images_path, type_of_image)
 
@@ -17,31 +17,35 @@ def view_augment(images_path, type_of_image, todo):
 
 
     # Pick 9 random items from imagenames. Cannot be the same.
-    random_images = []
+    random_imagenames = []
     if len(imagenames) > 9:
-        while len(random_images) < 9:
+        while len(random_imagenames) < 9:
             random_image = imagenames[int(len(imagenames)*random())]
-            if random_image not in random_images:
-                random_images.append(random_image)
+            if random_image not in random_imagenames:
+                random_imagenames.append(random_image)
     else:
-        random_images = imagenames
+        random_imagenames = imagenames
 
     # Read the images.
     images = []
-    for random_image in random_images:
-        images.append(read_a_image(random_image))
+    for random_imagename in random_imagenames:
+        images.append(read_a_image(random_imagename))
 
-    # Clear previous plots in SciView.
-    plt.close("all")
-
-    # Create an empty figure in pyplot.
+    # Plot an emtpy plot
     fig = plt.figure(figsize=(10, 10))
-    # A string with time and date.
     fig.suptitle("A spacer between new and old Plots in SciView", fontsize=25)
     fig.show()
-    # Plot the original images.
-    pyplot_9_images(images)
 
+    # Plot the original images.
+    pyplot_9_images(images, random_imagenames, "Original Images")
+
+    for augmentation, todo_name in zip(augmentation_todo, todo_names):
+        # Aument the images.
+        images_augmented = []
+        for image in images:
+            images_augmented.append(augment_a_image(image, augmentation))
+
+        pyplot_9_images(images_augmented, random_imagenames, todo_name)
 
 
 def read_all_imagenames(path, type_of_image):
@@ -70,11 +74,10 @@ def read_all_imagenames(path, type_of_image):
 
 def read_a_image(image_path):
     image = imageio.imread(image_path)
-    image._name = image_path
     return image
 
 # Creating a pyplot containing at maximum 9 images.
-def pyplot_9_images(images_max_9):
+def pyplot_9_images(images_max_9, image_names, name_of_plot):
     # Predefined values.
     columns = 3 # If columns or rows is changed more code needs to be changes.
     rows = 3
@@ -89,7 +92,8 @@ def pyplot_9_images(images_max_9):
         # Plotting image in preparet plot.
         plt.imshow(images_max_9[i])
         plt.axis("off")
-        plt.title(get_name(images_max_9[i]._name))
+        plt.title(get_name(image_names[i]))
+    fig.suptitle(name_of_plot, fontsize=25)
     fig.tight_layout()
     plt.show()
 
@@ -98,3 +102,7 @@ def get_name(image_path):
     imagename_dot_something = image_path_split[-1].split(".")
     imagename = imagename_dot_something[0]
     return imagename
+
+def augment_a_image(image, augmenting_type):
+    image_augmented = augmenting_type(image=image)
+    return image_augmented
