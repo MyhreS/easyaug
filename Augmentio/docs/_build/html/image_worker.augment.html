@@ -40,6 +40,85 @@
 </section>
 <section id="module-image_worker.augment.augmenter">
 <span id="image-worker-augment-augmenter-module"></span><h2>image_worker.augment.augmenter module<a class="headerlink" href="#module-image_worker.augment.augmenter" title="Permalink to this headline">¶</a></h2>
+<p>This module is used to augment images.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="image_worker.augment.augmenter.Augmenter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">image_worker.augment.augmenter.</span></span><span class="sig-name descname"><span class="pre">Augmenter</span></span><a class="headerlink" href="#image_worker.augment.augmenter.Augmenter" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class used to augment images. When creating an instance of this class, you can specify the path to your data. Then
+you can specify the augmenting types. These will be set to a todolist. So when finally you choose to either view a few augmented images or augment all images and save them
+to a new directory the todolist will be executed.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="image_worker.augment.augmenter.Augmenter.do_gaussianBlur">
+<span class="sig-name descname"><span class="pre">do_gaussianBlur</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intensity_from</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intensity_to</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.augment.augmenter.Augmenter.do_gaussianBlur" title="Permalink to this definition">¶</a></dt>
+<dd><p>Blur the image with a gaussian blur. It augments with a random intensity between the specified parameters.</p>
+<dl class="simple">
+<dt>intensity_from<span class="classifier">float</span></dt><dd><p>The lowest intensity of the gaussian blur. Ranging from 0 to unlimited. Intensity 0 is no blur. Intensity 3.0 is much blur.</p>
+</dd>
+<dt>intensity_to<span class="classifier">float</span></dt><dd><p>The highest intensity of the gaussian blur. Ranging from 0 to unlimited.  Intensity 0 is no blur. Intensity 3.0 is much blur.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If the intensity_from or intensity_to is not a float or int.
+If the intensity_from is greater than the intensity_to.
+If the intensity_from or intensity_to is less than 0.0.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">do_gaussianBlur</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+<span class="go">Added gaussian blur to the augmenting todo list.</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="image_worker.augment.augmenter.Augmenter.do_sharpen">
+<span class="sig-name descname"><span class="pre">do_sharpen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intensity_from</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intensity_to</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.augment.augmenter.Augmenter.do_sharpen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sharpen the image with a sharpen. It augments with a random intensity between the specified parameters.</p>
+<dl class="simple">
+<dt>intensity_from<span class="classifier">float</span></dt><dd><p>The lowest percent intensity of the sharpen. Ranging from 0.0 (0%) to 1.0 (100%). Intensity 0 is no sharpen. Intensity 0.7 is much sharpen.</p>
+</dd>
+<dt>intensity_to<span class="classifier">float</span></dt><dd><p>The highest percent intensity of the sharpen. Ranging from 0.0 (0%) to 1.0 (100%). Intensity 0 is no sharpen. Intensity 0.7 is much sharpen.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If the intensity_from or intensity_to is not a float or int.
+If the intensity_from is greater than the intensity_to.
+If the intensity_from or intensity_to less than 0.0.
+If the intensity_from or intensity_to is greater than 1.0.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">do_sharpen</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="go">Added sharpen to the augmenting todo list.</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="image_worker.augment.augmenter.Augmenter.specify_path">
+<span class="sig-name descname"><span class="pre">specify_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_of_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.augment.augmenter.Augmenter.specify_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify the path to the data.</p>
+<dl class="simple">
+<dt>path<span class="classifier">str</span></dt><dd><p>The path to the data.</p>
+</dd>
+<dt>type_of_image<span class="classifier">str</span></dt><dd><p>The type of the image.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If the path is not a string.
+If type_of_image is not None, “jpg” og “png”.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">specify_path</span><span class="p">(</span><span class="s2">&quot;/home/user/data/&quot;</span><span class="p">,</span> <span class="s2">&quot;jpg&quot;</span><span class="p">)</span>
+<span class="go">Specified path to data: /home/user/data/ and type of image: jpg</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="module-image_worker.augment">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-image_worker.augment" title="Permalink to this headline">¶</a></h2>

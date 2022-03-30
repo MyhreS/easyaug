@@ -1,8 +1,17 @@
+"""
+This module is used to augment images.
+"""
+
 from image_worker.augment import run_view
 from image_worker.augment import augmenting_types
 from imgaug import augmenters as iaa
 
 class Augmenter:
+    """
+    A class used to augment images. When creating an instance of this class, you can specify the path to your data. Then
+    you can specify the augmenting types. These will be set to a todolist. So when finally you choose to either view a few augmented images or augment all images and save them
+    to a new directory the todolist will be executed for each image.
+    """
     def __init__(self):
         self.path = None
         self.type_of_image = None
@@ -12,6 +21,30 @@ class Augmenter:
         print("Augmenter initialized")
 
     def specify_path(self, path, type_of_image=None):
+        """
+        Specify the path to the data.
+
+        Parameters
+        ----------
+        path : str
+            The path to the data.
+        type_of_image : str
+            The type of the image.
+
+        Raises
+        ------
+        ValueError
+            If the path is not a string.
+            If type_of_image is not None, "jpg" og "png".
+
+        Returns
+        -------
+
+        Examples
+        --------
+        >>> augmenter.specify_path("/home/user/data/", "jpg")
+        Specified path to data: /home/user/data/ and type of image: jpg
+        """
 
         if type_of_image is not None:
             if type_of_image != "jpg" or type_of_image != "png":
@@ -27,16 +60,75 @@ class Augmenter:
 
     # Functions that makes image clearer or blurrier.
     def do_gaussianBlur(self, intensity_from=0.5, intensity_to=3.0):
+        """
+        Blur the image with a gaussian blur. It augments with a random intensity between the specified parameters.
+
+        Parameters
+        ----------
+        intensity_from : float
+            The lowest intensity of the gaussian blur. Ranging from 0 to unlimited. Intensity 0 is no blur. Intensity 3.0 is much blur.
+        intensity_to : float
+            The highest intensity of the gaussian blur. Ranging from 0 to unlimited.  Intensity 0 is no blur. Intensity 3.0 is much blur.
+
+        Raises
+        ------
+        ValueError
+            If the intensity_from or intensity_to is not a float or int.
+            If the intensity_from is greater than the intensity_to.
+            If the intensity_from or intensity_to is less than 0.0.
+
+        Returns
+        -------
+
+        Examples
+        --------
+        >>> from image_worker.augment import Augmenter
+        >>> augmenter = Augmenter()
+        >>> augmenter.do_gaussianBlur(0.5, 3.0)
+        Added gaussian blur to the augmenting todo list.
+
+        """
         augmenting = augmenting_types.gaussianBlur(intensity_from, intensity_to)
         self.augmentation_todo.add(augmenting)
         self.todo_names.append("Gaussian Blur")
 
     def do_sharpen(self, intensity_from=0.1, intensity_to=0.5):
+        """
+        Sharpen the image with a sharpen. It augments with a random intensity between the specified parameters.
+
+        Parameters
+        ----------
+        intensity_from : float
+            The lowest percent intensity of the sharpen. Ranging from 0.0 (0%) to 1.0 (100%). Intensity 0 is no sharpen. Intensity 0.7 is much sharpen.
+        intensity_to : float
+            The highest percent intensity of the sharpen. Ranging from 0.0 (0%) to 1.0 (100%). Intensity 0 is no sharpen. Intensity 0.7 is much sharpen.
+
+        Raises
+        ------
+        ValueError
+            If the intensity_from or intensity_to is not a float or int.
+            If the intensity_from is greater than the intensity_to.
+            If the intensity_from or intensity_to less than 0.0.
+            If the intensity_from or intensity_to is greater than 1.0.
+
+        Returns
+        -------
+
+        Examples
+        --------
+        >>> from image_worker.augment import Augmenter
+        >>> augmenter = Augmenter()
+        >>> augmenter.do_sharpen(0.1, 0.5)
+        Added sharpen to the augmenting todo list.
+        """
         augmenting = augmenting_types.sharpen(intensity_from, intensity_to)
         self.augmentation_todo.add(augmenting)
         self.todo_names.append("Sharpen")
 
     def do_saltAndPepper(self, intensity=0.1):
+        """
+        
+        """
         augmenting = augmenting_types.saltAndPepper(intensity)
         self.augmentation_todo.add(augmenting)
         self.todo_names.append("Salt and Pepper")
@@ -130,12 +222,6 @@ class Augmenter:
         self.todo_names.append("Additive Guassian Noise and Scale")
 
 
-
-
-
-
-
-
     # Testing the augmenation by visualising the images.
     def run_view(self):
         # Raises ValueError if something is wrong.
@@ -145,6 +231,9 @@ class Augmenter:
             raise ValueError("No augmentation specified")
         else:
             run_view.view_augment(self.path, self.type_of_image, self.augmentation_todo, self.todo_names)
+
+    def stats(self):
+        pass
 
     # Augmenting the images.
     def run_augment(self, images=None):
