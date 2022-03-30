@@ -202,9 +202,79 @@ def guassianBlur_and_scale(guassianBlur_intensity_from, guassianBlur_intensity_t
     sequential.add(scale(scale_zoom_out, scale_zoom_in))
     return sequential
 
+def guassianBlur_and_pad(guassianBlur_intensity_from, guassianBlur_intensity_to, pad_left, pad_right, pad_top,
+                         pad_bottom):
+    sequential = iaa.Sequential()
+    sequential.add(gaussianBlur(guassianBlur_intensity_from, guassianBlur_intensity_to))
+    sequential.add(pad(pad_left, pad_right, pad_top, pad_bottom))
+    return sequential
 
 def rotate_and_scale(rotate_rotation_left, rotate_rotation_right, scale_zoom_out, scale_zoom_in):
     sequential = iaa.Sequential()
     sequential.add(rotation(rotate_rotation_left, rotate_rotation_right))
+    sequential.add(scale(scale_zoom_out, scale_zoom_in))
+    return sequential
+
+
+def sharpen_and_rotate(sharpen_intensity_from, sharpen_intensity_to, rotate_rotation_left, rotate_rotation_right):
+    sequential = iaa.Sequential()
+    sequential.add(sharpen(sharpen_intensity_from, sharpen_intensity_to))
+    sequential.add(rotation(rotate_rotation_left, rotate_rotation_right))
+    return sequential
+
+def sharpen_and_pad(sharpen_intensity_from, sharpen_intensity_to, pad_left, pad_right, pad_top, pad_bottom):
+    sequential = iaa.Sequential()
+    sequential.add(sharpen(sharpen_intensity_from, sharpen_intensity_to))
+    sequential.add(pad(pad_left, pad_right, pad_top, pad_bottom))
+    return sequential
+
+def sharpen_and_scale(sharpen_intensity_from, sharpen_intensity_to, scale_zoom_out, scale_zoom_in):
+    sequential = iaa.Sequential()
+    sequential.add(sharpen(sharpen_intensity_from, sharpen_intensity_to))
+    sequential.add(scale(scale_zoom_out, scale_zoom_in))
+    return sequential
+
+
+def saltAndPepper_and_rotate(saltAndPepper_intensity, rotate_rotation_left, rotate_rotation_right):
+    sequential = iaa.Sequential()
+    sequential.add(saltAndPepper(saltAndPepper_intensity))
+    sequential.add(rotation(rotate_rotation_left, rotate_rotation_right))
+    return sequential
+
+
+def saltAndPepper_and_pad(saltAndPepper_intensity, pad_left, pad_right, pad_top, pad_bottom):
+    sequential = iaa.Sequential()
+    sequential.add(saltAndPepper(saltAndPepper_intensity))
+    sequential.add(pad(pad_left, pad_right, pad_top, pad_bottom))
+    return sequential
+
+
+def saltAndPepper_and_scale(saltAndPepper_intensity, scale_zoom_out, scale_zoom_in):
+    sequential = iaa.Sequential()
+    sequential.add(saltAndPepper(saltAndPepper_intensity))
+    sequential.add(scale(scale_zoom_out, scale_zoom_in))
+    return sequential
+
+
+def additiveGuassianNoise_and_rotate(additiveGuassianNoise_intensity_from, additiveGuassianNoise_intensity_to,
+                                     rotate_rotation_left, rotate_rotation_right):
+    sequential = iaa.Sequential()
+    sequential.add(additiveGuassianNoise(additiveGuassianNoise_intensity_from, additiveGuassianNoise_intensity_to))
+    sequential.add(rotation(rotate_rotation_left, rotate_rotation_right))
+    return sequential
+
+
+def additiveGuassianNoise_and_pad(additiveGuassianNoise_intensity_from, additiveGuassianNoise_intensity_to, pad_left,
+                                  pad_right, pad_top, pad_bottom):
+    sequential = iaa.Sequential()
+    sequential.add(additiveGuassianNoise(additiveGuassianNoise_intensity_from, additiveGuassianNoise_intensity_to))
+    sequential.add(pad(pad_left, pad_right, pad_top, pad_bottom))
+    return sequential
+
+
+def additiveGuassianNoise_and_scale(additiveGuassianNoise_intensity_from, additiveGuassianNoise_intensity_to,
+                                    scale_zoom_out, scale_zoom_in):
+    sequential = iaa.Sequential()
+    sequential.add(additiveGuassianNoise(additiveGuassianNoise_intensity_from, additiveGuassianNoise_intensity_to))
     sequential.add(scale(scale_zoom_out, scale_zoom_in))
     return sequential

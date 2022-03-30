@@ -39,7 +39,7 @@ class Augmenter:
     def do_saltAndPepper(self, intensity=0.1):
         augmenting = augmenting_types.saltAndPepper(intensity)
         self.augmentation_todo.add(augmenting)
-        self.todo_names.append("Salt-n-Pepper")
+        self.todo_names.append("Salt and Pepper")
 
     def do_additiveGuassianNoise(self, intensity_from=5, intensity_to=50):
         augmenting = augmenting_types.additiveGuassianNoise(intensity_from, intensity_to)
@@ -69,6 +69,11 @@ class Augmenter:
         self.augmentation_todo.add(augmenting)
         self.todo_names.append("Gaussian Blur and Rotation")
 
+    def to_guassianBlur_and_pad(self, guassianBlur_intensity_from=0.5, guassianBlur_intensity_to=3.0, pad_left=20, pad_right=20, pad_top=20, pad_bottom=20):
+        augmenting = augmenting_types.guassianBlur_and_pad(guassianBlur_intensity_from, guassianBlur_intensity_to, pad_left, pad_right, pad_top, pad_bottom)
+        self.augmentation_todo.add(augmenting)
+        self.todo_names.append("Gaussian Blur and Pad")
+
     def do_guassianBlur_and_scale(self, guassianBlur_intensity_from=0.5, guassianBlur_intensity_to=3.0, scale_zoom_out=0.5, scale_zoom_in=1.5):
         augmenting = augmenting_types.guassianBlur_and_scale(guassianBlur_intensity_from, guassianBlur_intensity_to, scale_zoom_out, scale_zoom_in)
         self.augmentation_todo.add(augmenting)
@@ -79,7 +84,55 @@ class Augmenter:
         self.augmentation_todo.add(augmenting)
         self.todo_names.append("Rotation and Scale")
 
-    
+    def do_sharpen_and_rotate(self, sharpen_intensity_from=0.1, sharpen_intensity_to=0.5, rotate_rotation_left=180, rotate_rotation_right=180):
+        augmenting = augmenting_types.sharpen_and_rotate(sharpen_intensity_from, sharpen_intensity_to, rotate_rotation_left, rotate_rotation_right)
+        self.augmentation_todo.add(augmenting)
+        self.todo_names.append("Sharpen and Rotation")
+
+    def do_sharpen_and_pad(self, sharpen_intensity_from=0.1, sharpen_intensity_to=0.5, pad_left=20, pad_right=20, pad_top=20, pad_bottom=20):
+        augmenting = augmenting_types.sharpen_and_pad(sharpen_intensity_from, sharpen_intensity_to, pad_left, pad_right, pad_top, pad_bottom)
+        self.augmentation_todo.add(augmenting)
+        self.todo_names.append("Sharpen and Pad")
+
+    def do_sharpen_and_scale(self, sharpen_intensity_from=0.1, sharpen_intensity_to=0.5, scale_zoom_out=0.5, scale_zoom_in=1.5):
+        augmenting = augmenting_types.sharpen_and_scale(sharpen_intensity_from, sharpen_intensity_to, scale_zoom_out, scale_zoom_in)
+        self.augmentation_todo.add(augmenting)
+        self.todo_names.append("Sharpen and Scale")
+
+    def do_saltAndPepper_and_rotate(self, saltAndPepper_intensity=0.1, rotate_rotation_left=180, rotate_rotation_right=180):
+        augmenting = augmenting_types.saltAndPepper_and_rotate(saltAndPepper_intensity, rotate_rotation_left, rotate_rotation_right)
+        self.augmentation_todo.add(augmenting)
+        self.todo_names.append("Salt and Pepper and Rotation")
+
+    def do_saltAndPepper_and_pad(self, saltAndPepper_intensity=0.1, pad_left=20, pad_right=20, pad_top=20, pad_bottom=20):
+        augmenting = augmenting_types.saltAndPepper_and_pad(saltAndPepper_intensity, pad_left, pad_right, pad_top, pad_bottom)
+        self.augmentation_todo.add(augmenting)
+        self.todo_names.append("Salt and Pepper and Pad")
+
+    def do_saltAndPepper_and_scale(self, saltAndPepper_intensity=0.1, scale_zoom_out=0.5, scale_zoom_in=1.5):
+        augmenting = augmenting_types.saltAndPepper_and_scale(saltAndPepper_intensity, scale_zoom_out, scale_zoom_in)
+        self.augmentation_todo.add(augmenting)
+        self.todo_names.append("Salt and Pepper and Scale")
+
+    def do_additiveGuassianNoise_and_rotate(self, additiveGuassianNoise_intensity_from=5, additiveGuassianNoise_intensity_to=50, rotate_rotation_left=180, rotate_rotation_right=180):
+        augmenting = augmenting_types.additiveGuassianNoise_and_rotate(additiveGuassianNoise_intensity_from, additiveGuassianNoise_intensity_to, rotate_rotation_left, rotate_rotation_right)
+        self.augmentation_todo.add(augmenting)
+        self.todo_names.append("Additive Guassian Noise and Rotation")
+
+    def do_additiveGuassianNoise_and_pad(self, additiveGuassianNoise_intensity_from=5, additiveGuassianNoise_intensity_to=50, pad_left=20, pad_right=20, pad_top=20, pad_bottom=20):
+        augmenting = augmenting_types.additiveGuassianNoise_and_pad(additiveGuassianNoise_intensity_from, additiveGuassianNoise_intensity_to, pad_left, pad_right, pad_top, pad_bottom)
+        self.augmentation_todo.add(augmenting)
+        self.todo_names.append("Additive Guassian Noise and Pad")
+
+    def do_additiveGuassianNoise_and_scale(self, additiveGuassianNoise_intensity_from=5, additiveGuassianNoise_intensity_to=50, scale_zoom_out=0.5, scale_zoom_in=1.5):
+        augmenting = augmenting_types.additiveGuassianNoise_and_scale(additiveGuassianNoise_intensity_from, additiveGuassianNoise_intensity_to, scale_zoom_out, scale_zoom_in)
+        self.augmentation_todo.add(augmenting)
+        self.todo_names.append("Additive Guassian Noise and Scale")
+
+
+
+
+
 
 
 
