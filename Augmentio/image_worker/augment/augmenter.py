@@ -15,7 +15,7 @@ class Augmenter:
     def __init__(self):
         self.path = None
         self.type_of_image = None
-        self.augmentation_todo = iaa.Sequential() # For each image in the specified path, do the augmenting added to the ttodo list.
+        self.augmentation_todo = iaa.Sequential() # For each image in the specified path, do the augmenting added to the todo list.
         self.todo_names = [] # Names of each of the augmentation_todo.
 
         print("Augmenter initialized")
@@ -42,8 +42,10 @@ class Augmenter:
 
         Examples
         --------
+        >>> from image_worker.augment import Augmenter
+        >>> augmenter = Augmenter()
         >>> augmenter.specify_path("/home/user/data/", "jpg")
-        Specified path to data: /home/user/data/ and type of image: jpg
+        Specifying path to data: /home/user/data/ and type of image: jpg.
         """
 
         if type_of_image is not None:
@@ -61,7 +63,7 @@ class Augmenter:
     # Functions that makes image clearer or blurrier.
     def do_gaussianBlur(self, intensity_from=0.5, intensity_to=3.0):
         """
-        Blur the image with a gaussian blur. It augments with a random intensity between the specified parameters.
+        Applies gaussian blur to an image. It augments with a random intensity between the specified parameters.
 
         Parameters
         ----------
@@ -85,7 +87,8 @@ class Augmenter:
         >>> from image_worker.augment import Augmenter
         >>> augmenter = Augmenter()
         >>> augmenter.do_gaussianBlur(0.5, 3.0)
-        Added gaussian blur to the augmenting todo list.
+        Adding gaussian blur to the augmenting todo list.
+        This will guassian blur an image with a random intensity between 0.5 and 3.0.
 
         """
         augmenting = augmenting_types.gaussianBlur(intensity_from, intensity_to)
@@ -94,7 +97,7 @@ class Augmenter:
 
     def do_sharpen(self, intensity_from=0.1, intensity_to=0.5):
         """
-        Sharpen the image with a sharpen. It augments with a random intensity between the specified parameters.
+        Applies sharpen to an image. It augments with a random intensity between the specified parameters.
 
         Parameters
         ----------
@@ -119,37 +122,183 @@ class Augmenter:
         >>> from image_worker.augment import Augmenter
         >>> augmenter = Augmenter()
         >>> augmenter.do_sharpen(0.1, 0.5)
-        Added sharpen to the augmenting todo list.
+        Adding sharpen to the augmenting todo list.
+        This will sharpen an image with a random intensity between 0.1 and 0.5.
         """
         augmenting = augmenting_types.sharpen(intensity_from, intensity_to)
         self.augmentation_todo.add(augmenting)
         self.todo_names.append("Sharpen")
 
-    def do_saltAndPepper(self, intensity=0.1):
+    def do_saltAndPepper(self, intensity_from=0.1, intensity_to=0.5):
         """
-        
+        Adds salt and pepper noise to an image. It augments with a random intensity between the specified parameters.
+
+        Parameters
+        ----------
+        intensity_from : float
+            The lowest percent intensity of the sharpen. Ranging from 0.0 (0%) to 1.0 (100%). Intensity 0 is no noise. Intensity 0.7 is much noise.
+        intensity_to : float
+            The highest percent intensity of the sharpen. Ranging from 0.0 (0%) to 1.0 (100%). Intensity 0 is no noise. Intensity 0.7 is much noise.
+
+        Raises
+        ------
+        ValueError
+            If the intensity_from or intensity_to is not a float or int.
+            If the intensity_from is greater than the intensity_to.
+            If the intensity_from or intensity_to less than 0.0.
+            If the intensity_from or intensity_to is greater than 1.0.
+
+        Returns
+        -------
+
+        Examples
+        --------
+        >>> from image_worker.augment import Augmenter
+        >>> augmenter = Augmenter()
+        >>> augmenter.do_saltAndPepper(0.1, 0.5)
+        Adding salt and pepper noise to the augmenting todo list.
+        This will add salt and pepper noise to an image with a random intensity between 0.1 and 0.5.
+
         """
-        augmenting = augmenting_types.saltAndPepper(intensity)
+        augmenting = augmenting_types.saltAndPepper(intensity_from, intensity_to)
         self.augmentation_todo.add(augmenting)
         self.todo_names.append("Salt and Pepper")
 
     def do_additiveGuassianNoise(self, intensity_from=5, intensity_to=50):
+        """
+        Adds additive guassian noise to an image. It augments with a random intensity between the specified parameters.
+
+        Parameters
+        ----------
+        intensity_from : float
+            The lowest percent of the additive guassian noise. Ranging from 0 to unlimited. Intensity 0 is no noise. Intensity 50 is much noise.
+        intensity_to : float
+            The highest percent of the additive guassian noise. Ranging from 0 to unlimited. Intensity 0 is no noise. Intensity 50 is much noise.
+
+        Raises
+        ------
+        ValueError
+            If the intensity_from or intensity_to is not a float or int.
+            If the intensity_from is greater than the intensity_to.
+            If the intensity_from or intensity_to less than 0.0.
+
+        Returns
+        -------
+
+        Examples
+        --------
+        >>> from image_worker.augment import Augmenter
+        >>> augmenter = Augmenter()
+        >>> augmenter.do_additiveGuassianNoise(5, 50)
+        Adding additive guassian noise to the augmenting todo list.
+        This will add guassian noise to an image with a random intensity between 5 and 50.
+        """
         augmenting = augmenting_types.additiveGuassianNoise(intensity_from, intensity_to)
         self.augmentation_todo.add(augmenting)
         self.todo_names.append("Additive Guassian Noise")
 
     # Functions that changes the position of the image.
     def do_rotate(self, rotation_left=180, rotation_right=180):
+        """
+        Rotates an image. It augments with a random rotation between the specified parameters.
+
+        Parameters
+        ----------
+        rotation_left : int
+            The amount of maximum rotation to the left. Ranging from 0 to 180. rotation_left=0 is no rotation to the left. rotation_left=180 is maximum 180 degrees rotation to the left.
+        rotation_right : int
+            The amount of maximum rotation to the right. Ranging from 0 to 180. rotation_right=0 is no rotation to the right. rotation_right=180 is maximum 180 degrees rotation to the right.
+
+        Raises
+        ------
+        ValueError
+            If the rotation_left or rotation_right is not an int or float.
+            If the rotation_left or rotation_right is less than 0.
+            If the rotation_left or rotation_right is greater than 180.
+
+        Returns
+        -------
+
+        Examples
+        --------
+        >>> from image_worker.augment import Augmenter
+        >>> augmenter = Augmenter()
+        >>> augmenter.do_rotate(90, 90)
+        Adding rotation to the augmenting todo list.
+        This will rotate an image a random amount of maximum 90 degrees to the left or maximum 90 degrees to the right.
+        """
         augmenting = augmenting_types.rotation(rotation_left, rotation_right)
         self.augmentation_todo.add(augmenting)
         self.todo_names.append("Rotation")
 
     def do_pad(self, left=20, right=20, top=20, bottom=20):
+        """
+        Pads an image. It augments with a random amount of padding between the specified parameters.
+
+        Parameters
+        ----------
+        left : int
+            The amount of padding to the left. Ranging from 0 to unlimited. left=0 is no padding on the left. left=20 is 20 pixels of padding on the left.
+        right : int
+            The amount of padding to the right. Ranging from 0 to unlimited. right=0 is no padding on the right. right=20 is 20 pixels of padding on the right.
+        top : int
+            The amount of padding to the top. Ranging from 0 to unlimited. top=0 is no padding on the top. top=20 is 20 pixels of padding on the top.
+        bottom : int
+            The amount of padding to the bottom. Ranging from 0 to unlimited. bottom=0 is no padding on the bottom. bottom=20 is 20 pixels of padding on the bottom.
+
+        Raises
+        ------
+        ValueError
+            If the left/right/top/bottom is not an int or float.
+            If the left/right/top/bottom is less than 0.
+            If left, right, top and bottom is all 0.
+
+        Returns
+        -------
+
+        Examples
+        --------
+        >>> from image_worker.augment import Augmenter
+        >>> augmenter = Augmenter()
+        >>> augmenter.do_pad(0, 5, 0, 20)
+        Adding padding to the augmenting todo list.
+        This will pad an image with a random amount of padding up to maximum 5px on the right, maximum 20px to the bottom and do no padding on the left and top.
+
+        """
         augmenting = augmenting_types.pad(left, right, top, bottom)
         self.augmentation_todo.add(augmenting)
         self.todo_names.append("Pad")
 
     def do_scale(self, zoom_out=0.5, zoom_in=1.5):
+        """
+        Scales an image. It augments with a random scale between the specified parameters.
+
+        Parameters
+        ----------
+        zoom_out : float
+            The amount of maximum zoom out. Ranging from 0.0 to unlimited. zoom_out=1.0 is no zoom out. zoom_out=0.5 is much zoom out.
+        zoom_in : float
+            The amount of maximum zoom in. Ranging from 0.0 to unlimited. zoom_in=1.0 is no zoom in. zoom_in=2.5 is much zoom in.
+
+        Raises
+        ------
+        ValueError
+            If the zoom_out or zoom_in is not an int or float.
+            If the zoom_out is less than 0.
+            If the zoom_in is less than 1.
+            If the zoom_out is greater than zoom_in.
+
+        Returns
+        -------
+
+        Examples
+        --------
+        >>> from image_worker.augment import Augmenter
+        >>> augmenter = Augmenter()
+        >>> augmenter.do_scale(0.5, 1.5)
+        Adding scaling to the augmenting todo list.
+        This will scale an image a random amount of maximum 0.5 times out to maximum 1.5 times in.
+        """
         augmenting = augmenting_types.scale(zoom_out, zoom_in)
         self.augmentation_todo.add(augmenting)
         self.todo_names.append("Scale")
@@ -157,16 +306,133 @@ class Augmenter:
 
     # Combined functions
     def do_guassianBlur_and_rotate(self, guassianBlur_intensity_from=0.5, guassianBlur_intensity_to=3.0, rotate_rotation_left=180, rotate_rotation_right=180):
+        """
+        Applies guassian blur and rotation to an image. It augments with a random amount of guassian blur and rotation between the specified parameters.
+
+        Parameters
+        ----------
+        guassianBlur_intensity_from : float
+            The lowest intensity of the gaussian blur. Ranging from 0 to unlimited. Intensity 0 is no blur. Intensity 3.0 is much blur.
+        guassianBlur_intensity_to : float
+            The highest intensity of the gaussian blur. Ranging from 0 to unlimited.  Intensity 0 is no blur. Intensity 3.0 is much blur.
+        rotate_rotation_left : int
+            The amount of maximum rotation to the left. Ranging from 0 to 180. rotate_rotation_left=0 is no rotation to the left. rotate_rotation_left=180 is maximum 180 degrees rotation to the left.
+        rotate_rotation_right : int
+            The amount of maximum rotation to the right. Ranging from 0 to 180. rotate_rotation_right=0 is no rotation to the right. rotate_rotation_right=180 is maximum 180 degrees rotation to the right.
+
+
+        Raises
+        ------
+        ValueError
+            If the guassianBlur_intensity_from or guassianBlur_intensity_to is not a float or int.
+            If the guassianBlur_intensity_from is greater than the guassianBlur_intensity_to.
+            If the guassianBlur_intensity_from or guassianBlur_intensity_to is less than 0.0.
+            If the rotate_rotation_left or rotation_right is not an int or float.
+            If the rotate_rotation_left or rotate_rotation_right is less than 0.
+            If the rotate_rotation_left or rotate_rotation_right is greater than 180.
+
+        Returns
+        -------
+
+        Examples
+        --------
+        >>> from image_worker.augment import Augmenter
+        >>> augmenter = Augmenter()
+        >>> augmenter.do_guassianBlur_and_rotate(0.5, 3.0, 90, 90)
+        Adding guassian blur and rotation to the augmenting todo list.
+        This will guassian blur an image with a random intensity between 0.5 and 3.0.
+        And on the same image rotate the image a random amount of maximum 90 degrees to the left or maximum 90 degrees to the right
+        """
         augmenting = augmenting_types.guassianBlur_and_rotate(guassianBlur_intensity_from, guassianBlur_intensity_to, rotate_rotation_left, rotate_rotation_right)
         self.augmentation_todo.add(augmenting)
         self.todo_names.append("Gaussian Blur and Rotation")
 
-    def to_guassianBlur_and_pad(self, guassianBlur_intensity_from=0.5, guassianBlur_intensity_to=3.0, pad_left=20, pad_right=20, pad_top=20, pad_bottom=20):
+    def do_guassianBlur_and_pad(self, guassianBlur_intensity_from=0.5, guassianBlur_intensity_to=3.0, pad_left=20, pad_right=20, pad_top=20, pad_bottom=20):
+        """
+        Applies guassian blur and padding to an image. It augments with a random amount of guassian blur and padding between the specified parameters.
+
+        Parameters
+        ----------
+        guassianBlur_intensity_from : float
+            The lowest intensity of the gaussian blur. Ranging from 0 to unlimited. Intensity 0 is no blur. Intensity 3.0 is much blur.
+        guassianBlur_intensity_to : float
+            The highest intensity of the gaussian blur. Ranging from 0 to unlimited.  Intensity 0 is no blur. Intensity 3.0 is much blur.
+        pad_left : int
+            The amount of padding to the left. Ranging from 0 to unlimited. pad_left=0 is no padding on the left. pad_left=20 is 20 pixels of padding on the left.
+        pad_right : int
+            The amount of padding to the right. Ranging from 0 to unlimited. pad_right=0 is no padding on the right. pad_right=20 is 20 pixels of padding on the right.
+        pad_top : int
+            The amount of padding to the top. Ranging from 0 to unlimited. pad_top=0 is no padding on the top. pad_top=20 is 20 pixels of padding on the top.
+        pad_bottom : int
+            The amount of padding to the bottom. Ranging from 0 to unlimited. pad_bottom=0 is no padding on the bottom. pad_bottom=20 is 20 pixels of padding on the bottom.
+
+        Raises
+        ------
+        ValueError
+            If the guassianBlur_intensity_from or guassianBlur_intensity_to is not a float or int.
+            If the guassianBlur_intensity_from is greater than the guassianBlur_intensity_to.
+            If the guassianBlur_intensity_from or guassianBlur_intensity_to is less than 0.0.
+            If the pad_left/pad_right/pad_top/pad_bottom is not an int or float.
+            If the pad_left/pad_right/pad_top/pad_bottom is less than 0.
+            If pad_left, pad_right, pad_top and pad_bottom is all 0.
+
+        Returns
+        -------
+
+        Examples
+        --------
+        >>> from image_worker.augment import Augmenter
+        >>> augmenter = Augmenter()
+        >>> augmenter.do_guassianBlur_and_pad(0.5, 3.0, 0, 5, 0, 20)
+        Adding guassian blur and padding to the augmenting todo list.
+        This will guassian blur an image with a random intensity between 0.5 and 3.0.
+        And on the same image pad with a random amount of padding up to maximum 5px on the right, maximum 20px to the bottom and do no padding on the left and top.
+
+        """
+
         augmenting = augmenting_types.guassianBlur_and_pad(guassianBlur_intensity_from, guassianBlur_intensity_to, pad_left, pad_right, pad_top, pad_bottom)
         self.augmentation_todo.add(augmenting)
         self.todo_names.append("Gaussian Blur and Pad")
 
     def do_guassianBlur_and_scale(self, guassianBlur_intensity_from=0.5, guassianBlur_intensity_to=3.0, scale_zoom_out=0.5, scale_zoom_in=1.5):
+        """
+        Applies guassian blur and scaling to an image. It augments with a random amount of guassian blur and scaling between the specified parameters.
+
+        Parameters
+        ----------
+        guassianBlur_intensity_from : float
+            The lowest intensity of the gaussian blur. Ranging from 0 to unlimited. Intensity 0 is no blur. Intensity 3.0 is much blur.
+        guassianBlur_intensity_to : float
+            The highest intensity of the gaussian blur. Ranging from 0 to unlimited.  Intensity 0 is no blur. Intensity 3.0 is much blur.
+        scale_zoom_out : float
+            The amount of maximum zoom out. Ranging from 0.0 to unlimited. scale_zoom_out=1.0 is no zoom out. scale_zoom_out=0.5 is much zoom out.
+        scale_zoom_in : float
+            The amount of maximum zoom in. Ranging from 0.0 to unlimited. scale_zoom_in=1.0 is no zoom in. scale_zoom_in=2.5 is much zoom in.
+
+        Raises
+        ------
+        ValueError
+            If the guassianBlur_intensity_from or guassianBlur_intensity_to is not a float or int.
+            If the guassianBlur_intensity_from is greater than the guassianBlur_intensity_to.
+            If the guassianBlur_intensity_from or guassianBlur_intensity_to is less than 0.0.
+            If the scale_zoom_out or scale_zoom_in is not an int or float.
+            If the scale_zoom_out is less than 0.
+            If the scale_zoom_in is less than 1.
+            If the scale_zoom_out is greater than scale_zoom_in.
+
+        Returns
+        -------
+
+        Examples
+        --------
+        >>> from image_worker.augment import Augmenter
+        >>> augmenter = Augmenter()
+        >>> augmenter.do_guassianBlur_and_scale(0.5, 3.0, 0.5, 1.5)
+        Adding guassian blur and scaling to the augmenting todo list.
+        This will guassian blur an image with a random intensity between 0.5 and 3.0.
+        And on the same image scale it a random amount of maximum 0.5 times out to maximum 1.5 times in.
+        """
+
         augmenting = augmenting_types.guassianBlur_and_scale(guassianBlur_intensity_from, guassianBlur_intensity_to, scale_zoom_out, scale_zoom_in)
         self.augmentation_todo.add(augmenting)
         self.todo_names.append("Gaussian Blur and Scale")
@@ -191,18 +457,18 @@ class Augmenter:
         self.augmentation_todo.add(augmenting)
         self.todo_names.append("Sharpen and Scale")
 
-    def do_saltAndPepper_and_rotate(self, saltAndPepper_intensity=0.1, rotate_rotation_left=180, rotate_rotation_right=180):
-        augmenting = augmenting_types.saltAndPepper_and_rotate(saltAndPepper_intensity, rotate_rotation_left, rotate_rotation_right)
+    def do_saltAndPepper_and_rotate(self, saltAndPepper_intensity_from=0.1, saltAndPepper_intensity_to=0.5, rotate_rotation_left=180, rotate_rotation_right=180):
+        augmenting = augmenting_types.saltAndPepper_and_rotate(saltAndPepper_intensity_from, saltAndPepper_intensity_to, rotate_rotation_left, rotate_rotation_right)
         self.augmentation_todo.add(augmenting)
         self.todo_names.append("Salt and Pepper and Rotation")
 
-    def do_saltAndPepper_and_pad(self, saltAndPepper_intensity=0.1, pad_left=20, pad_right=20, pad_top=20, pad_bottom=20):
-        augmenting = augmenting_types.saltAndPepper_and_pad(saltAndPepper_intensity, pad_left, pad_right, pad_top, pad_bottom)
+    def do_saltAndPepper_and_pad(self, saltAndPepper_intensity_from=0.1, saltAndPepper_intensity_to=0.5, pad_left=20, pad_right=20, pad_top=20, pad_bottom=20):
+        augmenting = augmenting_types.saltAndPepper_and_pad(saltAndPepper_intensity_from, saltAndPepper_intensity_to, pad_left, pad_right, pad_top, pad_bottom)
         self.augmentation_todo.add(augmenting)
         self.todo_names.append("Salt and Pepper and Pad")
 
-    def do_saltAndPepper_and_scale(self, saltAndPepper_intensity=0.1, scale_zoom_out=0.5, scale_zoom_in=1.5):
-        augmenting = augmenting_types.saltAndPepper_and_scale(saltAndPepper_intensity, scale_zoom_out, scale_zoom_in)
+    def do_saltAndPepper_and_scale(self, saltAndPepper_intensity_from=0.1, saltAndPepper_intensity_to=0.5, scale_zoom_out=0.5, scale_zoom_in=1.5):
+        augmenting = augmenting_types.saltAndPepper_and_scale(saltAndPepper_intensity_from, saltAndPepper_intensity_to, scale_zoom_out, scale_zoom_in)
         self.augmentation_todo.add(augmenting)
         self.todo_names.append("Salt and Pepper and Scale")
 

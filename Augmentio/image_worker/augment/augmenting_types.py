@@ -52,24 +52,31 @@ def sharpen(intensity_from, intensity_to):
     augmenting = iaa.Sharpen(intensity_from, intensity_to)
     return augmenting
 
-def saltAndPepper(intensity):
-    # If intensity is int then make it a float.
-    if isinstance(intensity, int):
-        intensity = float(intensity)
+def saltAndPepper(intensity_from, intensity_to):
+    # If intensity_from is int then make it a float.
+    if isinstance(intensity_from, int):
+        intensity_from = float(intensity_from)
+    # If intensity_to is int then make it a float.
+    if isinstance(intensity_to, int):
+        intensity_to = float(intensity_to)
 
-    # If intensity is not a float then raise an error.
-    if not isinstance(intensity, float):
-        raise ValueError("intensity must be a float.")
+    # If insensity_from/to is not a float then raise an error.
+    if not isinstance(intensity_from, float) or not isinstance(intensity_to, float):
+        raise ValueError("intensity_from and intensity_to must be floats.")
 
-    # If intensity is less than 0 then raise an error.
-    if intensity < 0:
-        raise ValueError("intensity must be greater than 0.")
-    # If intensity is more than 1 then raise an error.
-    if intensity > 1:
-        raise ValueError("intensity must be less than 1.")
+    # If intensity_from is larger than intensity_to then raise an error.
+    if intensity_from > intensity_to:
+        raise ValueError("intensity_from must be less than intensity_to.")
+
+    # If intensity_from is less than 0 then raise an error.
+    if intensity_from < 0:
+        raise ValueError("intensity_from must be greater than 0.")
+    # If intensity_to is more than 1 then raise an error.
+    if intensity_to > 1:
+        raise ValueError("intensity_to must be less than 1.")
 
     # Creating the salt and pepper augmentation
-    augmenting = iaa.SaltAndPepper(intensity)
+    augmenting = iaa.SaltAndPepper((intensity_from, intensity_to))
     return augmenting
 
 def additiveGuassianNoise(intensity_from, intensity_to):
@@ -113,8 +120,6 @@ def rotation(rotation_left, rotation_right):
         raise ValueError("rotation_from and rotation_to must be greater than 0.")
     if rotation_left > 180 or rotation_right > 180:
         raise ValueError("rotation_from and rotation_to must be less than 180.")
-    if rotation_left > rotation_right:
-        raise ValueError("rotation_from must be less than rotation_to.")
 
     # Creating the rotation augmentation
     augmenting = iaa.Rotate((-rotation_left, rotation_right))
@@ -139,7 +144,7 @@ def pad(left, right, top, bottom):
     if left < 0 or right < 0 or top < 0 or bottom < 0:
         raise ValueError("left, right, top, and bottom must be greater than 0.")
     # If left/right/top/bottom is all 0 then raise an error
-    if left == 0 and right == 0 and top == 0 and bottom == 0:
+    if left < 0 and right == 0 and top == 0 and bottom == 0:
         raise ValueError("At least one of left, right, top, and bottom must be greater than 0.")
 
 
@@ -148,14 +153,31 @@ def pad(left, right, top, bottom):
     top_default_minimum_pad = 5
     bottom_default_minimum_pad = 5
     # Changing default if parameters is lower than default.
-    if left < left_default_minimum_pad:
+    if left == 0:
         left_default_minimum_pad = 0
-    if right < right_default_minimum_pad:
+    elif left < 1:
+        left_default_minimum_pad = left
+    elif  left < left_default_minimum_pad:
+        left_default_minimum_pad = 1
+    if right == 0:
         right_default_minimum_pad = 0
-    if top < top_default_minimum_pad:
+    elif right < 1:
+        right_default_minimum_pad = right
+    elif right < right_default_minimum_pad:
+        right_default_minimum_pad = 1
+    if top == 0:
         top_default_minimum_pad = 0
-    if bottom < bottom_default_minimum_pad:
+    elif top < 1:
+        top_default_minimum_pad = top
+    elif top < top_default_minimum_pad:
+        top_default_minimum_pad = 1
+    if bottom == 0:
         bottom_default_minimum_pad = 0
+    elif bottom < 1:
+        bottom_default_minimum_pad = bottom
+    elif bottom < bottom_default_minimum_pad:
+        bottom_default_minimum_pad = 1
+
 
     # Creating Pad parameters from function parameters.
     left = (left_default_minimum_pad, left)
@@ -181,8 +203,12 @@ def scale(zoom_out, zoom_in):
     if not isinstance(zoom_out, float) or not isinstance(zoom_in, float):
         raise ValueError("zoom_out and zoom_in must be floats.")
     # If zoom_out/in is less than 0 then raise an error
-    if zoom_out < 0 or zoom_in < 0:
-        raise ValueError("zoom_out and zoom_in must be greater than 0.")
+    if zoom_out < 0:
+        raise ValueError("zoom_out must be greater than 0.")
+    if zoom_in < 1:
+        raise ValueError("zoom_in must be greater than 1.")
+    if zoom_out > zoom_in:
+        raise ValueError("zoom_out must be less than zoom_in.")
 
     # Creating the scale augmentation
     augmenting = iaa.Affine(scale=(zoom_out, zoom_in))
@@ -235,23 +261,23 @@ def sharpen_and_scale(sharpen_intensity_from, sharpen_intensity_to, scale_zoom_o
     return sequential
 
 
-def saltAndPepper_and_rotate(saltAndPepper_intensity, rotate_rotation_left, rotate_rotation_right):
+def saltAndPepper_and_rotate(saltAndPepper_intensity_from, saltAndPepper_intensity_to, rotate_rotation_left, rotate_rotation_right):
     sequential = iaa.Sequential()
-    sequential.add(saltAndPepper(saltAndPepper_intensity))
+    sequential.add(saltAndPepper(saltAndPepper_intensity_from, saltAndPepper_intensity_to))
     sequential.add(rotation(rotate_rotation_left, rotate_rotation_right))
     return sequential
 
 
-def saltAndPepper_and_pad(saltAndPepper_intensity, pad_left, pad_right, pad_top, pad_bottom):
+def saltAndPepper_and_pad(saltAndPepper_intensity_from, saltAndPepper_intensity_to, pad_left, pad_right, pad_top, pad_bottom):
     sequential = iaa.Sequential()
-    sequential.add(saltAndPepper(saltAndPepper_intensity))
+    sequential.add(saltAndPepper(saltAndPepper_intensity_from, saltAndPepper_intensity_to))
     sequential.add(pad(pad_left, pad_right, pad_top, pad_bottom))
     return sequential
 
 
-def saltAndPepper_and_scale(saltAndPepper_intensity, scale_zoom_out, scale_zoom_in):
+def saltAndPepper_and_scale(saltAndPepper_intensity_from, saltAndPepper_intensity_to, scale_zoom_out, scale_zoom_in):
     sequential = iaa.Sequential()
-    sequential.add(saltAndPepper(saltAndPepper_intensity))
+    sequential.add(saltAndPepper(saltAndPepper_intensity_from, saltAndPepper_intensity_to))
     sequential.add(scale(scale_zoom_out, scale_zoom_in))
     return sequential
 
