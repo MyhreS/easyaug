@@ -35,16 +35,14 @@
             
   <section id="image-worker-augment">
 <h1>image_worker.augment<a class="headerlink" href="#image-worker-augment" title="Permalink to this headline">¶</a></h1>
-<section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</section>
 <section id="module-image_worker.augment.augmenter">
-<span id="image-worker-augment-augmenter-module"></span><h2>image_worker.augment.augmenter module<a class="headerlink" href="#module-image_worker.augment.augmenter" title="Permalink to this headline">¶</a></h2>
+<span id="image-worker-augment-augmenter"></span><h2>image_worker.augment.augmenter<a class="headerlink" href="#module-image_worker.augment.augmenter" title="Permalink to this headline">¶</a></h2>
 <p>This module is used to augment images.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="image_worker.augment.augmenter.Augmenter">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">image_worker.augment.augmenter.</span></span><span class="sig-name descname"><span class="pre">Augmenter</span></span><a class="headerlink" href="#image_worker.augment.augmenter.Augmenter" title="Permalink to this definition">¶</a></dt>
-<dd><p>A class used to augment images. When creating an instance of this class, you can specify the path to your data. Then
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class used to augment images. When creating an instance of this class, you can specify the path to your data. Then
 you can specify the augmenting types. These will be set to a todolist. So when finally you choose to either view a few augmented images or augment all images and save them
 to a new directory the todolist will be executed for each image.</p>
 <dl class="py method">
@@ -66,8 +64,112 @@ If the intensity_from or intensity_to less than 0.0.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">do_additiveGuassianNoise</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
-<span class="go">Added additive guassian noise to the augmenting todo list.</span>
+<span class="go">Adding additive guassian noise to the augmenting todo list.</span>
 <span class="go">This will add guassian noise to an image with a random intensity between 5 and 50.</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="image_worker.augment.augmenter.Augmenter.do_additiveGuassianNoise_and_pad">
+<span class="sig-name descname"><span class="pre">do_additiveGuassianNoise_and_pad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">additiveGuassianNoise_intensity_from</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">additiveGuassianNoise_intensity_to</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_left</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_top</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_bottom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.augment.augmenter.Augmenter.do_additiveGuassianNoise_and_pad" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies additive guassian noise and padding to an image. It augments with a random amount of additive guassian noise and padding between the specified parameters.</p>
+<dl class="simple">
+<dt>additiveGuassianNoise_intensity_from<span class="classifier">float</span></dt><dd><p>The lowest percent of the additive guassian noise. Ranging from 0 to unlimited. AdditiveGuassianNoise_intensity 0 is no noise. AdditiveGuassianNoise_intensity 50 is much noise.</p>
+</dd>
+<dt>additiveGuassianNoise_intensity_to<span class="classifier">float</span></dt><dd><p>The highest percent of the additive guassian noise. Ranging from 0 to unlimited. AdditiveGuassianNoise_intensity 0 is no noise. AdditiveGuassianNoise_intensity 50 is much noise.</p>
+</dd>
+<dt>pad_left<span class="classifier">int</span></dt><dd><p>The amount of padding to the left. Ranging from 0 to unlimited. pad_left=0 is no padding on the left. pad_left=20 is 20 pixels of padding on the left.</p>
+</dd>
+<dt>pad_right<span class="classifier">int</span></dt><dd><p>The amount of padding to the right. Ranging from 0 to unlimited. pad_right=0 is no padding on the right. pad_right=20 is 20 pixels of padding on the right.</p>
+</dd>
+<dt>pad_top<span class="classifier">int</span></dt><dd><p>The amount of padding to the top. Ranging from 0 to unlimited. pad_top=0 is no padding on the top. pad_top=20 is 20 pixels of padding on the top.</p>
+</dd>
+<dt>pad_bottom<span class="classifier">int</span></dt><dd><p>The amount of padding to the bottom. Ranging from 0 to unlimited. pad_bottom=0 is no padding on the bottom. pad_bottom=20 is 20 pixels of padding on the bottom.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If the additiveGuassianNoise_intensity_from or additiveGuassianNoise_intensity_to is not a float or int.
+If the additiveGuassianNoise_intensity_from is greater than the additiveGuassianNoise_intensity_to.
+If the additiveGuassianNoise_intensity_from or additiveGuassianNoise_intensity_to less than 0.0.
+If the pad_left/pad_right/pad_top/pad_bottom is not an int or float.
+If the pad_left/pad_right/pad_top/pad_bottom is less than 0.
+If pad_left, pad_right, pad_top and pad_bottom is all 0.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">do_additiveGuassianNoise_and_pad</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="go">Adding additive guassian noise and padding to the augmenting todo list.</span>
+<span class="go">This will add guassian noise to an image with a random intensity between 5 and 50.</span>
+<span class="go">And pad the same image with a random amount of maximum 5px on the right, maximum 20px to the bottom and do no padding on the left and top.</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="image_worker.augment.augmenter.Augmenter.do_additiveGuassianNoise_and_rotate">
+<span class="sig-name descname"><span class="pre">do_additiveGuassianNoise_and_rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">additiveGuassianNoise_intensity_from</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">additiveGuassianNoise_intensity_to</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotate_rotation_left</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">180</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotate_rotation_right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">180</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.augment.augmenter.Augmenter.do_additiveGuassianNoise_and_rotate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies additive guassian noise and rotation to an image. It augments with a random amount of additive guassian noise and rotation between the specified parameters.</p>
+<dl class="simple">
+<dt>additiveGuassianNoise_intensity_from<span class="classifier">float</span></dt><dd><p>The lowest percent of the additive guassian noise. Ranging from 0 to unlimited. AdditiveGuassianNoise_intensity 0 is no noise. AdditiveGuassianNoise_intensity 50 is much noise.</p>
+</dd>
+<dt>additiveGuassianNoise_intensity_to<span class="classifier">float</span></dt><dd><p>The highest percent of the additive guassian noise. Ranging from 0 to unlimited. AdditiveGuassianNoise_intensity 0 is no noise. AdditiveGuassianNoise_intensity 50 is much noise.</p>
+</dd>
+<dt>rotate_rotation_left<span class="classifier">int</span></dt><dd><p>The amount of maximum rotation to the left. Ranging from 0 to 180. rotate_rotation_left=0 is no rotation to the left. rotate_rotation_left=180 is maximum 180 degrees rotation to the left.</p>
+</dd>
+<dt>rotate_rotation_right<span class="classifier">int</span></dt><dd><p>The amount of maximum rotation to the right. Ranging from 0 to 180. rotate_rotation_right=0 is no rotation to the right. rotate_rotation_right=180 is maximum 180 degrees rotation to the right.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If the additiveGuassianNoise_intensity_from or additiveGuassianNoise_intensity_to is not a float or int.
+If the additiveGuassianNoise_intensity_from is greater than the additiveGuassianNoise_intensity_to.
+If the additiveGuassianNoise_intensity_from or additiveGuassianNoise_intensity_to less than 0.0.
+If the rotate_rotation_left or rotate_rotation_right is not a float or int.
+If the rotate_rotation_left or rotate_rotation_right is less than 0.0.
+If the rotate_rotation_left or rotate_rotation_right is greater than 180.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">do_additiveGuassianNoise_and_rotate</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+<span class="go">Adding additive guassian noise to the augmenting todo list.</span>
+<span class="go">This will add guassian noise to an image with a random intensity between 5 and 50.</span>
+<span class="go">And rotate the same image a random amount of maximum 90 degrees to the left or right.</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="image_worker.augment.augmenter.Augmenter.do_additiveGuassianNoise_and_scale">
+<span class="sig-name descname"><span class="pre">do_additiveGuassianNoise_and_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">additiveGuassianNoise_intensity_from</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">additiveGuassianNoise_intensity_to</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_zoom_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_zoom_in</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.augment.augmenter.Augmenter.do_additiveGuassianNoise_and_scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies additive guassian noise and scaling to an image. It augments with a random amount of additive guassian noise and scaling between the specified parameters.</p>
+<dl class="simple">
+<dt>additiveGuassianNoise_intensity_from<span class="classifier">float</span></dt><dd><p>The lowest percent of the additive guassian noise. Ranging from 0 to unlimited. AdditiveGuassianNoise_intensity 0 is no noise. AdditiveGuassianNoise_intensity 50 is much noise.</p>
+</dd>
+<dt>additiveGuassianNoise_intensity_to<span class="classifier">float</span></dt><dd><p>The highest percent of the additive guassian noise. Ranging from 0 to unlimited. AdditiveGuassianNoise_intensity 0 is no noise. AdditiveGuassianNoise_intensity 50 is much noise.</p>
+</dd>
+<dt>scale_zoom_out<span class="classifier">float</span></dt><dd><p>The amount of maximum zoom out. Ranging from 0.0 to unlimited. scale_zoom_out=1.0 is no zoom out. scale_zoom_out=0.5 is much zoom out.</p>
+</dd>
+<dt>scale_zoom_in<span class="classifier">float</span></dt><dd><p>The amount of maximum zoom in. Ranging from 0.0 to unlimited. scale_zoom_in=1.0 is no zoom in. scale_zoom_in=2.5 is much zoom in.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If the additiveGuassianNoise_intensity_from or additiveGuassianNoise_intensity_to is not a float or int.
+If the additiveGuassianNoise_intensity_from is greater than the additiveGuassianNoise_intensity_to.
+If the additiveGuassianNoise_intensity_from or additiveGuassianNoise_intensity_to less than 0.0.
+If the scale_zoom_out or scale_zoom_in is not an int or float.
+If the scale_zoom_out is less than 0.
+If the scale_zoom_in is less than 1.
+If the scale_zoom_out is greater than scale_zoom_in.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">do_additiveGuassianNoise_and_scale</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="go">Adding additive guassian noise and scaling to the augmenting todo list.</span>
+<span class="go">This will add guassian noise to an image with a random intensity between 5 and 50.</span>
+<span class="go">And on the same image scales it a random amount of maximum 0.5 times out to maximum 1.5 times in.</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -91,7 +193,7 @@ If the intensity_from or intensity_to is less than 0.0.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">do_gaussianBlur</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
-<span class="go">Added gaussian blur to the augmenting todo list.</span>
+<span class="go">Adding gaussian blur to the augmenting todo list.</span>
 <span class="go">This will guassian blur an image with a random intensity between 0.5 and 3.0.</span>
 </pre></div>
 </div>
@@ -127,9 +229,9 @@ If pad_left, pad_right, pad_top and pad_bottom is all 0.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">do_guassianBlur_and_pad</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
-<span class="go">Added guassian blur and padding to the augmenting todo list.</span>
+<span class="go">Adding guassian blur and padding to the augmenting todo list.</span>
 <span class="go">This will guassian blur an image with a random intensity between 0.5 and 3.0.</span>
-<span class="go">And on the same image pad with a random amount of padding up to maximum 5px on the right, maximum 20px to the bottom and do no padding on the left and top.</span>
+<span class="go">And pad the same image with a random amount of maximum 5px on the right, maximum 20px to the bottom and do no padding on the left and top.</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -160,7 +262,7 @@ If the rotate_rotation_left or rotate_rotation_right is greater than 180.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">do_guassianBlur_and_rotate</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
-<span class="go">Added guassian blur and rotation to the augmenting todo list.</span>
+<span class="go">Adding guassian blur and rotation to the augmenting todo list.</span>
 <span class="go">This will guassian blur an image with a random intensity between 0.5 and 3.0.</span>
 <span class="go">And on the same image rotate the image a random amount of maximum 90 degrees to the left or maximum 90 degrees to the right</span>
 </pre></div>
@@ -194,9 +296,9 @@ If the scale_zoom_out is greater than scale_zoom_in.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">do_guassianBlur_and_scale</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
-<span class="go">Added guassian blur and scaling to the augmenting todo list.</span>
+<span class="go">Adding guassian blur and scaling to the augmenting todo list.</span>
 <span class="go">This will guassian blur an image with a random intensity between 0.5 and 3.0.</span>
-<span class="go">And on the same image scale it a random amount of maximum 0.5 times out to maximum 1.5 times in.</span>
+<span class="go">And on the same image scales it a random amount of maximum 0.5 times out to maximum 1.5 times in.</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -224,7 +326,7 @@ If left, right, top and bottom is all 0.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">do_pad</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
-<span class="go">Added padding to the augmenting todo list.</span>
+<span class="go">Adding padding to the augmenting todo list.</span>
 <span class="go">This will pad an image with a random amount of padding up to maximum 5px on the right, maximum 20px to the bottom and do no padding on the left and top.</span>
 </pre></div>
 </div>
@@ -249,8 +351,41 @@ If the rotation_left or rotation_right is greater than 180.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">do_rotate</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
-<span class="go">Added rotation to the augmenting todo list.</span>
+<span class="go">Adding rotation to the augmenting todo list.</span>
 <span class="go">This will rotate an image a random amount of maximum 90 degrees to the left or maximum 90 degrees to the right.</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="image_worker.augment.augmenter.Augmenter.do_rotate_and_scale">
+<span class="sig-name descname"><span class="pre">do_rotate_and_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rotate_rotation_left</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">180</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotate_rotation_right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">180</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_zoom_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_zoom_in</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.augment.augmenter.Augmenter.do_rotate_and_scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies rotation and scaling to an image. It augments with a random amount of rotation and scaling between the specified parameters.</p>
+<dl class="simple">
+<dt>rotate_rotation_left<span class="classifier">int</span></dt><dd><p>The amount of maximum rotation to the left. Ranging from 0 to 180. rotate_rotation_left=0 is no rotation to the left. rotate_rotation_left=180 is maximum 180 degrees rotation to the left.</p>
+</dd>
+<dt>rotate_rotation_right<span class="classifier">int</span></dt><dd><p>The amount of maximum rotation to the right. Ranging from 0 to 180. rotate_rotation_right=0 is no rotation to the right. rotate_rotation_right=180 is maximum 180 degrees rotation to the right.</p>
+</dd>
+<dt>scale_zoom_out<span class="classifier">float</span></dt><dd><p>The amount of maximum zoom out. Ranging from 0.0 to unlimited. scale_zoom_out=1.0 is no zoom out. scale_zoom_out=0.5 is much zoom out.</p>
+</dd>
+<dt>scale_zoom_in<span class="classifier">float</span></dt><dd><p>The amount of maximum zoom in. Ranging from 0.0 to unlimited. scale_zoom_in=1.0 is no zoom in. scale_zoom_in=2.5 is much zoom in.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If the rotate_rotation_left or rotate_rotation_right is not a float or int.
+If the rotate_rotation_left or rotate_rotation_right is less than 0.0.
+If the scale_zoom_out or scale_zoom_in is not an int or float.
+If the scale_zoom_out is less than 0.
+If the scale_zoom_in is less than 1.
+If the scale_zoom_out is greater than scale_zoom_in.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">do_rotate_and_scale</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="go">Adding rotation and scaling to the augmenting todo list.</span>
+<span class="go">This will rotate an image a random amount of maximum 90 degrees to the left or right.</span>
+<span class="go">And on the same image scales it a random amount of maximum 0.5 times out to maximum 1.5 times in.</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -275,8 +410,115 @@ If the intensity_from or intensity_to is greater than 1.0.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">do_saltAndPepper</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
-<span class="go">Added salt and pepper noise to the augmenting todo list.</span>
+<span class="go">Adding salt and pepper noise to the augmenting todo list.</span>
 <span class="go">This will add salt and pepper noise to an image with a random intensity between 0.1 and 0.5.</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="image_worker.augment.augmenter.Augmenter.do_saltAndPepper_and_pad">
+<span class="sig-name descname"><span class="pre">do_saltAndPepper_and_pad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">saltAndPepper_intensity_from</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">saltAndPepper_intensity_to</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_left</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_top</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_bottom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.augment.augmenter.Augmenter.do_saltAndPepper_and_pad" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies salt and pepper noise and padding to an image. It augments with a random amount of salt and pepper noise and padding between the specified parameters.</p>
+<dl class="simple">
+<dt>saltAndPepper_intensity_from<span class="classifier">float</span></dt><dd><p>The lowest percent intensity of the sharpen. Ranging from 0.0 (0%) to 1.0 (100%). SaltAndPepper_intensity 0 is no noise. SaltAndPepper_intensity 0.7 is much noise.</p>
+</dd>
+<dt>saltAndPepper_intensity_to<span class="classifier">float</span></dt><dd><p>The highest percent intensity of the sharpen. Ranging from 0.0 (0%) to 1.0 (100%). SaltAndPepper_intensity 0 is no noise. SaltAndPepper_intensity 0.7 is much noise.</p>
+</dd>
+<dt>pad_left<span class="classifier">int</span></dt><dd><p>The amount of padding to the left. Ranging from 0 to unlimited. pad_left=0 is no padding on the left. pad_left=20 is 20 pixels of padding on the left.</p>
+</dd>
+<dt>pad_right<span class="classifier">int</span></dt><dd><p>The amount of padding to the right. Ranging from 0 to unlimited. pad_right=0 is no padding on the right. pad_right=20 is 20 pixels of padding on the right.</p>
+</dd>
+<dt>pad_top<span class="classifier">int</span></dt><dd><p>The amount of padding to the top. Ranging from 0 to unlimited. pad_top=0 is no padding on the top. pad_top=20 is 20 pixels of padding on the top.</p>
+</dd>
+<dt>pad_bottom<span class="classifier">int</span></dt><dd><p>The amount of padding to the bottom. Ranging from 0 to unlimited. pad_bottom=0 is no padding on the bottom. pad_bottom=20 is 20 pixels of padding on the bottom.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If the saltAndPepper_intensity_from or saltAndPepper_intensity_to is not a float or int.
+If the saltAndPepper_intensity_from is greater than the saltAndPepper_intensity_to.
+If the saltAndPepper_intensity_from or saltAndPepper_intensity_to less than 0.0.
+If the saltAndPepper_intensity_from or saltAndPepper_intensity_to is greater than 1.0.
+If the pad_left/pad_right/pad_top/pad_bottom is not an int or float.
+If the pad_left/pad_right/pad_top/pad_bottom is less than 0.
+If pad_left, pad_right, pad_top and pad_bottom is all 0.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">do_saltAndPepper_and_pad</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="go">Adding salt and pepper noise and padding to the augmenting todo list.</span>
+<span class="go">This will add salt and pepper noise to an image with a random intensity between 0.1 and 0.5.</span>
+<span class="go">And pad the same image with a random amount of maximum 5px on the right, maximum 20px to the bottom and do no padding on the left and top.</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="image_worker.augment.augmenter.Augmenter.do_saltAndPepper_and_rotate">
+<span class="sig-name descname"><span class="pre">do_saltAndPepper_and_rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">saltAndPepper_intensity_from</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">saltAndPepper_intensity_to</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotate_rotation_left</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">180</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotate_rotation_right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">180</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.augment.augmenter.Augmenter.do_saltAndPepper_and_rotate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies salt and pepper noise and rotation to an image. It augments with a random amount of salt and pepper noise and rotation between the specified parameters.</p>
+<dl class="simple">
+<dt>saltAndPepper_intensity_from<span class="classifier">float</span></dt><dd><p>The lowest percent intensity of the sharpen. Ranging from 0.0 (0%) to 1.0 (100%). SaltAndPepper_intensity 0 is no noise. SaltAndPepper_intensity 0.7 is much noise.</p>
+</dd>
+<dt>saltAndPepper_intensity_to<span class="classifier">float</span></dt><dd><p>The highest percent intensity of the sharpen. Ranging from 0.0 (0%) to 1.0 (100%). SaltAndPepper_intensity 0 is no noise. SaltAndPepper_intensity 0.7 is much noise.</p>
+</dd>
+<dt>rotate_rotation_left<span class="classifier">int</span></dt><dd><p>The amount of maximum rotation to the left. Ranging from 0 to 180. rotate_rotation_left=0 is no rotation to the left. rotate_rotation_left=180 is maximum 180 degrees rotation to the left.</p>
+</dd>
+<dt>rotate_rotation_right<span class="classifier">int</span></dt><dd><p>The amount of maximum rotation to the right. Ranging from 0 to 180. rotate_rotation_right=0 is no rotation to the right. rotate_rotation_right=180 is maximum 180 degrees rotation to the right.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If the saltAndPepper_intensity_from or saltAndPepper_intensity_to is not a float or int.
+If the saltAndPepper_intensity_from is greater than the saltAndPepper_intensity_to.
+If the saltAndPepper_intensity_from or saltAndPepper_intensity_to less than 0.0.
+If the saltAndPepper_intensity_from or saltAndPepper_intensity_to is greater than 1.0.
+If the rotate_rotation_left or rotate_rotation_right is not a float or int.
+If the rotate_rotation_left or rotate_rotation_right is less than 0.0.
+If the rotate_rotation_left or rotate_rotation_right is greater than 180.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">do_saltAndPepper_and_rotate</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+<span class="go">Adding salt and pepper noise and rotation to the augmenting todo list.</span>
+<span class="go">This will add salt and pepper noise to an image with a random intensity between 0.1 and 0.5.</span>
+<span class="go">And rotate the same image a random amount of maximum 90 degrees to the left or right.</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="image_worker.augment.augmenter.Augmenter.do_saltAndPepper_and_scale">
+<span class="sig-name descname"><span class="pre">do_saltAndPepper_and_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">saltAndPepper_intensity_from</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">saltAndPepper_intensity_to</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_zoom_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_zoom_in</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.augment.augmenter.Augmenter.do_saltAndPepper_and_scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies salt and pepper noise and scaling to an image. It augments with a random amount of salt and pepper noise and scaling between the specified parameters.</p>
+<dl class="simple">
+<dt>saltAndPepper_intensity_from<span class="classifier">float</span></dt><dd><p>The lowest percent intensity of the sharpen. Ranging from 0.0 (0%) to 1.0 (100%). SaltAndPepper_intensity 0 is no noise. SaltAndPepper_intensity 0.7 is much noise.</p>
+</dd>
+<dt>saltAndPepper_intensity_to<span class="classifier">float</span></dt><dd><p>The highest percent intensity of the sharpen. Ranging from 0.0 (0%) to 1.0 (100%). SaltAndPepper_intensity 0 is no noise. SaltAndPepper_intensity 0.7 is much noise.</p>
+</dd>
+<dt>scale_zoom_out<span class="classifier">float</span></dt><dd><p>The amount of maximum zoom out. Ranging from 0.0 to unlimited. scale_zoom_out=1.0 is no zoom out. scale_zoom_out=0.5 is much zoom out.</p>
+</dd>
+<dt>scale_zoom_in<span class="classifier">float</span></dt><dd><p>The amount of maximum zoom in. Ranging from 0.0 to unlimited. scale_zoom_in=1.0 is no zoom in. scale_zoom_in=2.5 is much zoom in.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If the saltAndPepper_intensity_from or saltAndPepper_intensity_to is not a float or int.
+If the saltAndPepper_intensity_from is greater than the saltAndPepper_intensity_to.
+If the saltAndPepper_intensity_from or saltAndPepper_intensity_to less than 0.0.
+If the saltAndPepper_intensity_from or saltAndPepper_intensity_to is greater than 1.0.
+If the scale_zoom_out or scale_zoom_in is not an int or float.
+If the scale_zoom_out is less than 0.
+If the scale_zoom_in is less than 1.
+If the scale_zoom_out is greater than scale_zoom_in.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">do_saltAndPepper_and_scale</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="go">Adding salt and pepper noise and scaling to the augmenting todo list.</span>
+<span class="go">This will add salt and pepper noise to an image with a random intensity between 0.1 and 0.5.</span>
+<span class="go">And on the same image scales it a random amount of maximum 0.5 times out to maximum 1.5 times in.</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -301,7 +543,7 @@ If the zoom_out is greater than zoom_in.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">do_scale</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
-<span class="go">Added scaling to the augmenting todo list.</span>
+<span class="go">Adding scaling to the augmenting todo list.</span>
 <span class="go">This will scale an image a random amount of maximum 0.5 times out to maximum 1.5 times in.</span>
 </pre></div>
 </div>
@@ -327,8 +569,151 @@ If the intensity_from or intensity_to is greater than 1.0.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">do_sharpen</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
-<span class="go">Added sharpen to the augmenting todo list.</span>
+<span class="go">Adding sharpen to the augmenting todo list.</span>
 <span class="go">This will sharpen an image with a random intensity between 0.1 and 0.5.</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="image_worker.augment.augmenter.Augmenter.do_sharpen_and_pad">
+<span class="sig-name descname"><span class="pre">do_sharpen_and_pad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sharpen_intensity_from</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sharpen_intensity_to</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_left</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_top</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_bottom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.augment.augmenter.Augmenter.do_sharpen_and_pad" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies sharpen and padding to an image. It augments with a random amount of sharpen and padding between the specified parameters.</p>
+<dl class="simple">
+<dt>sharpen_intensity_from<span class="classifier">float</span></dt><dd><p>The lowest percent intensity of the sharpen. Ranging from 0.0 (0%) to 1.0 (100%). Sharpen_intensity 0 is no sharpen. Sharpen_intensity 0.7 is much sharpen.</p>
+</dd>
+<dt>sharpen_intensity_to<span class="classifier">float</span></dt><dd><p>The highest percent intensity of the sharpen. Ranging from 0.0 (0%) to 1.0 (100%). Sharpen_intensity 0 is no sharpen. Sharpen_intensity 0.7 is much sharpen.</p>
+</dd>
+<dt>pad_left<span class="classifier">int</span></dt><dd><p>The amount of padding to the left. Ranging from 0 to unlimited. pad_left=0 is no padding on the left. pad_left=20 is 20 pixels of padding on the left.</p>
+</dd>
+<dt>pad_right<span class="classifier">int</span></dt><dd><p>The amount of padding to the right. Ranging from 0 to unlimited. pad_right=0 is no padding on the right. pad_right=20 is 20 pixels of padding on the right.</p>
+</dd>
+<dt>pad_top<span class="classifier">int</span></dt><dd><p>The amount of padding to the top. Ranging from 0 to unlimited. pad_top=0 is no padding on the top. pad_top=20 is 20 pixels of padding on the top.</p>
+</dd>
+<dt>pad_bottom<span class="classifier">int</span></dt><dd><p>The amount of padding to the bottom. Ranging from 0 to unlimited. pad_bottom=0 is no padding on the bottom. pad_bottom=20 is 20 pixels of padding on the bottom.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If the sharpen_intensity_from or sharpen_intensity_to is not a float or int.
+If the sharpen_intensity_from is greater than the sharpen_intensity_to.
+If the sharpen_intensity_from or sharpen_intensity_to less than 0.0.
+If the sharpen_intensity_from or sharpen_intensity_to is greater than 1.0.
+If the pad_left/pad_right/pad_top/pad_bottom is not an int or float.
+If the pad_left/pad_right/pad_top/pad_bottom is less than 0.
+If pad_left, pad_right, pad_top and pad_bottom is all 0.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">do_sharpen_and_pad</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="go">Adding sharpen and padding to the augmenting todo list.</span>
+<span class="go">This will sharpen an image with a random intensity between 0.1 and 0.5.</span>
+<span class="go">And on the same image pad with a random amount of padding up to maximum 5px on the right, maximum 20px to the bottom and do no padding on the left and top.</span>
+<span class="go">And pad the same image with a random amount of maximum 5px on the right, maximum 20px to the bottom and do no padding on the left and top.</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="image_worker.augment.augmenter.Augmenter.do_sharpen_and_rotate">
+<span class="sig-name descname"><span class="pre">do_sharpen_and_rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sharpen_intensity_from</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sharpen_intensity_to</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotate_rotation_left</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">180</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotate_rotation_right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">180</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.augment.augmenter.Augmenter.do_sharpen_and_rotate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies sharpen and rotation to an image. It augments with a random amount of sharpen and rotation between the specified parameters.</p>
+<dl class="simple">
+<dt>sharpen_intensity_from<span class="classifier">float</span></dt><dd><p>The lowest percent intensity of the sharpen. Ranging from 0.0 (0%) to 1.0 (100%). Sharpen_intensity 0 is no sharpen. Sharpen_intensity 0.7 is much sharpen.</p>
+</dd>
+<dt>sharpen_intensity_to<span class="classifier">float</span></dt><dd><p>The highest percent intensity of the sharpen. Ranging from 0.0 (0%) to 1.0 (100%). Sharpen_intensity 0 is no sharpen. Sharpen_intensity 0.7 is much sharpen.</p>
+</dd>
+<dt>rotate_rotation_left<span class="classifier">int</span></dt><dd><p>The amount of maximum rotation to the left. Ranging from 0 to 180. rotate_rotation_left=0 is no rotation to the left. rotate_rotation_left=180 is maximum 180 degrees rotation to the left.</p>
+</dd>
+<dt>rotate_rotation_right<span class="classifier">int</span></dt><dd><p>The amount of maximum rotation to the right. Ranging from 0 to 180. rotate_rotation_right=0 is no rotation to the right. rotate_rotation_right=180 is maximum 180 degrees rotation to the right.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If the sharpen_intensity_from or sharpen_intensity_to is not a float or int.
+If the sharpen_intensity_from is greater than the sharpen_intensity_to.
+If the sharpen_intensity_from or sharpen_intensity_to less than 0.0.
+If the sharpen_intensity_from or sharpen_intensity_to is greater than 1.0.
+If the rotate_rotation_left or rotate_rotation_right is not a float or int.
+If the rotate_rotation_left or rotate_rotation_right is less than 0.0.
+If the rotate_rotation_left or rotate_rotation_right is greater than 180.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">do_sharpen_and_rotate</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+<span class="go">Adding sharpen and rotation to the augmenting todo list.</span>
+<span class="go">This will sharpen an image with a random intensity between 0.1 and 0.5.</span>
+<span class="go">And rotate the same image a random amount of maximum 90 degrees to the left or right.</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="image_worker.augment.augmenter.Augmenter.do_sharpen_and_scale">
+<span class="sig-name descname"><span class="pre">do_sharpen_and_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sharpen_intensity_from</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sharpen_intensity_to</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_zoom_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_zoom_in</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.augment.augmenter.Augmenter.do_sharpen_and_scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies sharpen and scaling to an image. It augments with a random amount of sharpen and scaling between the specified parameters.</p>
+<dl class="simple">
+<dt>sharpen_intensity_from<span class="classifier">float</span></dt><dd><p>The lowest percent intensity of the sharpen. Ranging from 0.0 (0%) to 1.0 (100%). Sharpen_intensity 0 is no sharpen. Sharpen_intensity 0.7 is much sharpen.</p>
+</dd>
+<dt>sharpen_intensity_to<span class="classifier">float</span></dt><dd><p>The highest percent intensity of the sharpen. Ranging from 0.0 (0%) to 1.0 (100%). Sharpen_intensity 0 is no sharpen. Sharpen_intensity 0.7 is much sharpen.</p>
+</dd>
+<dt>scale_zoom_out<span class="classifier">float</span></dt><dd><p>The amount of maximum zoom out. Ranging from 0.0 to unlimited. scale_zoom_out=1.0 is no zoom out. scale_zoom_out=0.5 is much zoom out.</p>
+</dd>
+<dt>scale_zoom_in<span class="classifier">float</span></dt><dd><p>The amount of maximum zoom in. Ranging from 0.0 to unlimited. scale_zoom_in=1.0 is no zoom in. scale_zoom_in=2.5 is much zoom in.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If the sharpen_intensity_from or sharpen_intensity_to is not a float or int.
+If the sharpen_intensity_from is greater than the sharpen_intensity_to.
+If the sharpen_intensity_from or sharpen_intensity_to less than 0.0.
+If the sharpen_intensity_from or sharpen_intensity_to is greater than 1.0.
+If the scale_zoom_out or scale_zoom_in is not an int or float.
+If the scale_zoom_out is less than 0.
+If the scale_zoom_in is less than 1.
+If the scale_zoom_out is greater than scale_zoom_in.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">do_sharpen_and_scale</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="go">Adding sharpen and scaling to the augmenting todo list.</span>
+<span class="go">This will sharpen an image with a random intensity between 0.1 and 0.5.</span>
+<span class="go">And on the same image scales it a random amount of maximum 0.5 times out to maximum 1.5 times in.</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="image_worker.augment.augmenter.Augmenter.run_augment">
+<span class="sig-name descname"><span class="pre">run_augment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">images</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.augment.augmenter.Augmenter.run_augment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="image_worker.augment.augmenter.Augmenter.run_view">
+<span class="sig-name descname"><span class="pre">run_view</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.augment.augmenter.Augmenter.run_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>A testing and visualising function.</p>
+<p>Augments 9 random images from the specified path. Augments using each of the augmentation types added to the todo list and visualises them in a 3x3 grid.
+This is to test the augmentation and to see how much each augmentation type affects the images.
+This function does not save the augmented images and can be a nice function to run before the actual augmentation of all the images.
+After this function is run a user can tweek the parameters of the augmentation types and test the augmentation on the images again. Then when satisfied run the augmentation.</p>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If the path is not specified.
+If no augmentation types is added to the todo list.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">specify_path</span><span class="p">(</span><span class="s2">&quot;/path/to/images&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">do_rotate</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">do_additiveGuassianNoise_and_scale</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">run_view</span><span class="p">()</span>
+<span class="go">Augments 9 random images from the specified path and visualises them in a 3x3 grid for each augmenting type.</span>
+<span class="go">Augments 9 images using the &#39;do_rotate&#39; augmentation type.</span>
+<span class="go">And augments 9 images using the &#39;do_additiveGuassianNoise_and_scale&#39; augmentation type.</span>
+<span class="go">Then visualises:</span>
+<span class="go">1. The original images in a 3x3 grid.</span>
+<span class="go">2. The augmented images using &#39;do_rotate&#39; in a 3x3 grid.</span>
+<span class="go">3. The augmented images using &#39;do_additiveGuassianNoise_and_scale&#39; in a 3x3 grid.</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -351,16 +736,18 @@ If type_of_image is not None, “jpg” og “png”.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">specify_path</span><span class="p">(</span><span class="s2">&quot;/home/user/data/&quot;</span><span class="p">,</span> <span class="s2">&quot;jpg&quot;</span><span class="p">)</span>
-<span class="go">Specified path to data: /home/user/data/ and type of image: jpg.</span>
+<span class="go">Specifying path to data: /home/user/data/ and type of image: jpg.</span>
 </pre></div>
 </div>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="image_worker.augment.augmenter.Augmenter.stats">
+<span class="sig-name descname"><span class="pre">stats</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.augment.augmenter.Augmenter.stats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
-</section>
-<section id="module-image_worker.augment">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-image_worker.augment" title="Permalink to this headline">¶</a></h2>
 </section>
 </section>
 

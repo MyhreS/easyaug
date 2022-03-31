@@ -1,17 +1,10 @@
 image\_worker.augment
 =====================
 
-Submodules
-----------
-
-image\_worker.augment.augmenter module
+image\_worker.augment.augmenter
 -----------------------------------------
 
 .. automodule:: image_worker.augment.augmenter
    :members:
-
-Module contents
----------------
-
-.. automodule:: image_worker.augment
-   :members:
+   :undoc-members:
+   :show-inheritance:

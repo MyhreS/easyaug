@@ -655,28 +655,220 @@ class Augmenter:
         self.todo_names.append("Salt and Pepper and Rotation")
 
     def do_saltAndPepper_and_pad(self, saltAndPepper_intensity_from=0.1, saltAndPepper_intensity_to=0.5, pad_left=20, pad_right=20, pad_top=20, pad_bottom=20):
-        
+        """
+        Applies salt and pepper noise and padding to an image. It augments with a random amount of salt and pepper noise and padding between the specified parameters.
+
+        Parameters
+        ----------
+        saltAndPepper_intensity_from : float
+            The lowest percent intensity of the sharpen. Ranging from 0.0 (0%) to 1.0 (100%). SaltAndPepper_intensity 0 is no noise. SaltAndPepper_intensity 0.7 is much noise.
+        saltAndPepper_intensity_to : float
+            The highest percent intensity of the sharpen. Ranging from 0.0 (0%) to 1.0 (100%). SaltAndPepper_intensity 0 is no noise. SaltAndPepper_intensity 0.7 is much noise.
+        pad_left : int
+            The amount of padding to the left. Ranging from 0 to unlimited. pad_left=0 is no padding on the left. pad_left=20 is 20 pixels of padding on the left.
+        pad_right : int
+            The amount of padding to the right. Ranging from 0 to unlimited. pad_right=0 is no padding on the right. pad_right=20 is 20 pixels of padding on the right.
+        pad_top : int
+            The amount of padding to the top. Ranging from 0 to unlimited. pad_top=0 is no padding on the top. pad_top=20 is 20 pixels of padding on the top.
+        pad_bottom : int
+            The amount of padding to the bottom. Ranging from 0 to unlimited. pad_bottom=0 is no padding on the bottom. pad_bottom=20 is 20 pixels of padding on the bottom.
+
+        Raises
+        ------
+        ValueError
+            If the saltAndPepper_intensity_from or saltAndPepper_intensity_to is not a float or int.
+            If the saltAndPepper_intensity_from is greater than the saltAndPepper_intensity_to.
+            If the saltAndPepper_intensity_from or saltAndPepper_intensity_to less than 0.0.
+            If the saltAndPepper_intensity_from or saltAndPepper_intensity_to is greater than 1.0.
+            If the pad_left/pad_right/pad_top/pad_bottom is not an int or float.
+            If the pad_left/pad_right/pad_top/pad_bottom is less than 0.
+            If pad_left, pad_right, pad_top and pad_bottom is all 0.
+
+        Returns
+        -------
+
+        Examples
+        --------
+        >>> from image_worker.augment import Augmenter
+        >>> augmenter = Augmenter()
+        >>> augmenter.do_saltAndPepper_and_pad(0.1, 0.5, 0, 5, 0, 20)
+        Adding salt and pepper noise and padding to the augmenting todo list.
+        This will add salt and pepper noise to an image with a random intensity between 0.1 and 0.5.
+        And pad the same image with a random amount of maximum 5px on the right, maximum 20px to the bottom and do no padding on the left and top.
+        """
 
         augmenting = augmenting_types.saltAndPepper_and_pad(saltAndPepper_intensity_from, saltAndPepper_intensity_to, pad_left, pad_right, pad_top, pad_bottom)
         self.augmentation_todo.add(augmenting)
         self.todo_names.append("Salt and Pepper and Pad")
 
     def do_saltAndPepper_and_scale(self, saltAndPepper_intensity_from=0.1, saltAndPepper_intensity_to=0.5, scale_zoom_out=0.5, scale_zoom_in=1.5):
+        """
+        Applies salt and pepper noise and scaling to an image. It augments with a random amount of salt and pepper noise and scaling between the specified parameters.
+
+        Parameters
+        ----------
+        saltAndPepper_intensity_from : float
+            The lowest percent intensity of the sharpen. Ranging from 0.0 (0%) to 1.0 (100%). SaltAndPepper_intensity 0 is no noise. SaltAndPepper_intensity 0.7 is much noise.
+        saltAndPepper_intensity_to : float
+            The highest percent intensity of the sharpen. Ranging from 0.0 (0%) to 1.0 (100%). SaltAndPepper_intensity 0 is no noise. SaltAndPepper_intensity 0.7 is much noise.
+        scale_zoom_out : float
+            The amount of maximum zoom out. Ranging from 0.0 to unlimited. scale_zoom_out=1.0 is no zoom out. scale_zoom_out=0.5 is much zoom out.
+        scale_zoom_in : float
+            The amount of maximum zoom in. Ranging from 0.0 to unlimited. scale_zoom_in=1.0 is no zoom in. scale_zoom_in=2.5 is much zoom in.
+
+        Raises
+        ------
+        ValueError
+            If the saltAndPepper_intensity_from or saltAndPepper_intensity_to is not a float or int.
+            If the saltAndPepper_intensity_from is greater than the saltAndPepper_intensity_to.
+            If the saltAndPepper_intensity_from or saltAndPepper_intensity_to less than 0.0.
+            If the saltAndPepper_intensity_from or saltAndPepper_intensity_to is greater than 1.0.
+            If the scale_zoom_out or scale_zoom_in is not an int or float.
+            If the scale_zoom_out is less than 0.
+            If the scale_zoom_in is less than 1.
+            If the scale_zoom_out is greater than scale_zoom_in.
+
+        Returns
+        -------
+
+        Examples
+        --------
+        >>> from image_worker.augment import Augmenter
+        >>> augmenter = Augmenter()
+        >>> augmenter.do_saltAndPepper_and_scale(0.1, 0.5, 0.5, 1.5)
+        Adding salt and pepper noise and scaling to the augmenting todo list.
+        This will add salt and pepper noise to an image with a random intensity between 0.1 and 0.5.
+        And on the same image scales it a random amount of maximum 0.5 times out to maximum 1.5 times in.
+        """
         augmenting = augmenting_types.saltAndPepper_and_scale(saltAndPepper_intensity_from, saltAndPepper_intensity_to, scale_zoom_out, scale_zoom_in)
         self.augmentation_todo.add(augmenting)
         self.todo_names.append("Salt and Pepper and Scale")
 
     def do_additiveGuassianNoise_and_rotate(self, additiveGuassianNoise_intensity_from=5, additiveGuassianNoise_intensity_to=50, rotate_rotation_left=180, rotate_rotation_right=180):
+        """
+        Applies additive guassian noise and rotation to an image. It augments with a random amount of additive guassian noise and rotation between the specified parameters.
+
+        Parameters
+        ----------
+        additiveGuassianNoise_intensity_from : float
+            The lowest percent of the additive guassian noise. Ranging from 0 to unlimited. AdditiveGuassianNoise_intensity 0 is no noise. AdditiveGuassianNoise_intensity 50 is much noise.
+        additiveGuassianNoise_intensity_to : float
+            The highest percent of the additive guassian noise. Ranging from 0 to unlimited. AdditiveGuassianNoise_intensity 0 is no noise. AdditiveGuassianNoise_intensity 50 is much noise.
+        rotate_rotation_left : int
+            The amount of maximum rotation to the left. Ranging from 0 to 180. rotate_rotation_left=0 is no rotation to the left. rotate_rotation_left=180 is maximum 180 degrees rotation to the left.
+        rotate_rotation_right : int
+            The amount of maximum rotation to the right. Ranging from 0 to 180. rotate_rotation_right=0 is no rotation to the right. rotate_rotation_right=180 is maximum 180 degrees rotation to the right.
+
+        Raises
+        ------
+        ValueError
+            If the additiveGuassianNoise_intensity_from or additiveGuassianNoise_intensity_to is not a float or int.
+            If the additiveGuassianNoise_intensity_from is greater than the additiveGuassianNoise_intensity_to.
+            If the additiveGuassianNoise_intensity_from or additiveGuassianNoise_intensity_to less than 0.0.
+            If the rotate_rotation_left or rotate_rotation_right is not a float or int.
+            If the rotate_rotation_left or rotate_rotation_right is less than 0.0.
+            If the rotate_rotation_left or rotate_rotation_right is greater than 180.
+
+        Returns
+        -------
+
+        Examples
+        --------
+        >>> from image_worker.augment import Augmenter
+        >>> augmenter = Augmenter()
+        >>> augmenter.do_additiveGuassianNoise_and_rotate(5, 50, 90, 90)
+        Adding additive guassian noise to the augmenting todo list.
+        This will add guassian noise to an image with a random intensity between 5 and 50.
+        And rotate the same image a random amount of maximum 90 degrees to the left or right.
+        """
         augmenting = augmenting_types.additiveGuassianNoise_and_rotate(additiveGuassianNoise_intensity_from, additiveGuassianNoise_intensity_to, rotate_rotation_left, rotate_rotation_right)
         self.augmentation_todo.add(augmenting)
         self.todo_names.append("Additive Guassian Noise and Rotation")
 
     def do_additiveGuassianNoise_and_pad(self, additiveGuassianNoise_intensity_from=5, additiveGuassianNoise_intensity_to=50, pad_left=20, pad_right=20, pad_top=20, pad_bottom=20):
+        """
+        Applies additive guassian noise and padding to an image. It augments with a random amount of additive guassian noise and padding between the specified parameters.
+
+        Parameters
+        ----------
+        additiveGuassianNoise_intensity_from : float
+            The lowest percent of the additive guassian noise. Ranging from 0 to unlimited. AdditiveGuassianNoise_intensity 0 is no noise. AdditiveGuassianNoise_intensity 50 is much noise.
+        additiveGuassianNoise_intensity_to : float
+            The highest percent of the additive guassian noise. Ranging from 0 to unlimited. AdditiveGuassianNoise_intensity 0 is no noise. AdditiveGuassianNoise_intensity 50 is much noise.
+        pad_left : int
+            The amount of padding to the left. Ranging from 0 to unlimited. pad_left=0 is no padding on the left. pad_left=20 is 20 pixels of padding on the left.
+        pad_right : int
+            The amount of padding to the right. Ranging from 0 to unlimited. pad_right=0 is no padding on the right. pad_right=20 is 20 pixels of padding on the right.
+        pad_top : int
+            The amount of padding to the top. Ranging from 0 to unlimited. pad_top=0 is no padding on the top. pad_top=20 is 20 pixels of padding on the top.
+        pad_bottom : int
+            The amount of padding to the bottom. Ranging from 0 to unlimited. pad_bottom=0 is no padding on the bottom. pad_bottom=20 is 20 pixels of padding on the bottom.
+
+        Raises
+        ------
+        ValueError
+            If the additiveGuassianNoise_intensity_from or additiveGuassianNoise_intensity_to is not a float or int.
+            If the additiveGuassianNoise_intensity_from is greater than the additiveGuassianNoise_intensity_to.
+            If the additiveGuassianNoise_intensity_from or additiveGuassianNoise_intensity_to less than 0.0.
+            If the pad_left/pad_right/pad_top/pad_bottom is not an int or float.
+            If the pad_left/pad_right/pad_top/pad_bottom is less than 0.
+            If pad_left, pad_right, pad_top and pad_bottom is all 0.
+
+        Returns
+        -------
+
+        Examples
+        --------
+        >>> from image_worker.augment import Augmenter
+        >>> augmenter = Augmenter()
+        >>> augmenter.do_additiveGuassianNoise_and_pad(5, 50, 0, 5, 0, 20)
+        Adding additive guassian noise and padding to the augmenting todo list.
+        This will add guassian noise to an image with a random intensity between 5 and 50.
+        And pad the same image with a random amount of maximum 5px on the right, maximum 20px to the bottom and do no padding on the left and top.
+        """
         augmenting = augmenting_types.additiveGuassianNoise_and_pad(additiveGuassianNoise_intensity_from, additiveGuassianNoise_intensity_to, pad_left, pad_right, pad_top, pad_bottom)
         self.augmentation_todo.add(augmenting)
         self.todo_names.append("Additive Guassian Noise and Pad")
 
     def do_additiveGuassianNoise_and_scale(self, additiveGuassianNoise_intensity_from=5, additiveGuassianNoise_intensity_to=50, scale_zoom_out=0.5, scale_zoom_in=1.5):
+        """
+        Applies additive guassian noise and scaling to an image. It augments with a random amount of additive guassian noise and scaling between the specified parameters.
+
+        Parameters
+        ----------
+        additiveGuassianNoise_intensity_from : float
+            The lowest percent of the additive guassian noise. Ranging from 0 to unlimited. AdditiveGuassianNoise_intensity 0 is no noise. AdditiveGuassianNoise_intensity 50 is much noise.
+        additiveGuassianNoise_intensity_to : float
+            The highest percent of the additive guassian noise. Ranging from 0 to unlimited. AdditiveGuassianNoise_intensity 0 is no noise. AdditiveGuassianNoise_intensity 50 is much noise.
+        scale_zoom_out : float
+            The amount of maximum zoom out. Ranging from 0.0 to unlimited. scale_zoom_out=1.0 is no zoom out. scale_zoom_out=0.5 is much zoom out.
+        scale_zoom_in : float
+            The amount of maximum zoom in. Ranging from 0.0 to unlimited. scale_zoom_in=1.0 is no zoom in. scale_zoom_in=2.5 is much zoom in.
+
+        Raises
+        ------
+        ValueError
+            If the additiveGuassianNoise_intensity_from or additiveGuassianNoise_intensity_to is not a float or int.
+            If the additiveGuassianNoise_intensity_from is greater than the additiveGuassianNoise_intensity_to.
+            If the additiveGuassianNoise_intensity_from or additiveGuassianNoise_intensity_to less than 0.0.
+            If the scale_zoom_out or scale_zoom_in is not an int or float.
+            If the scale_zoom_out is less than 0.
+            If the scale_zoom_in is less than 1.
+            If the scale_zoom_out is greater than scale_zoom_in.
+
+        Returns
+        -------
+
+        Examples
+        --------
+        >>> from image_worker.augment import Augmenter
+        >>> augmenter = Augmenter()
+        >>> augmenter.do_additiveGuassianNoise_and_scale(5, 50, 0.5, 1.5)
+        Adding additive guassian noise and scaling to the augmenting todo list.
+        This will add guassian noise to an image with a random intensity between 5 and 50.
+        And on the same image scales it a random amount of maximum 0.5 times out to maximum 1.5 times in.
+        """
+
         augmenting = augmenting_types.additiveGuassianNoise_and_scale(additiveGuassianNoise_intensity_from, additiveGuassianNoise_intensity_to, scale_zoom_out, scale_zoom_in)
         self.augmentation_todo.add(augmenting)
         self.todo_names.append("Additive Guassian Noise and Scale")
@@ -684,6 +876,40 @@ class Augmenter:
 
     # Testing the augmenation by visualising the images.
     def run_view(self):
+        """
+        A testing and visualising function.
+
+        Augments 9 random images from the specified path. Augments using each of the augmentation types added to the todo list and visualises them in a 3x3 grid.
+        This is to test the augmentation and to see how much each augmentation type affects the images.
+        This function does not save the augmented images and can be a nice function to run before the actual augmentation of all the images.
+        After this function is run a user can tweek the parameters of the augmentation types and test the augmentation on the images again. Then when satisfied run the augmentation.
+
+        Raises
+        ------
+        ValueError
+            If the path is not specified.
+            If no augmentation types is added to the todo list.
+
+        Returns
+        -------
+
+        Examples
+        --------
+        >>> from image_worker.augment import Augmenter
+        >>> augmenter = Augmenter()
+        >>> augmenter.specify_path("/path/to/images")
+        >>> augmenter.do_rotate(90, 90)
+        >>> augmenter.do_additiveGuassianNoise_and_scale(5, 50, 0.5, 1.5)
+        >>> augmenter.run_view()
+        Augments 9 random images from the specified path and visualises them in a 3x3 grid for each augmenting type.
+        Augments 9 images using the 'do_rotate' augmentation type.
+        And augments 9 images using the 'do_additiveGuassianNoise_and_scale' augmentation type.
+        Then visualises:
+        1. The original images in a 3x3 grid.
+        2. The augmented images using 'do_rotate' in a 3x3 grid.
+        3. The augmented images using 'do_additiveGuassianNoise_and_scale' in a 3x3 grid.
+        """
+
         # Raises ValueError if something is wrong.
         if self.path is None:
             raise ValueError("No path specified")
