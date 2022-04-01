@@ -52,7 +52,7 @@ class Augmenter:
         """
 
         if type_of_image is not None:
-            if type_of_image != "jpg" or type_of_image != "png":
+            if type_of_image != "jpg" and type_of_image != "png" and type_of_image != "PNG" and type_of_image != "JPG":
                 raise ValueError("Type of image must be None, jpg or png")
         if path is None:
             raise ValueError("No path specified")

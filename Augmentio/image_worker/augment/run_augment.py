@@ -32,21 +32,21 @@ def augment(path, output_path, type_of_image, augmentation_todo, todo_names):
         # If the output path does not exist, create it.
         if not os.path.exists(output_path):
             os.mkdir(output_path)
+        else:
+            # Promts the user to tell the program if they want to overwrite the folder.
+            print('The root folder in the output_path you specified already exists. Do you want to replace it? (y/n)')
+            overwrite = input()
+            if overwrite == 'y':
+                print("Replacing the root folder in the output_path you specified.")
+                shutil.rmtree(output_path)
+                os.mkdir(output_path)
+            else:
+                print("Continuing without replacing the root folder in the output_path you specified.")
+
 
 
     # Augments the images and creates new folders (called name_of_folder-augmented) with the augmented images.
-    augment_images_or_iterate_folder(first_folder, output_path, augmentation_todo, todo_names, type_of_image)
-
-
-def add_last_slash_if_needed(path):
-    """Fix the path so that it ends with a slash."""
-    if path[-1] != '/':
-        path += '/'
-    return path
-
-def name_of_folder(path):
-    """Return the name of the folder in the path."""
-    return path.split('/')[-2]
+    augment_images_or_iterate_folder(first_folder, output_path, augmentation_todo, todo_names)
 
 def iterate_folder(folder, type_of_image):
 
@@ -66,23 +66,6 @@ def iterate_folder(folder, type_of_image):
         elif os.path.isfile(path) and type_of_image is not None:
             if type_of_image == find_type_of_image(path):
                 folder.list_of_images.append(path)
-
-
-def find_type_of_image(path):
-    """Return the type of image in the path."""
-    return path.split('.')[-1]
-
-
-def remove_last_slash(path):
-    """Remove the last slash in the path."""
-    if path[-1] == '/':
-        path = path[:-1]
-    return path
-
-
-def create_folder(output_path):
-    """Delete the folder and all of its contents """
-    shutil.rmtree(output_path)
 
 
 def create_augment_folder(folder, output_path=None):
@@ -105,23 +88,27 @@ def create_augment_folder(folder, output_path=None):
         os.mkdir(output_path)
     return output_path
 
-def fix_slashes(path):
-    """Fix the slashes in the path."""
-    path = path.replace('\\', '/')
-    return path
-
-def augment_images_or_iterate_folder(folder, output_path, augmentation_todo, todo_names, type_of_image):
+def augment_images_or_iterate_folder(folder, output_path, augmentation_todo, todo_names):
     """Augment the images in the folder and iterates through the folders (if any) doing this recursive."""
     for image_path in folder.list_of_images:
-        augment_image_and_write(image_path, output_path, augmentation_todo, todo_names, type_of_image)
+        augment_image_and_write(image_path, output_path, augmentation_todo, todo_names)
     for subfolder in folder.list_of_folders:
-        augment_images_or_iterate_folder(subfolder, create_augment_folder(subfolder, output_path), augmentation_todo, todo_names, type_of_image)
+        # If the subfolder does not have any images, skip it.
+        if len(subfolder.list_of_images) == 0:
+            continue
+        augment_images_or_iterate_folder(subfolder, create_augment_folder(subfolder, output_path), augmentation_todo, todo_names)
 
 
-def augment_image_and_write(image_path, output_path, augmentation_todo, todo_names, type_of_image):
+def augment_image_and_write(image_path, output_path, augmentation_todo, todo_names):
     """Augment the image in the image_path and save it to the output_path."""
     # Reads the image.
     image = imageio.imread(image_path)
+    # Writes the image to the output_path.
+    imageio.imwrite(output_path + image_path.split('/')[-1], image)
+
+    # Finds what type image it is.
+    type_of_image = find_type_of_image(image_path)
+
     # Augments the image.
     for augmentation, augmentation_name in zip(augmentation_todo, todo_names):
         augmented_image = augmentation(image=image)
@@ -129,19 +116,49 @@ def augment_image_and_write(image_path, output_path, augmentation_todo, todo_nam
         if ' ' in augmentation_name:
             augmentation_name = augmentation_name.replace(' ', '_')
         # If the type of image is not specified, save the image as a jpg.
-        if type_of_image is None:
-            type_of_image = "jpg"
         # Saves the augmented image with the augmentation name.
         imageio.imwrite(output_path + image_path.split('/')[-1].split('.')[0] + '_' + augmentation_name + '.'+type_of_image, augmented_image)
 
 
+def add_last_slash_if_needed(path):
+    """Fix the path so that it ends with a slash."""
+    if path[-1] != '/':
+        path += '/'
+    return path
 
+def name_of_folder(path):
+    """Return the name of the folder in the path."""
+    return path.split('/')[-2]
+
+
+def find_type_of_image(path):
+    """Return the type of image in the path."""
+    return path.split('.')[-1]
+
+
+def remove_last_slash(path):
+    """Remove the last slash in the path."""
+    if path[-1] == '/':
+        path = path[:-1]
+    return path
+
+
+def create_folder(output_path):
+    """Delete the folder and all of its contents """
+    shutil.rmtree(output_path)
+
+
+def fix_slashes(path):
+    """Fix the slashes in the path."""
+    path = path.replace('\\', '/')
+    return path
 
 
 def read_image(image_path):
     """Read the image in the image_path."""
     image = imageio.imread(image_path)
     return image
+
 
 
 

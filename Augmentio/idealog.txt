@@ -114,8 +114,6 @@ Husk at alle augmenteringsfunskjoner som endrer plasseringen av bildene vil øde
 17.
 Specify path finner ut om det er filer i folderen eller om den er ugyldig.
 
-18.
-
 
 
 
