@@ -968,5 +968,5 @@ class Augmenter:
         elif len(self.augmentation_todo) == 0:
             raise ValueError("No augmentation specified")
         else:
-            run_augment.augment(self.path, self.output_path ,self.type_of_image, self.augmentation_todo)
+            run_augment.augment(self.path, self.output_path ,self.type_of_image, self.augmentation_todo, self.todo_names)
 
