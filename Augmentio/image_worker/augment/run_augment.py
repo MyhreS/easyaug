@@ -1,6 +1,8 @@
 import glob
 import os
 
+import imageio
+
 
 class Folder:
     def __init__(self, folder_path, name_of_folder):
@@ -10,12 +12,9 @@ class Folder:
         self.list_of_images = []
 
 
-
-
-
-def augment(path, output_path, type_of_image, augmentation_todo, todo_names):
+def augment(path, output_path, type_of_image, augmentation_todo):
     # If path does not end with a slash, add one.
-    path = fix_folder_path(path)
+    path = add_last_slash_if_needed(path)
 
     # Create a list of folders
     first_folder = Folder(path, name_of_folder(path))
@@ -26,7 +25,19 @@ def augment(path, output_path, type_of_image, augmentation_todo, todo_names):
     # Iterates through first_folder to print all folders and images
     print_folder(first_folder)
 
-def fix_folder_path(path):
+    # If the output path is None or empty, set the output path to the path of the first folder name+agumented.
+    if output_path is None:
+        # Creating the first augmented folder
+        output_path = create_augment_folder(first_folder)
+    else:
+        # If the output path does not end with a slash, add one.
+        output_path = add_last_slash_if_needed(output_path)
+
+    # Augments the images and creates new folders (called name_of_folder-augmented) with the augmented images.
+    augment_images_or_iterate_folder(first_folder, output_path, augmentation_todo)
+
+
+def add_last_slash_if_needed(path):
     """Fix the path so that it ends with a slash."""
     if path[-1] != '/':
         path += '/'
@@ -43,7 +54,7 @@ def iterate_folder(folder, type_of_image):
         path = fix_slashes(path)
         # If a path is a folder, create a new folder object and add it to the list of folders.
         if os.path.isdir(path):
-            path = fix_folder_path(path)
+            path = add_last_slash_if_needed(path)
             new_folder = Folder(path, name_of_folder(path))
             folder.list_of_folders.append(new_folder)
             iterate_folder(new_folder, type_of_image)
@@ -68,13 +79,54 @@ def print_folder(first_folder):
     for image in first_folder.list_of_images:
         print(image)
 
+def remove_last_slash(path):
+    """Remove the last slash in the path."""
+    if path[-1] == '/':
+        path = path[:-1]
+    return path
+
+def create_augment_folder(folder, output_path=None):
+    if output_path is not None:
+        output_path = output_path + folder.name_of_folder
+        output_path += '_augmented'
+        output_path = add_last_slash_if_needed(output_path)
+        os.mkdir(output_path)
+    else:
+        output_path = folder.folder_path
+        output_path = remove_last_slash(output_path)
+        output_path += '_augmented'
+        output_path = add_last_slash_if_needed(output_path)
+        os.mkdir(output_path)
+    return output_path
+
 def fix_slashes(path):
     """Fix the slashes in the path."""
     path = path.replace('\\', '/')
     return path
 
+def augment_images_or_iterate_folder(folder, output_path, augmentation_todo):
+    """Augment the images in the folder or iterates through the folders and augments the images."""
 
 
+    for image_path in folder.list_of_images:
+        augment_image(image_path, output_path, augmentation_todo)
+    for subfolder in folder.list_of_folders:
+        augment_images_or_iterate_folder(subfolder, create_augment_folder(subfolder, output_path), augmentation_todo)
+
+
+def augment_image(image_path, output_path, augmentation_todo):
+    """Augment the image in the image_path and save it to the output_path."""
+    # Reads the image.
+    image = imageio.imread(image_path)
+    # Writes the image to the output_path.
+    imageio.imwrite(output_path + image_path.split('/')[-1], image)
+
+
+
+def read_image(image_path):
+    """Read the image in the image_path."""
+    image = imageio.imread(image_path)
+    return image
 
 
 

@@ -1,6 +1,7 @@
 """
 Using the augmenter class, augment the images in acinonyx-jubatus using one or more augmenting types of your choice.
 """
+import os
 
 from image_worker.augment import Augmenter
 augmenter = Augmenter()
