@@ -91,7 +91,7 @@ Etter:
 Som f.eks. hvor mange det er. Hvilke størrelser de er i osv.
 
 10.
-Lag en balancing funksjon til augmenter.
+Lag en balancing funksjon til augmenter .
 
 11.
 Å spesifisere path er ulikt på windows og mac. Mulig alt med path på gjøres endres for at det skal passe til hver OS.
@@ -110,6 +110,9 @@ En subpackage 'preprocess' skal inkludere funksjonene resize, balance, resize_wi
 
 16.
 Husk at alle augmenteringsfunskjoner som endrer plasseringen av bildene vil ødelegge for boudary boxes labels.
+
+17.
+Specify path finner ut om det er filer i folderen eller om den er ugyldig.
 
 
 

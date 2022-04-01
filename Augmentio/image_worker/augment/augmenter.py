@@ -3,6 +3,7 @@ This module is used to augment images.
 """
 
 from image_worker.augment import run_view
+from image_worker.augment import run_augment
 from image_worker.augment import augmenting_types
 from imgaug import augmenters as iaa
 
@@ -14,6 +15,7 @@ class Augmenter:
     """
     def __init__(self):
         self.path = None
+        self.output_path = None
         self.type_of_image = None
         self.augmentation_todo = iaa.Sequential() # For each image in the specified path, do the augmenting added to the todo list.
         self.todo_names = [] # Names of each of the augmentation_todo.
@@ -27,14 +29,15 @@ class Augmenter:
         Parameters
         ----------
         path : str
-            The path to the data.
+            The path to the folder where the images are.
         type_of_image : str
-            The type of the image.
+            The type of the image you want to augment.
 
         Raises
         ------
         ValueError
             If the path is not a string.
+            If the path is not specified.
             If type_of_image is not None, "jpg" og "png".
 
         Returns
@@ -59,6 +62,40 @@ class Augmenter:
             self.path = path
             self.type_of_image = type_of_image
             print("Path specified")
+
+    def specify_output_path(self, path):
+        """
+        If you want to save the augmented images to a specific path, you can specify that path here.
+        If this is not specified, the augmented images will be saved to the same path as the original images in an augmented folder.
+
+        Parameters
+        ----------
+        path : str
+            The path to the folder where the augmented images will be saved.
+
+        Raises
+        ------
+        ValueError
+            If the path is not a string.
+            If the path is not specified.
+
+        Returns
+        -------
+
+        Examples
+        --------
+        >>> from image_worker.augment import Augmenter
+        >>> augmenter = Augmenter()
+        >>> augmenter.specify_output_path("/home/user/augmented-data/")
+        Specifying that the augmented images will be stored at: /home/user/augmented-data/
+        """
+        if path is None:
+            raise ValueError("No path specified")
+        elif type(path) is not str:
+            raise ValueError("Path must be a string")
+        else:
+            self.output_path = path
+            print("Path to save augmented images specified")
 
     # Functions that makes image clearer or blurrier.
     def do_gaussianBlur(self, intensity_from=0.5, intensity_to=3.0):
@@ -880,9 +917,9 @@ class Augmenter:
         A testing and visualising function.
 
         Augments 9 random images from the specified path. Augments using each of the augmentation types added to the todo list and visualises them in a 3x3 grid.
-        This is to test the augmentation and to see how much each augmentation type affects the images.
+        This is to test1 the augmentation and to see how much each augmentation type affects the images.
         This function does not save the augmented images and can be a nice function to run before the actual augmentation of all the images.
-        After this function is run a user can tweek the parameters of the augmentation types and test the augmentation on the images again. Then when satisfied run the augmentation.
+        After this function is run a user can tweek the parameters of the augmentation types and test1 the augmentation on the images again. Then when satisfied run the augmentation.
 
         Raises
         ------
@@ -922,8 +959,14 @@ class Augmenter:
         pass
 
     # Augmenting the images.
-    def run_augment(self, images=None):
+    def run_augment(self):
         # Runs the augmentation on the images
         # Reads one image from the specified path at the time and runs the augmentation on it. Then writes the augmented image to disk in a folder called originalImagesFoldersName_augmented.
-        pass
+        # Raises ValueError if something is wrong.
+        if self.path is None:
+            raise ValueError("No path specified")
+        elif len(self.augmentation_todo) == 0:
+            raise ValueError("No augmentation specified")
+        else:
+            run_augment.augment(self.path, self.output_path ,self.type_of_image, self.augmentation_todo, self.todo_names)
 
