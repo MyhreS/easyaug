@@ -685,17 +685,38 @@ If the scale_zoom_out is greater than scale_zoom_in.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="image_worker.augment.augmenter.Augmenter.run_augment">
-<span class="sig-name descname"><span class="pre">run_augment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">images</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.augment.augmenter.Augmenter.run_augment" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">run_augment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.augment.augmenter.Augmenter.run_augment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Augments the images in the specified path. It will create new folders containing the augmented images following the structure of the rootfolder and subfolder of the specified path.
+In mypath/user/home path the home is root folder. All folders under home/.. is subfolders.
+If the output_path is specified the augmented images will be saved to the output_path instead.
+Keep in mind that if this is run multiple times at the same specified path it will replace the old folders at the root.
+With one exception that if the output_path is specified it will promt you if you want to replace the root folder that you specified too.
+It will anyways replace the subfolders that are under the root folder.</p>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If the path is not specified.
+If no augmentation types is added to the todo list.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">specify_path</span><span class="p">(</span><span class="s2">&quot;/path/to/data/folder&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">do_rotate</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">do_additiveGuassianNoise_and_scale</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">run_augment</span><span class="p">()</span>
+<span class="go">Augments the images in the specified path. It will create new folders containing the augmented images following the structure of the rootfolder and subfolder of the specified path.</span>
+<span class="go">This will augment using the &#39;do_rotate&#39; and &#39;do_additiveGuassianNoise_and_scale&#39; augmentation types.</span>
+</pre></div>
+</div>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="image_worker.augment.augmenter.Augmenter.run_view">
 <span class="sig-name descname"><span class="pre">run_view</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.augment.augmenter.Augmenter.run_view" title="Permalink to this definition">¶</a></dt>
 <dd><p>A testing and visualising function.</p>
 <p>Augments 9 random images from the specified path. Augments using each of the augmentation types added to the todo list and visualises them in a 3x3 grid.
-This is to test the augmentation and to see how much each augmentation type affects the images.
+This is to test1 the augmentation and to see how much each augmentation type affects the images.
 This function does not save the augmented images and can be a nice function to run before the actual augmentation of all the images.
-After this function is run a user can tweek the parameters of the augmentation types and test the augmentation on the images again. Then when satisfied run the augmentation.</p>
+After this function is run a user can tweek the parameters of the augmentation types and test1 the augmentation on the images again. Then when satisfied run the augmentation.</p>
 <dl class="simple">
 <dt>ValueError</dt><dd><p>If the path is not specified.
 If no augmentation types is added to the todo list.</p>
@@ -719,17 +740,40 @@ If no augmentation types is added to the todo list.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="image_worker.augment.augmenter.Augmenter.specify_path">
-<span class="sig-name descname"><span class="pre">specify_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_of_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.augment.augmenter.Augmenter.specify_path" title="Permalink to this definition">¶</a></dt>
-<dd><p>Specify the path to the data.</p>
+<dt class="sig sig-object py" id="image_worker.augment.augmenter.Augmenter.specify_output_path">
+<span class="sig-name descname"><span class="pre">specify_output_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.augment.augmenter.Augmenter.specify_output_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>If you want to save the augmented images to a specific path, you can specify that path here.
+If this is not specified, the augmented images will be saved to the same path as the original images in an augmented folder.</p>
 <dl class="simple">
-<dt>path<span class="classifier">str</span></dt><dd><p>The path to the data.</p>
-</dd>
-<dt>type_of_image<span class="classifier">str</span></dt><dd><p>The type of the image.</p>
+<dt>path<span class="classifier">str</span></dt><dd><p>The path to the folder where the augmented images will be saved.</p>
 </dd>
 </dl>
 <dl class="simple">
 <dt>ValueError</dt><dd><p>If the path is not a string.
+If the path is not specified.</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmenter</span><span class="o">.</span><span class="n">specify_output_path</span><span class="p">(</span><span class="s2">&quot;/home/user/augmented-data/&quot;</span><span class="p">)</span>
+<span class="go">Specifying that the augmented images will be stored at: /home/user/augmented-data/</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="image_worker.augment.augmenter.Augmenter.specify_path">
+<span class="sig-name descname"><span class="pre">specify_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_of_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.augment.augmenter.Augmenter.specify_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify the path to the data.</p>
+<dl class="simple">
+<dt>path<span class="classifier">str</span></dt><dd><p>The path to the folder where the images are.</p>
+</dd>
+<dt>type_of_image<span class="classifier">str</span></dt><dd><p>The type of the image you want to augment.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>ValueError</dt><dd><p>If the path is not a string.
+If the path is not specified.
 If type_of_image is not None, “jpg” og “png”.</p>
 </dd>
 </dl>

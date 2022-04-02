@@ -960,9 +960,38 @@ class Augmenter:
 
     # Augmenting the images.
     def run_augment(self):
-        # Runs the augmentation on the images
-        # Reads one image from the specified path at the time and runs the augmentation on it. Then writes the augmented image to disk in a folder called originalImagesFoldersName_augmented.
-        # Raises ValueError if something is wrong.
+        """
+        Augments the images in the specified path. It will create new folders containing the augmented images following the structure of the rootfolder and subfolder of the specified path.
+        In mypath/user/home path the home is root folder. All folders under home/.. is subfolders.
+        If the output_path is specified the augmented images will be saved to the output_path instead.
+        Keep in mind that if this is run multiple times at the same specified path it will replace the old folders at the root.
+        With one exception that if the output_path is specified it will promt you if you want to replace the root folder that you specified too.
+        It will anyways replace the subfolders that are under the root folder.
+
+        Parameters
+        ----------
+
+        Raises
+        ------
+        ValueError
+            If the path is not specified.
+            If no augmentation types is added to the todo list.
+
+        Returns
+        -------
+
+        Examples
+        --------
+        >>> from image_worker.augment import Augmenter
+        >>> augmenter = Augmenter()
+        >>> augmenter.specify_path("/path/to/data/folder")
+        >>> augmenter.do_rotate(90, 90)
+        >>> augmenter.do_additiveGuassianNoise_and_scale(5, 50, 0.5, 1.5)
+        >>> augmenter.run_augment()
+        Augments the images in the specified path. It will create new folders containing the augmented images following the structure of the rootfolder and subfolder of the specified path.
+        This will augment using the 'do_rotate' and 'do_additiveGuassianNoise_and_scale' augmentation types.
+        """
+
         if self.path is None:
             raise ValueError("No path specified")
         elif len(self.augmentation_todo) == 0:
