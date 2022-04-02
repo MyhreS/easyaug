@@ -104,7 +104,9 @@ def augment_image_and_write(image_path, output_path, augmentation_todo, todo_nam
     # Reads the image.
     image = imageio.imread(image_path)
     # Writes the image to the output_path.
-    imageio.imwrite(output_path + image_path.split('/')[-1], image)
+    image_name = output_path + image_path.split('/')[-1]
+    print('Augmenting image: ' + image_name)
+    imageio.imwrite(image_name, image)
 
     # Finds what type image it is.
     type_of_image = find_type_of_image(image_path)
