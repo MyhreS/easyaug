@@ -6,4 +6,5 @@ image\_worker
 
    image_worker.augment
    image_worker.quickview
+   image_worker.preprocess
 

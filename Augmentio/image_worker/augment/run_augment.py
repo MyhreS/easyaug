@@ -32,16 +32,6 @@ def augment(path, output_path, type_of_image, augmentation_todo, todo_names):
         # If the output path does not exist, create it.
         if not os.path.exists(output_path):
             os.mkdir(output_path)
-        else:
-            # Promts the user to tell the program if they want to overwrite the folder.
-            print('The root folder in the output_path you specified already exists. Do you want to replace it? (y/n)')
-            overwrite = input()
-            if overwrite == 'y':
-                print("Replacing the root folder in the output_path you specified.")
-                shutil.rmtree(output_path)
-                os.mkdir(output_path)
-            else:
-                print("Continuing without replacing the root folder in the output_path you specified.")
 
 
 

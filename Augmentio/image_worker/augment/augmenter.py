@@ -14,7 +14,7 @@ class Augmenter:
     to a new directory the todolist will be executed for each image.
     """
     def __init__(self):
-        self.path = None
+        self.input_path = None
         self.output_path = None
         self.type_of_image = None
         self.augmentation_todo = iaa.Sequential() # For each image in the specified path, do the augmenting added to the todo list.
@@ -22,7 +22,7 @@ class Augmenter:
 
         print("Augmenter initialized")
 
-    def specify_path(self, path, type_of_image=None):
+    def specify_input_path(self, path, type_of_image=None):
         """
         Specify the path to the data.
 
@@ -47,7 +47,7 @@ class Augmenter:
         --------
         >>> from image_worker.augment import Augmenter
         >>> augmenter = Augmenter()
-        >>> augmenter.specify_path("/home/user/data/", "jpg")
+        >>> augmenter.specify_input_path("/home/user/data/", "jpg")
         Specifying path to data: /home/user/data/ and type of image: jpg.
         """
 
@@ -59,7 +59,7 @@ class Augmenter:
         elif type(path) is not str:
             raise ValueError("Path must be a string")
         else:
-            self.path = path
+            self.input_path = path
             self.type_of_image = type_of_image
             print("Path specified")
 
@@ -934,7 +934,7 @@ class Augmenter:
         --------
         >>> from image_worker.augment import Augmenter
         >>> augmenter = Augmenter()
-        >>> augmenter.specify_path("/path/to/images")
+        >>> augmenter.specify_input_path("/path/to/images")
         >>> augmenter.do_rotate(90, 90)
         >>> augmenter.do_additiveGuassianNoise_and_scale(5, 50, 0.5, 1.5)
         >>> augmenter.run_view()
@@ -948,12 +948,12 @@ class Augmenter:
         """
 
         # Raises ValueError if something is wrong.
-        if self.path is None:
+        if self.input_path is None:
             raise ValueError("No path specified")
         elif len(self.augmentation_todo) == 0:
             raise ValueError("No augmentation specified")
         else:
-            run_view.view_augment(self.path, self.type_of_image, self.augmentation_todo, self.todo_names)
+            run_view.view_augment(self.input_path, self.type_of_image, self.augmentation_todo, self.todo_names)
 
     def stats(self):
         pass
@@ -964,9 +964,7 @@ class Augmenter:
         Augments the images in the specified path. It will create new folders containing the augmented images following the structure of the rootfolder and subfolder of the specified path.
         In mypath/user/home path the home is root folder. All folders under home/.. is subfolders.
         If the output_path is specified the augmented images will be saved to the output_path instead.
-        Keep in mind that if this is run multiple times at the same specified path it will replace the old folders at the root.
-        With one exception that if the output_path is specified it will promt you if you want to replace the root folder that you specified too.
-        It will anyways replace the subfolders that are under the root folder.
+        Keep in mind that if this is run multiple times at the same specified path it will replace the old folders images.
 
         Parameters
         ----------
@@ -984,7 +982,7 @@ class Augmenter:
         --------
         >>> from image_worker.augment import Augmenter
         >>> augmenter = Augmenter()
-        >>> augmenter.specify_path("/path/to/data/folder")
+        >>> augmenter.specify_input_path("/path/to/data/folder")
         >>> augmenter.do_rotate(90, 90)
         >>> augmenter.do_additiveGuassianNoise_and_scale(5, 50, 0.5, 1.5)
         >>> augmenter.run_augment()
@@ -992,10 +990,10 @@ class Augmenter:
         This will augment using the 'do_rotate' and 'do_additiveGuassianNoise_and_scale' augmentation types.
         """
 
-        if self.path is None:
-            raise ValueError("No path specified")
+        if self.input_path is None:
+            raise ValueError("No input path specified")
         elif len(self.augmentation_todo) == 0:
             raise ValueError("No augmentation specified")
         else:
-            run_augment.augment(self.path, self.output_path ,self.type_of_image, self.augmentation_todo, self.todo_names)
+            run_augment.augment(self.input_path, self.output_path, self.type_of_image, self.augmentation_todo, self.todo_names)
 
