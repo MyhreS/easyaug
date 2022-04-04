@@ -72,6 +72,7 @@ def create_augment_folder(folder, output_path=None):
         output_path = remove_last_slash(output_path)
         output_path += '_augmented'
         output_path = add_last_slash_if_needed(output_path)
+        print(output_path)
         # If the folder already exists, delete it then create a new one.
         if os.path.exists(output_path):
             shutil.rmtree(output_path)

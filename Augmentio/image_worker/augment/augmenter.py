@@ -20,8 +20,6 @@ class Augmenter:
         self.augmentation_todo = iaa.Sequential() # For each image in the specified path, do the augmenting added to the todo list.
         self.todo_names = [] # Names of each of the augmentation_todo.
 
-        print("Augmenter initialized")
-
     def specify_input_path(self, path, type_of_image=None):
         """
         Specify the path to the data.
@@ -54,14 +52,13 @@ class Augmenter:
         if type_of_image is not None:
             if type_of_image != "jpg" and type_of_image != "png" and type_of_image != "PNG" and type_of_image != "JPG":
                 raise ValueError("Type of image must be None, jpg or png")
-        if path is None:
+        if path is None or path == "":
             raise ValueError("No path specified")
         elif type(path) is not str:
             raise ValueError("Path must be a string")
         else:
             self.input_path = path
             self.type_of_image = type_of_image
-            print("Path specified")
 
     def specify_output_path(self, path):
         """
@@ -89,13 +86,12 @@ class Augmenter:
         >>> augmenter.specify_output_path("/home/user/augmented-data/")
         Specifying that the augmented images will be stored at: /home/user/augmented-data/
         """
-        if path is None:
+        if path is None or path == "":
             raise ValueError("No path specified")
         elif type(path) is not str:
             raise ValueError("Path must be a string")
         else:
             self.output_path = path
-            print("Path to save augmented images specified")
 
     # Functions that makes image clearer or blurrier.
     def do_gaussianBlur(self, intensity_from=0.5, intensity_to=3.0):
@@ -266,7 +262,7 @@ class Augmenter:
         """
         augmenting = augmenting_types.rotation(rotation_left, rotation_right)
         self.augmentation_todo.add(augmenting)
-        self.todo_names.append("Rotation")
+        self.todo_names.append("Rotate")
 
     def do_pad(self, left=20, right=20, top=20, bottom=20):
         """
@@ -382,7 +378,7 @@ class Augmenter:
         """
         augmenting = augmenting_types.guassianBlur_and_rotate(guassianBlur_intensity_from, guassianBlur_intensity_to, rotate_rotation_left, rotate_rotation_right)
         self.augmentation_todo.add(augmenting)
-        self.todo_names.append("Gaussian Blur and Rotation")
+        self.todo_names.append("Gaussian Blur and Rotate")
 
     def do_guassianBlur_and_pad(self, guassianBlur_intensity_from=0.5, guassianBlur_intensity_to=3.0, pad_left=20, pad_right=20, pad_top=20, pad_bottom=20):
         """
@@ -512,7 +508,7 @@ class Augmenter:
         """
         augmenting = augmenting_types.rotate_and_scale(rotate_rotation_left, rotate_rotation_right, scale_zoom_out, scale_zoom_in)
         self.augmentation_todo.add(augmenting)
-        self.todo_names.append("Rotation and Scale")
+        self.todo_names.append("Rotate and Scale")
 
     def do_sharpen_and_rotate(self, sharpen_intensity_from=0.1, sharpen_intensity_to=0.5, rotate_rotation_left=180, rotate_rotation_right=180):
         """
@@ -555,7 +551,7 @@ class Augmenter:
 
         augmenting = augmenting_types.sharpen_and_rotate(sharpen_intensity_from, sharpen_intensity_to, rotate_rotation_left, rotate_rotation_right)
         self.augmentation_todo.add(augmenting)
-        self.todo_names.append("Sharpen and Rotation")
+        self.todo_names.append("Sharpen and Rotate")
 
     def do_sharpen_and_pad(self, sharpen_intensity_from=0.1, sharpen_intensity_to=0.5, pad_left=20, pad_right=20, pad_top=20, pad_bottom=20):
         """
@@ -689,7 +685,7 @@ class Augmenter:
         """
         augmenting = augmenting_types.saltAndPepper_and_rotate(saltAndPepper_intensity_from, saltAndPepper_intensity_to, rotate_rotation_left, rotate_rotation_right)
         self.augmentation_todo.add(augmenting)
-        self.todo_names.append("Salt and Pepper and Rotation")
+        self.todo_names.append("Salt and Pepper and Rotate")
 
     def do_saltAndPepper_and_pad(self, saltAndPepper_intensity_from=0.1, saltAndPepper_intensity_to=0.5, pad_left=20, pad_right=20, pad_top=20, pad_bottom=20):
         """
@@ -820,7 +816,7 @@ class Augmenter:
         """
         augmenting = augmenting_types.additiveGuassianNoise_and_rotate(additiveGuassianNoise_intensity_from, additiveGuassianNoise_intensity_to, rotate_rotation_left, rotate_rotation_right)
         self.augmentation_todo.add(augmenting)
-        self.todo_names.append("Additive Guassian Noise and Rotation")
+        self.todo_names.append("Additive Guassian Noise and Rotate")
 
     def do_additiveGuassianNoise_and_pad(self, additiveGuassianNoise_intensity_from=5, additiveGuassianNoise_intensity_to=50, pad_left=20, pad_right=20, pad_top=20, pad_bottom=20):
         """

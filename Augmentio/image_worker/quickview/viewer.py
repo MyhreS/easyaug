@@ -24,7 +24,6 @@ class Viewer:
     def __init__(self):
         self.images = []
         self.imagenames = []
-        print("Quickview initialized.")
 
     def read_all_images(self, path, type_of_image=None):
         """
