@@ -1,6 +1,0 @@
-Reference index
-===============
-
-
-.. automodule:: image_worker.quickview.viewer
-     :members:
