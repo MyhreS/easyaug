@@ -14,3 +14,4 @@ In all of these packages you initialize their classes to access their neat funct
 
    quickview
    preprocess
+   augment

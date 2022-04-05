@@ -5,6 +5,8 @@
 
 Welcome to easyaug's documentation!
 ===================================
+This is a easy to use viewer, preprocesser and augmenter for images. These 3 main functionalities makes easyaug a simple tool for working with images.
+
 Make sure to visit the homepage at `Github <https://github.com/MyhreS/easyaug.git>`_
 
 .. toctree::

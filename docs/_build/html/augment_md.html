@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>augment &#8212; easyaug  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="augment">
+<h1>augment<a class="headerlink" href="#augment" title="Permalink to this headline">¶</a></h1>
+<p>The main purpose of the easyaug framework is augmenting images. This package contains pre-defined augmentations that is a part of the Augmenter class.
+It’s simple with really only 3 steps to it. Firstly specify the input path for the images. Secondly specify the types of augmentation done on each image.
+Lastly run the augmenter or do a test view before you do it.</p>
+<section id="augmenting-images">
+<h2>Augmenting images<a class="headerlink" href="#augmenting-images" title="Permalink to this headline">¶</a></h2>
+<p>To get access to the functionallity you need to initialize the Augmenter class.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize the augmenter.</span>
+<span class="kn">from</span> <span class="nn">easyaug.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
+<span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Now you need to specify the path the input images. There is an option to specify what type of images that are going to be read. If specified this can only be as ‘jpg’ or ‘png’.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the path to the images.</span>
+<span class="n">augmenter</span><span class="o">.</span><span class="n">specify_input_path</span><span class="p">(</span><span class="s1">&#39;/path/to/images&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It is also possible to specify an output path, but this is not necessary. The augmented images will by default be placed in similar folder next to the specified input path (folder).</p>
+<p>Anyways, after specifying the path  you can add different augmenting types to a todo list. How it works is for each augmenting type in the todo list it will augment every image by them.
+Told differently. Lets say you add ‘sharpen’ and ‘gaussian blur’ to the todo list. Each image that is in the specified input path will be augmented by both of them.</p>
+<p>You specify them augmentation types like this. In this case ‘sharpen’ and ‘gaussian blur’ :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Adding two types of augmentationto the todo list.</span>
+<span class="n">augmenter</span><span class="o">.</span><span class="n">do_sharpen</span><span class="p">()</span>
+<span class="n">augmenter</span><span class="o">.</span><span class="n">do_gaussianBlur</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>When running they will produce these images out of 1 image:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Before augmentation:</span>
+<span class="n">panda_1</span><span class="o">.</span><span class="n">jpg</span>
+
+<span class="c1"># After augmentation:</span>
+<span class="n">panda_1</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">panda_1_sharpen</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">panda_1_gaussianBlur</span><span class="o">.</span><span class="n">jpg</span>
+</pre></div>
+</div>
+<p>These augmentation types have default parameters, but can easily be changed to your liking.
+But, there will be no augmentation before you run the ‘run_augmenter’ function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the augmentation with the specified augmentation types.</span>
+<span class="n">augmenter</span><span class="o">.</span><span class="n">run_augmenter</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>After running the function above with the specified augmentaion types added to the todo list, the result would be this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Example: Original images in their folders
+├── images
+│   ├── panda
+│   │   ├── panda_0.jpg
+│   │   └── panda_1.jpg
+│   ├── tiger
+│   │   ├── tiger_0.jpg
+│   │   └── tiger_1.jpg
+│ 
+
+# Example: New folders with their augmented images (including the original images).
+# Created by the augmenter.
+├── images_augmented
+│   ├── panda_augmented
+│   │   ├── panda_0.jpg
+│   │   ├── panda_0_sharpen.jpg
+│   │   ├── panda_0_gaussianBlur.jpg
+│   │   ├── panda_1.jpg
+│   │   ├── panda_1_sharpen.jpg
+│   │   └── panda_1_gaussianBlur.jpg
+│   ├── tiger_augmented
+│   │   ├── tiger_0.jpg
+│   │   ├── tiger_0_sharpen.jpg
+│   │   ├── tiger_0_gaussianBlur.jpg
+│   │   ├── tiger_1.jpg
+│   │   ├── tiger_1_sharpen.jpg
+│   │   └── tiger_1_gaussianBlur.jpg
+</pre></div>
+</div>
+<p>As shown there will be autmatically created folders for the augmented images (that also include the original images). If an output path
+is specified, the root folder will not be created, but the subfolders will.</p>
+<p>But, lets say you are not sure if you know how the augmentated images will look. Then instead of calling hte ‘run_augmenter’ function you can call the ‘run_view’ function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run a test view of the augmentation to visualize the result before augmenting.</span>
+<span class="n">augmenter</span><span class="o">.</span><span class="n">run_view</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This will take at maximum 9 random images from the specified input path and show them in multiple pyplots. In this case first a pyplot of 9 original images.
+Then a pyplot of the 9 original images augmented by the ‘sharpen’ augmentation type. Then a pyplot of the 9 original images augmented by the ‘gaussian blur’
+augmentation type. This is so you can tweek the parameters of the augmentation types added to the todo list before actually running the ‘run_augment’ function which
+writes the images to folders.</p>
+<p>The complete code for this sequence:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize the augmenter.</span>
+<span class="kn">from</span> <span class="nn">easyaug.augment</span> <span class="kn">import</span> <span class="n">Augmenter</span>
+<span class="n">augmenter</span> <span class="o">=</span> <span class="n">Augmenter</span><span class="p">()</span>
+
+<span class="c1"># Specify the path to the images.</span>
+<span class="n">augmenter</span><span class="o">.</span><span class="n">specify_input_path</span><span class="p">(</span><span class="s1">&#39;/path/to/images&#39;</span><span class="p">)</span>
+
+<span class="c1"># Adding two types of augmentationto the todo list.</span>
+<span class="n">augmenter</span><span class="o">.</span><span class="n">do_sharpen</span><span class="p">()</span>
+<span class="n">augmenter</span><span class="o">.</span><span class="n">do_gaussianBlur</span><span class="p">()</span>
+
+<span class="c1"># Run a test view of the augmentation to visualize the result before augmenting.</span>
+<span class="n">augmenter</span><span class="o">.</span><span class="n">run_view</span><span class="p">()</span> <span class="c1"># Comment this when done testing.</span>
+
+<span class="c1"># Run the augmentation with the specified augmentation types.</span>
+<span class="c1">#augmenter.run_augment() # Remove comment when done testing.</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">easyaug</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">easyaug</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Simon Myhre.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/augment_md.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
