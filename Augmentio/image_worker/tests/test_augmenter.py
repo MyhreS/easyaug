@@ -1,6 +1,7 @@
 """Tests the augment module."""
 import glob
 import os
+import shutil
 import unittest
 from unittest import mock
 import imageio
@@ -570,6 +571,9 @@ class TestAugmenter(unittest.TestCase):
             image = imageio.imread(image_path)
             # Checking if the image is not equal to the original image.
             self.assertNotEqual(np.array_equal(image, panda_0), True)
+
+        # Removing the data/train_augmented folder that it created.
+        shutil.rmtree('data/train_augmented')
 
 
 if __name__ == '__main__':

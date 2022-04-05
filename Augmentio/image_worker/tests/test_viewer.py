@@ -1,6 +1,8 @@
 import glob
 import math
 import unittest
+from unittest import mock
+
 from image_worker.quickview import Viewer
 
 class TestViewer(unittest.TestCase):
@@ -64,10 +66,21 @@ class TestViewer(unittest.TestCase):
         viewer.read_last_x_imagenames('data/test', 2)
         self.assertEqual(len(viewer.imagenames), 2)
 
+    @mock.patch('image_worker.quickview.view.view_images')
+    def test_view_images(self, mock_view_augment):
+        """Testing that the view_images function calls view_images."""
+        viewer = Viewer()
+        viewer.read_all_images('data/test')
+        viewer.view_images()
+        self.assertTrue(mock_view_augment.called)
 
-
-
-
+    @mock.patch('image_worker.quickview.view.view_imagesnames')
+    def test_view_imagenames(self, mock_view_augment):
+        """Testing that the view_imagenames function calls view_imagesnames."""
+        viewer = Viewer()
+        viewer.read_all_imagenames('data/test')
+        viewer.view_imagenames()
+        self.assertTrue(mock_view_augment.called)
 
 if __name__ == '__main__':
     unittest.main()

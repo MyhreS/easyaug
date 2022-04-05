@@ -2,7 +2,6 @@ import glob
 
 
 def resize(input_path, output_path, type_of_image, size):
-    print(size)
     """
     Resizes all images from path to output path
     """

@@ -55,7 +55,6 @@ class Processer:
             self.input_path = input_path
             self.output_path = output_path
             self.type_of_image = type_of_image
-            print("Path specified")
 
     def run_resize(self, size=(256, 256)):
         """
