@@ -1,4 +1,4 @@
-# Image Worker
+# easyaug
 A package to faster and easier preview, prepare and augment images. This includes 3 main components:
 1. Preprocesser: Preprocess images before augmentation if needed.
 2. Quickviewer: Quickly preview images before augmentation.
