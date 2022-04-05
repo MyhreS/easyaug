@@ -16,6 +16,19 @@ Now you need to specify the path the input images. There is an option to specify
 # Specify the path to the images.
 augmenter.specify_input_path('/path/to/images')
 ```
+Where you specify the path to depends on how many of your images you want to change. If specified in this case to the 'images' folder. The augmenter will
+follow the directory downwards the subdirectories and find all the images. In this case both the images in the 'panda' folder and the 'tiger' folder:
+
+```
+# Example directory:
+├── images
+│   ├── panda
+│   │   ├── panda_0.jpg
+│   │   └── panda_1.jpg
+│   ├── tiger
+│   │   ├── tiger_0.jpg
+│   │   └── tiger_1.jpg
+```
 It is also possible to specify an output path, but this is not necessary. The augmented images will by default be placed in similar folder next to the specified input path (folder).
 
 
@@ -46,7 +59,7 @@ augmenter.run_augmenter()
 ```
 After running the function above with the specified augmentaion types added to the todo list, the result would be this:
 ```
-# Example: Original images in their folders
+# Example directory: Original images in their folders
 ├── images
 │   ├── panda
 │   │   ├── panda_0.jpg
@@ -56,7 +69,7 @@ After running the function above with the specified augmentaion types added to t
 │   │   └── tiger_1.jpg
 │ 
 
-# Example: New folders with their augmented images (including the original images).
+# Example directory: New folders with their augmented images (including the original images).
 # Created by the augmenter.
 ├── images_augmented
 │   ├── panda_augmented

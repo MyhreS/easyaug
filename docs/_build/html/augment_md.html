@@ -49,6 +49,18 @@ Lastly run the augmenter or do a test view before you do it.</p>
 <span class="n">augmenter</span><span class="o">.</span><span class="n">specify_input_path</span><span class="p">(</span><span class="s1">&#39;/path/to/images&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>Where you specify the path to depends on how many of your images you want to change. If specified in this case to the ‘images’ folder. The augmenter will
+follow the directory downwards the subdirectories and find all the images. In this case both the images in the ‘panda’ folder and the ‘tiger’ folder:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Example directory:
+├── images
+│   ├── panda
+│   │   ├── panda_0.jpg
+│   │   └── panda_1.jpg
+│   ├── tiger
+│   │   ├── tiger_0.jpg
+│   │   └── tiger_1.jpg
+</pre></div>
+</div>
 <p>It is also possible to specify an output path, but this is not necessary. The augmented images will by default be placed in similar folder next to the specified input path (folder).</p>
 <p>Anyways, after specifying the path  you can add different augmenting types to a todo list. How it works is for each augmenting type in the todo list it will augment every image by them.
 Told differently. Lets say you add ‘sharpen’ and ‘gaussian blur’ to the todo list. Each image that is in the specified input path will be augmented by both of them.</p>
@@ -75,7 +87,7 @@ But, there will be no augmentation before you run the ‘run_augmenter’ functi
 </pre></div>
 </div>
 <p>After running the function above with the specified augmentaion types added to the todo list, the result would be this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Example: Original images in their folders
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Example directory: Original images in their folders
 ├── images
 │   ├── panda
 │   │   ├── panda_0.jpg
@@ -85,7 +97,7 @@ But, there will be no augmentation before you run the ‘run_augmenter’ functi
 │   │   └── tiger_1.jpg
 │ 
 
-# Example: New folders with their augmented images (including the original images).
+# Example directory: New folders with their augmented images (including the original images).
 # Created by the augmenter.
 ├── images_augmented
 │   ├── panda_augmented
