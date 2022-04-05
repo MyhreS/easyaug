@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.abspath('..'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'Image worker'
+project = 'easyimgaug'
 copyright = '2022, Simon Myhre'
 author = 'Simon Myhre'
 

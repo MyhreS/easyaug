@@ -1,7 +1,7 @@
-image_worker
-============
+easyimgaug
+==========
 
 .. toctree::
    :maxdepth: 4
 
-   image_worker
+   easyimgaug

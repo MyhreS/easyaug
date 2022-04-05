@@ -27,3 +27,8 @@ Then use this in your Google Chrome http://127.0.0.1:8000
 ```
 [../docs]$ ./make html
 ```
+# Create manifest, tar.gz and stuff
+```
+[../image_worker]$ python setup.py sdist
+
+```
