@@ -5,11 +5,14 @@
 
 Welcome to easyaug's documentation!
 ===================================
+Make sure to visit the homepage at `Github <https://github.com/MyhreS/easyaug.git>`_
 
 .. toctree::
    :maxdepth: 1
    :caption: Contents:
 
+   installation
+   tutorial
    modules
 
 
