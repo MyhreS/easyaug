@@ -1,8 +1,8 @@
 """
-Scenario 3:
-Quickly view the first 9 images from your folder to get an idea of what dataset you are working with.
+Scenario 2:
+Initialize the Preprocesser class from preprocesser to be ready for use.
 """
-from easyaug.quickview import Quickviewer
-viewer = Quickviewer()
-viewer.read_first_x_images("dataset", 9)
-viewer.view_images(9)
+
+from easyaug.preprocess import Preprocesser
+# Initialize the preprocesser
+preprocesser = Preprocesser()

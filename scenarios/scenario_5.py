@@ -1,12 +1,10 @@
 """
-Using the augmenter class, augment the images in acinonyx-jubatus using one or more augmenting types of your choice.
+Use the augmenter and add two types of augmentation to images and test how they will will look like
 """
 
 from easyaug.augment import Augmenter
 augmenter = Augmenter()
-augmenter.specify_input_path("easyaug/tests/data/train")
-augmenter.specify_output_path("dataset/train_little_augmented")
-augmenter.do_saltAndPepper()
-augmenter.run_augment()
-
-
+augmenter.specify_input_path('data/train')
+augmenter.do_additiveGuassianNoise_and_rotate()
+augmenter.do_sharpen()
+augmenter.run_view()

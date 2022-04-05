@@ -1,10 +1,8 @@
 """
-Use the augmenter and add two types of augmentation to images and test1 how they will will look like
+Scenario 3:
+Quickly view the first 2 images from your folder to get an idea of what dataset you are working with.
 """
-
-from easyaug.augment import Augmenter
-augmenter = Augmenter()
-augmenter.specify_input_path('dataset/train/acinonyx-jubatus')
-augmenter.do_additiveGuassianNoise_and_rotate()
-augmenter.do_sharpen()
-augmenter.run_view()
+from easyaug.quickview import Quickviewer
+viewer = Quickviewer()
+viewer.read_first_x_images("data", 2)
+viewer.view_images()

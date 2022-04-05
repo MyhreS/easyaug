@@ -530,7 +530,7 @@ class TestAugmenter(unittest.TestCase):
 
         # Running all augmentation types.
         augmenter = Augmenter()
-        augmenter.specify_input_path('data/train')
+        augmenter.specify_input_path('data/test')
         augmenter.do_gaussianBlur(0.5, 3.0)
         augmenter.do_sharpen(0.1, 0.5)
         augmenter.do_saltAndPepper(0.1, 0.5)
@@ -554,26 +554,26 @@ class TestAugmenter(unittest.TestCase):
         augmenter.run_augment()
 
         # Checking if data/train_augmented folder is created.
-        self.assertEqual(os.path.exists('data/train_augmented'), True)
+        self.assertEqual(os.path.exists('data/test_augmented'), True)
 
         # Checking if panda_augmented folder is created.
-        self.assertEqual(os.path.exists('data/train_augmented/panda_augmented'), True)
+        self.assertEqual(os.path.exists('data/test_augmented/panda_augmented'), True)
 
         # Checking if the data/train_augmented folder contains correct amount of images.
-        panda_augmented_files = glob.glob('data/train_augmented/panda_augmented/*')
+        panda_augmented_files = glob.glob('data/test_augmented/panda_augmented/*')
         self.assertEqual(len(panda_augmented_files) == len(augmenter.augmentation_todo)+1, True)
 
         # Checking if each image is not equal to the original image.
-        panda_0 = imageio.imread('data/train/panda/panda_0.jpg')
+        panda_0 = imageio.imread('data/test/panda/panda_0.jpg')
         # Removing the panda_0.jpg from the list of files.
-        panda_augmented_files.remove('data/train_augmented/panda_augmented\\panda_0.jpg')
+        panda_augmented_files.remove('data/test_augmented/panda_augmented\\panda_0.jpg')
         for image_path in panda_augmented_files:
             image = imageio.imread(image_path)
             # Checking if the image is not equal to the original image.
             self.assertNotEqual(np.array_equal(image, panda_0), True)
 
         # Removing the data/train_augmented folder that it created.
-        shutil.rmtree('data/train_augmented')
+        shutil.rmtree('data/test_augmented')
 
 
 if __name__ == '__main__':

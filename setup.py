@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='easyaug',
-    homepage='',
+    homepage='https://github.com/MyhreS/easyaug.git',
     version='1.3.4',
     packages=find_packages(),
     author='Simon Myhre',

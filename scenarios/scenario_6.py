@@ -1,9 +1,11 @@
 """
-Using processer resize your images to 256 format
+Using the augmenter class, augment the images in test folder using one or more augmenting types of your choice.
 """
 
-from easyaug.preprocess import Preprocesser
-processer = Preprocesser()
-processer.specify_input_and_output_path("dataset/train_little_augmented/acinonyx-jubatus_augmented", "dataset/acinonyx-jubatus_augmented_256")
-processer.run_resize()
+from easyaug.augment import Augmenter
+augmenter = Augmenter()
+augmenter.specify_input_path("data/test")
+augmenter.do_saltAndPepper()
+augmenter.run_augment()
+
 
