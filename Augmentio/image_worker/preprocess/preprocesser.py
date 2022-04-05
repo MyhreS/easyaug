@@ -4,7 +4,7 @@ A module to preprocess images if needed.
 
 from image_worker.preprocess import resize
 
-class Processer:
+class Preprocesser:
     """
     A class to use different preprocessing methods.
     """
@@ -38,8 +38,8 @@ class Processer:
 
         Examples
         --------
-        >>> from image_worker.preprocess import Processer
-        >>> processer = Processer()
+        >>> from image_worker.preprocess import Preprocesser
+        >>> processer = Preprocesser()
         >>> processer.specify_input_and_output_path("/path/to/input/folder", "/path/to/output/folder", "jpg")
         Specified input path, output path and type of image to be preprocessed.
         """
@@ -77,8 +77,8 @@ class Processer:
 
         Examples
         --------
-        >>> from image_worker.preprocess import Processer
-        >>> processer = Processer()
+        >>> from image_worker.preprocess import Preprocesser
+        >>> processer = Preprocesser()
         >>> processer.specify_input_and_output_path("/path/to/input/folder", "/path/to/output/folder", "jpg")
         >>> processer.run_resize((256, 256))
         Resized images from the specified folder.

@@ -5,7 +5,7 @@ This module is used to easily read and view images from your dataset. A fast way
 from image_worker.quickview import read
 from image_worker.quickview import view
 
-class Viewer:
+class Quickviewer:
     """
     A class used to read and view images. When created an instance of it allows you to access the functions that reads
     the images or image names by specifying the path to your data. Then view the images in a plot or the image names in
@@ -16,8 +16,8 @@ class Viewer:
 
     Examples
     --------
-    >>> from image_worker.quickview import Viewer
-    >>> viewer = Viewer()
+    >>> from image_worker.quickview import Quickviewer
+    >>> viewer = Quickviewer()
     Initializing viewer...
     """
 
@@ -48,8 +48,8 @@ class Viewer:
 
         Examples
         --------
-        >>> from image_worker.quickview import Viewer
-        >>> viewer = Viewer()
+        >>> from image_worker.quickview import Quickviewer
+        >>> viewer = Quickviewer()
         >>> viewer.read_all_images('/home/user/data/', 'png')
         Reading all images of type png...
 
@@ -91,8 +91,8 @@ class Viewer:
 
         Examples
         --------
-        >>> from image_worker.quickview import Viewer
-        >>> viewer = Viewer()
+        >>> from image_worker.quickview import Quickviewer
+        >>> viewer = Quickviewer()
         >>> viewer.read_every_x_image('/home/user/data/', 5, 'png')
         Reading every 5 images of type png...
         """
@@ -130,8 +130,8 @@ class Viewer:
 
         Examples
         --------
-        >>> from image_worker.quickview import Viewer
-        >>> viewer = Viewer()
+        >>> from image_worker.quickview import Quickviewer
+        >>> viewer = Quickviewer()
         >>> viewer.read_first_x_images('/home/user/data/', 5, 'png')
         Reading first 5 images of type png...
 
@@ -169,8 +169,8 @@ class Viewer:
 
         Examples
         --------
-        >>> from image_worker.quickview import Viewer
-        >>> viewer = Viewer()
+        >>> from image_worker.quickview import Quickviewer
+        >>> viewer = Quickviewer()
         >>> viewer.read_last_x_images('/home/user/data/', 5, 'png')
         Reading last 5 images of type png...
         """
@@ -200,8 +200,8 @@ class Viewer:
 
         Examples
         --------
-        >>> from image_worker.quickview import Viewer
-        >>> viewer = Viewer()
+        >>> from image_worker.quickview import Quickviewer
+        >>> viewer = Quickviewer()
         >>> viewer.read_a_image('/home/user/data/')
         Reading a image...
         """
@@ -232,8 +232,8 @@ class Viewer:
 
         Examples
         --------
-        >>> from image_worker.quickview import Viewer
-        >>> viewer = Viewer()
+        >>> from image_worker.quickview import Quickviewer
+        >>> viewer = Quickviewer()
         >>> viewer.read_all_imagenames('/home/user/data/', 'png')
         Reading all image names of type png...
         """
@@ -271,8 +271,8 @@ class Viewer:
 
         Examples
         --------
-        >>> from image_worker.quickview import Viewer
-        >>> viewer = Viewer()
+        >>> from image_worker.quickview import Quickviewer
+        >>> viewer = Quickviewer()
         >>> viewer.read_every_x_imagename('/home/user/data/', 5, 'png')
         Reading every 5 image names of type png...
         """
@@ -310,8 +310,8 @@ class Viewer:
 
         Examples
         --------
-        >>> from image_worker.quickview import Viewer
-        >>> viewer = Viewer()
+        >>> from image_worker.quickview import Quickviewer
+        >>> viewer = Quickviewer()
         >>> viewer.read_first_x_imagenames('/home/user/data/', 5, 'png')
         Reading first 5 image names of type png...
         """
@@ -348,8 +348,8 @@ class Viewer:
 
         Examples
         --------
-        >>> from image_worker.quickview import Viewer
-        >>> viewer = Viewer()
+        >>> from image_worker.quickview import Quickviewer
+        >>> viewer = Quickviewer()
         >>> viewer.read_last_x_imagenames('/home/user/data/', 5, 'png')
         Reading last 5 image names of type png...
         """
@@ -383,8 +383,8 @@ class Viewer:
 
         Examples
         --------
-        >>> from image_worker.quickview import Viewer
-        >>> viewer = Viewer()
+        >>> from image_worker.quickview import Quickviewer
+        >>> viewer = Quickviewer()
         >>> viewer.read_first_x_imagenames('/home/user/data/', 5, 'png')
         >>> viewer.view_images()
         Viewing first 5 images of type png...
@@ -427,8 +427,8 @@ class Viewer:
 
         Examples
         --------
-        >>> from image_worker.quickview import Viewer
-        >>> viewer = Viewer()
+        >>> from image_worker.quickview import Quickviewer
+        >>> viewer = Quickviewer()
         >>> viewer.read_first_x_imagenames('/home/user/data/', 5, 'png')
         >>> viewer.view_imagenames()
         Viewing first 5 imagenames of type png...

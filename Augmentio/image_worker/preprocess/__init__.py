@@ -1,1 +1,1 @@
-from image_worker.preprocess.processer import *
+from image_worker.preprocess.preprocesser import *

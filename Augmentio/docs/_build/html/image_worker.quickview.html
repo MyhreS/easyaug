@@ -15,6 +15,7 @@
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="image_worker.preprocess" href="image_worker.preprocess.html" />
     <link rel="prev" title="image_worker.augment" href="image_worker.augment.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -34,24 +35,24 @@
             
   <section id="image-worker-quickview">
 <h1>image_worker.quickview<a class="headerlink" href="#image-worker-quickview" title="Permalink to this headline">¶</a></h1>
-<section id="module-image_worker.quickview.viewer">
-<span id="image-worker-quickview-viewer"></span><h2>image_worker.quickview.viewer<a class="headerlink" href="#module-image_worker.quickview.viewer" title="Permalink to this headline">¶</a></h2>
+<section id="module-image_worker.quickview.quickviewer">
+<span id="image-worker-quickview-quickviewer"></span><h2>image_worker.quickview.quickviewer<a class="headerlink" href="#module-image_worker.quickview.quickviewer" title="Permalink to this headline">¶</a></h2>
 <p>This module is used to easily read and view images from your dataset. A fast way of checking how the data is before doing anything with it.</p>
 <dl class="py class">
-<dt class="sig sig-object py" id="image_worker.quickview.viewer.Viewer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">image_worker.quickview.viewer.</span></span><span class="sig-name descname"><span class="pre">Viewer</span></span><a class="headerlink" href="#image_worker.quickview.viewer.Viewer" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="image_worker.quickview.quickviewer.Quickviewer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">image_worker.quickview.quickviewer.</span></span><span class="sig-name descname"><span class="pre">Quickviewer</span></span><a class="headerlink" href="#image_worker.quickview.quickviewer.Quickviewer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A class used to read and view images. When created an instance of it allows you to access the functions that reads
 the images or image names by specifying the path to your data. Then view the images in a plot or the image names in
 the terminal.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.quickview</span> <span class="kn">import</span> <span class="n">Viewer</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">Viewer</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.quickview</span> <span class="kn">import</span> <span class="n">Quickviewer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">Quickviewer</span><span class="p">()</span>
 <span class="go">Initializing viewer...</span>
 </pre></div>
 </div>
 <dl class="py method">
-<dt class="sig sig-object py" id="image_worker.quickview.viewer.Viewer.read_a_image">
-<span class="sig-name descname"><span class="pre">read_a_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.quickview.viewer.Viewer.read_a_image" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="image_worker.quickview.quickviewer.Quickviewer.read_a_image">
+<span class="sig-name descname"><span class="pre">read_a_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.quickview.quickviewer.Quickviewer.read_a_image" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function that reads a single image in the specified path.</p>
 <dl class="simple">
 <dt>path<span class="classifier">str</span></dt><dd><p>The path to your data.</p>
@@ -65,8 +66,8 @@ the terminal.</p>
 <dt>images<span class="classifier">list</span></dt><dd><p>A list of the images.</p>
 </dd>
 </dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.quickview</span> <span class="kn">import</span> <span class="n">Viewer</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">Viewer</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.quickview</span> <span class="kn">import</span> <span class="n">Quickviewer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">Quickviewer</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span><span class="o">.</span><span class="n">read_a_image</span><span class="p">(</span><span class="s1">&#39;/home/user/data/&#39;</span><span class="p">)</span>
 <span class="go">Reading a image...</span>
 </pre></div>
@@ -74,8 +75,8 @@ the terminal.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="image_worker.quickview.viewer.Viewer.read_all_imagenames">
-<span class="sig-name descname"><span class="pre">read_all_imagenames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_of_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.quickview.viewer.Viewer.read_all_imagenames" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="image_worker.quickview.quickviewer.Quickviewer.read_all_imagenames">
+<span class="sig-name descname"><span class="pre">read_all_imagenames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_of_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.quickview.quickviewer.Quickviewer.read_all_imagenames" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function that reads all the image names in the specified path. If the type_of_image is specified, it will only read the images of that type.</p>
 <dl class="simple">
 <dt>path<span class="classifier">str</span></dt><dd><p>The path to your data.</p>
@@ -88,8 +89,8 @@ the terminal.</p>
 </dd>
 </dl>
 <p>imagenames : list</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.quickview</span> <span class="kn">import</span> <span class="n">Viewer</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">Viewer</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.quickview</span> <span class="kn">import</span> <span class="n">Quickviewer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">Quickviewer</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span><span class="o">.</span><span class="n">read_all_imagenames</span><span class="p">(</span><span class="s1">&#39;/home/user/data/&#39;</span><span class="p">,</span> <span class="s1">&#39;png&#39;</span><span class="p">)</span>
 <span class="go">Reading all image names of type png...</span>
 </pre></div>
@@ -97,8 +98,8 @@ the terminal.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="image_worker.quickview.viewer.Viewer.read_all_images">
-<span class="sig-name descname"><span class="pre">read_all_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_of_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.quickview.viewer.Viewer.read_all_images" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="image_worker.quickview.quickviewer.Quickviewer.read_all_images">
+<span class="sig-name descname"><span class="pre">read_all_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_of_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.quickview.quickviewer.Quickviewer.read_all_images" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function that reads all the images in the specified path. If the type_of_image is specified, it will only read the images of that type.</p>
 <dl class="simple">
 <dt>path<span class="classifier">str</span></dt><dd><p>The path to your data.</p>
@@ -114,8 +115,8 @@ the terminal.</p>
 <dt>images<span class="classifier">list</span></dt><dd><p>A list of the images.</p>
 </dd>
 </dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.quickview</span> <span class="kn">import</span> <span class="n">Viewer</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">Viewer</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.quickview</span> <span class="kn">import</span> <span class="n">Quickviewer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">Quickviewer</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span><span class="o">.</span><span class="n">read_all_images</span><span class="p">(</span><span class="s1">&#39;/home/user/data/&#39;</span><span class="p">,</span> <span class="s1">&#39;png&#39;</span><span class="p">)</span>
 <span class="go">Reading all images of type png...</span>
 </pre></div>
@@ -123,8 +124,8 @@ the terminal.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="image_worker.quickview.viewer.Viewer.read_every_x_image">
-<span class="sig-name descname"><span class="pre">read_every_x_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_of_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.quickview.viewer.Viewer.read_every_x_image" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="image_worker.quickview.quickviewer.Quickviewer.read_every_x_image">
+<span class="sig-name descname"><span class="pre">read_every_x_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_of_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.quickview.quickviewer.Quickviewer.read_every_x_image" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function that reads every x images in the specified path. If the type_of_image is specified, it will only read the images of that type.</p>
 <dl class="simple">
 <dt>path<span class="classifier">str</span></dt><dd><p>The path to your data.</p>
@@ -145,8 +146,8 @@ If x is not an integer.</p>
 <dt>images<span class="classifier">list</span></dt><dd><p>A list of the images.</p>
 </dd>
 </dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.quickview</span> <span class="kn">import</span> <span class="n">Viewer</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">Viewer</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.quickview</span> <span class="kn">import</span> <span class="n">Quickviewer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">Quickviewer</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span><span class="o">.</span><span class="n">read_every_x_image</span><span class="p">(</span><span class="s1">&#39;/home/user/data/&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;png&#39;</span><span class="p">)</span>
 <span class="go">Reading every 5 images of type png...</span>
 </pre></div>
@@ -154,8 +155,8 @@ If x is not an integer.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="image_worker.quickview.viewer.Viewer.read_every_x_imagename">
-<span class="sig-name descname"><span class="pre">read_every_x_imagename</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_of_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.quickview.viewer.Viewer.read_every_x_imagename" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="image_worker.quickview.quickviewer.Quickviewer.read_every_x_imagename">
+<span class="sig-name descname"><span class="pre">read_every_x_imagename</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_of_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.quickview.quickviewer.Quickviewer.read_every_x_imagename" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function that reads every x image name in the specified path. If the type_of_image is specified, it will only read the images of that type.</p>
 <dl class="simple">
 <dt>path<span class="classifier">str</span></dt><dd><p>The path to your data.</p>
@@ -176,8 +177,8 @@ If x is not an integer.</p>
 <dt>imagenames<span class="classifier">list</span></dt><dd><p>A list of the image names.</p>
 </dd>
 </dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.quickview</span> <span class="kn">import</span> <span class="n">Viewer</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">Viewer</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.quickview</span> <span class="kn">import</span> <span class="n">Quickviewer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">Quickviewer</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span><span class="o">.</span><span class="n">read_every_x_imagename</span><span class="p">(</span><span class="s1">&#39;/home/user/data/&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;png&#39;</span><span class="p">)</span>
 <span class="go">Reading every 5 image names of type png...</span>
 </pre></div>
@@ -185,8 +186,8 @@ If x is not an integer.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="image_worker.quickview.viewer.Viewer.read_first_x_imagenames">
-<span class="sig-name descname"><span class="pre">read_first_x_imagenames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_of_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.quickview.viewer.Viewer.read_first_x_imagenames" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="image_worker.quickview.quickviewer.Quickviewer.read_first_x_imagenames">
+<span class="sig-name descname"><span class="pre">read_first_x_imagenames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_of_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.quickview.quickviewer.Quickviewer.read_first_x_imagenames" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function that reads the first x image names in the specified path. If the type_of_image is specified, it will only read the images of that type.</p>
 <dl class="simple">
 <dt>path<span class="classifier">str</span></dt><dd><p>The path to your data.</p>
@@ -207,8 +208,8 @@ If x is not an integer.</p>
 <dt>imagenames<span class="classifier">list</span></dt><dd><p>A list of the image names.</p>
 </dd>
 </dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.quickview</span> <span class="kn">import</span> <span class="n">Viewer</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">Viewer</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.quickview</span> <span class="kn">import</span> <span class="n">Quickviewer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">Quickviewer</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span><span class="o">.</span><span class="n">read_first_x_imagenames</span><span class="p">(</span><span class="s1">&#39;/home/user/data/&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;png&#39;</span><span class="p">)</span>
 <span class="go">Reading first 5 image names of type png...</span>
 </pre></div>
@@ -216,8 +217,8 @@ If x is not an integer.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="image_worker.quickview.viewer.Viewer.read_first_x_images">
-<span class="sig-name descname"><span class="pre">read_first_x_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_of_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.quickview.viewer.Viewer.read_first_x_images" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="image_worker.quickview.quickviewer.Quickviewer.read_first_x_images">
+<span class="sig-name descname"><span class="pre">read_first_x_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_of_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.quickview.quickviewer.Quickviewer.read_first_x_images" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function that reads the first x images in the specified path. If the type_of_image is specified, it will only read the images of that type.</p>
 <dl class="simple">
 <dt>path<span class="classifier">str</span></dt><dd><p>The path to your data.</p>
@@ -238,8 +239,8 @@ If x is not an integer.</p>
 <dt>images<span class="classifier">list</span></dt><dd><p>A list of the images.</p>
 </dd>
 </dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.quickview</span> <span class="kn">import</span> <span class="n">Viewer</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">Viewer</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.quickview</span> <span class="kn">import</span> <span class="n">Quickviewer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">Quickviewer</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span><span class="o">.</span><span class="n">read_first_x_images</span><span class="p">(</span><span class="s1">&#39;/home/user/data/&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;png&#39;</span><span class="p">)</span>
 <span class="go">Reading first 5 images of type png...</span>
 </pre></div>
@@ -247,8 +248,8 @@ If x is not an integer.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="image_worker.quickview.viewer.Viewer.read_last_x_imagenames">
-<span class="sig-name descname"><span class="pre">read_last_x_imagenames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_of_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.quickview.viewer.Viewer.read_last_x_imagenames" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="image_worker.quickview.quickviewer.Quickviewer.read_last_x_imagenames">
+<span class="sig-name descname"><span class="pre">read_last_x_imagenames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_of_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.quickview.quickviewer.Quickviewer.read_last_x_imagenames" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function that reads the last x image names in the specified path. If the type_of_image is specified, it will only read the images of that type.</p>
 <dl class="simple">
 <dt>path<span class="classifier">str</span></dt><dd><p>The path to your data.</p>
@@ -269,8 +270,8 @@ If x is not an integer.</p>
 <dt>imagenames<span class="classifier">list</span></dt><dd><p>A list of the image names.</p>
 </dd>
 </dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.quickview</span> <span class="kn">import</span> <span class="n">Viewer</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">Viewer</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.quickview</span> <span class="kn">import</span> <span class="n">Quickviewer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">Quickviewer</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span><span class="o">.</span><span class="n">read_last_x_imagenames</span><span class="p">(</span><span class="s1">&#39;/home/user/data/&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;png&#39;</span><span class="p">)</span>
 <span class="go">Reading last 5 image names of type png...</span>
 </pre></div>
@@ -278,8 +279,8 @@ If x is not an integer.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="image_worker.quickview.viewer.Viewer.read_last_x_images">
-<span class="sig-name descname"><span class="pre">read_last_x_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_of_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.quickview.viewer.Viewer.read_last_x_images" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="image_worker.quickview.quickviewer.Quickviewer.read_last_x_images">
+<span class="sig-name descname"><span class="pre">read_last_x_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_of_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.quickview.quickviewer.Quickviewer.read_last_x_images" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function that reads the last x images in the specified path. If the type_of_image is specified, it will only read the images of that type.</p>
 <dl class="simple">
 <dt>path<span class="classifier">str</span></dt><dd><p>The path to your data.</p>
@@ -300,8 +301,8 @@ If x is not an integer.</p>
 <dt>images<span class="classifier">list</span></dt><dd><p>A list of the images.</p>
 </dd>
 </dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.quickview</span> <span class="kn">import</span> <span class="n">Viewer</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">Viewer</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.quickview</span> <span class="kn">import</span> <span class="n">Quickviewer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">Quickviewer</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span><span class="o">.</span><span class="n">read_last_x_images</span><span class="p">(</span><span class="s1">&#39;/home/user/data/&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;png&#39;</span><span class="p">)</span>
 <span class="go">Reading last 5 images of type png...</span>
 </pre></div>
@@ -309,8 +310,8 @@ If x is not an integer.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="image_worker.quickview.viewer.Viewer.view_imagenames">
-<span class="sig-name descname"><span class="pre">view_imagenames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">imagenames</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.quickview.viewer.Viewer.view_imagenames" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="image_worker.quickview.quickviewer.Quickviewer.view_imagenames">
+<span class="sig-name descname"><span class="pre">view_imagenames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">imagenames</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.quickview.quickviewer.Quickviewer.view_imagenames" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function that prints the read image names or the names of the read images in the terminal.
 If the imagenames parameter is specified, it will print the last imagenames or names of images you read.
 It will only print the first 20 imagenames in the list as default.</p>
@@ -326,8 +327,8 @@ If the maximum is less than 1.
 If the maximum is not an integer.</p>
 </dd>
 </dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.quickview</span> <span class="kn">import</span> <span class="n">Viewer</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">Viewer</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.quickview</span> <span class="kn">import</span> <span class="n">Quickviewer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">Quickviewer</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span><span class="o">.</span><span class="n">read_first_x_imagenames</span><span class="p">(</span><span class="s1">&#39;/home/user/data/&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;png&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span><span class="o">.</span><span class="n">view_imagenames</span><span class="p">()</span>
 <span class="go">Viewing first 5 imagenames of type png...</span>
@@ -336,8 +337,8 @@ If the maximum is not an integer.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="image_worker.quickview.viewer.Viewer.view_images">
-<span class="sig-name descname"><span class="pre">view_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">images</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.quickview.viewer.Viewer.view_images" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="image_worker.quickview.quickviewer.Quickviewer.view_images">
+<span class="sig-name descname"><span class="pre">view_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maximum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">images</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.quickview.quickviewer.Quickviewer.view_images" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function that plots the read images in a grid. If the images parameter is specified, it will plot the last images you read.
 It will only plot the first 9 images in the list as default.</p>
 <dl class="simple">
@@ -352,8 +353,8 @@ If the maximum is less than 1.
 If the maximum is not an integer.</p>
 </dd>
 </dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.quickview</span> <span class="kn">import</span> <span class="n">Viewer</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">Viewer</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.quickview</span> <span class="kn">import</span> <span class="n">Quickviewer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span> <span class="o">=</span> <span class="n">Quickviewer</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span><span class="o">.</span><span class="n">read_first_x_imagenames</span><span class="p">(</span><span class="s1">&#39;/home/user/data/&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;png&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">viewer</span><span class="o">.</span><span class="n">view_images</span><span class="p">()</span>
 <span class="go">Viewing first 5 images of type png...</span>
@@ -396,6 +397,7 @@ If the maximum is not an integer.</p>
   <li><a href="modules.html">image_worker</a><ul>
   <li><a href="image_worker.html">image_worker</a><ul>
       <li>Previous: <a href="image_worker.augment.html" title="previous chapter">image_worker.augment</a></li>
+      <li>Next: <a href="image_worker.preprocess.html" title="next chapter">image_worker.preprocess</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

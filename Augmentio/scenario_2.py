@@ -1,8 +1,8 @@
 """
 Scenario 2:
-Initialize the Viewer class from quickview to be ready for use.
+Initialize the Quickviewer class from quickview to be ready for use.
 """
 
-from image_worker.quickview import Viewer
+from image_worker.quickview import Quickviewer
 # Initialize the viewer
-viewer = Viewer()
+viewer = Quickviewer()

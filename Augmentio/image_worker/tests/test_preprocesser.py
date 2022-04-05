@@ -4,17 +4,17 @@ import unittest
 
 import imageio.core
 
-from image_worker.preprocess import Processer
+from image_worker.preprocess import Preprocesser
 
 class test_processer(unittest.TestCase):
     def test_init(self):
-        processer = Processer()
+        processer = Preprocesser()
         self.assertEqual(processer.input_path, None)
         self.assertEqual(processer.output_path, None)
         self.assertEqual(processer.type_of_image, None)
 
     def test_specify_input_and_output_path(self):
-        processer = Processer()
+        processer = Preprocesser()
         processer.specify_input_and_output_path('data/train', 'data/train', 'jpg')
         self.assertEqual(processer.input_path, 'data/train')
         self.assertEqual(processer.output_path, 'data/train')
@@ -24,7 +24,7 @@ class test_processer(unittest.TestCase):
         # make directory data/train_resized/panda_resized
         os.makedirs('data/train_resized/panda_resized', exist_ok=True)
 
-        processer = Processer()
+        processer = Preprocesser()
         processer.specify_input_and_output_path('data/train/panda', 'data/train_resized/panda_resized')
         processer.run_resize((100, 100))
 

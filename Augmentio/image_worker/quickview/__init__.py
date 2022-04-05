@@ -1,1 +1,1 @@
-from image_worker.quickview.viewer import *
+from image_worker.quickview.quickviewer import *

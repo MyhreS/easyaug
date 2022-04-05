@@ -34,17 +34,17 @@
             
   <section id="image-worker-preprocess">
 <h1>image_worker.preprocess<a class="headerlink" href="#image-worker-preprocess" title="Permalink to this headline">¶</a></h1>
-<section id="module-image_worker.preprocess.processer">
-<span id="image-worker-preprocess-processer"></span><h2>image_worker.preprocess.processer<a class="headerlink" href="#module-image_worker.preprocess.processer" title="Permalink to this headline">¶</a></h2>
+<section id="module-image_worker.preprocess.preprocesser">
+<span id="image-worker-preprocess-preprocesser"></span><h2>image_worker.preprocess.preprocesser<a class="headerlink" href="#module-image_worker.preprocess.preprocesser" title="Permalink to this headline">¶</a></h2>
 <p>A module to preprocess images if needed.</p>
 <dl class="py class">
-<dt class="sig sig-object py" id="image_worker.preprocess.processer.Processer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">image_worker.preprocess.processer.</span></span><span class="sig-name descname"><span class="pre">Processer</span></span><a class="headerlink" href="#image_worker.preprocess.processer.Processer" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="image_worker.preprocess.preprocesser.Preprocesser">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">image_worker.preprocess.preprocesser.</span></span><span class="sig-name descname"><span class="pre">Preprocesser</span></span><a class="headerlink" href="#image_worker.preprocess.preprocesser.Preprocesser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A class to use different preprocessing methods.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="image_worker.preprocess.processer.Processer.run_resize">
-<span class="sig-name descname"><span class="pre">run_resize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(256,</span> <span class="pre">256)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.preprocess.processer.Processer.run_resize" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="image_worker.preprocess.preprocesser.Preprocesser.run_resize">
+<span class="sig-name descname"><span class="pre">run_resize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(256,</span> <span class="pre">256)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.preprocess.preprocesser.Preprocesser.run_resize" title="Permalink to this definition">¶</a></dt>
 <dd><p>A simple method to resize the images. Only resizes the images to the specified folder. Does not iterate through down the directory tree.</p>
 <dl class="simple">
 <dt>size<span class="classifier">tuple</span></dt><dd><p>The size of the image.</p>
@@ -56,8 +56,8 @@ If the size is not a tuple.
 If the size is not specified.</p>
 </dd>
 </dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.preprocess</span> <span class="kn">import</span> <span class="n">Processer</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">processer</span> <span class="o">=</span> <span class="n">Processer</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.preprocess</span> <span class="kn">import</span> <span class="n">Preprocesser</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">processer</span> <span class="o">=</span> <span class="n">Preprocesser</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">processer</span><span class="o">.</span><span class="n">specify_input_and_output_path</span><span class="p">(</span><span class="s2">&quot;/path/to/input/folder&quot;</span><span class="p">,</span> <span class="s2">&quot;/path/to/output/folder&quot;</span><span class="p">,</span> <span class="s2">&quot;jpg&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">processer</span><span class="o">.</span><span class="n">run_resize</span><span class="p">((</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">))</span>
 <span class="go">Resized images from the specified folder.</span>
@@ -66,8 +66,8 @@ If the size is not specified.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="image_worker.preprocess.processer.Processer.specify_input_and_output_path">
-<span class="sig-name descname"><span class="pre">specify_input_and_output_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_of_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.preprocess.processer.Processer.specify_input_and_output_path" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="image_worker.preprocess.preprocesser.Preprocesser.specify_input_and_output_path">
+<span class="sig-name descname"><span class="pre">specify_input_and_output_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_of_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_worker.preprocess.preprocesser.Preprocesser.specify_input_and_output_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Specify the path to the data.</p>
 <dl class="simple">
 <dt>input_path<span class="classifier">str</span></dt><dd><p>The path to the folder where the images are.</p>
@@ -83,8 +83,8 @@ If the input_path or output_path is not specified.
 If type_of_image is not None, “jpg” og “png”.</p>
 </dd>
 </dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.preprocess</span> <span class="kn">import</span> <span class="n">Processer</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">processer</span> <span class="o">=</span> <span class="n">Processer</span><span class="p">()</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">image_worker.preprocess</span> <span class="kn">import</span> <span class="n">Preprocesser</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">processer</span> <span class="o">=</span> <span class="n">Preprocesser</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">processer</span><span class="o">.</span><span class="n">specify_input_and_output_path</span><span class="p">(</span><span class="s2">&quot;/path/to/input/folder&quot;</span><span class="p">,</span> <span class="s2">&quot;/path/to/output/folder&quot;</span><span class="p">,</span> <span class="s2">&quot;jpg&quot;</span><span class="p">)</span>
 <span class="go">Specified input path, output path and type of image to be preprocessed.</span>
 </pre></div>
