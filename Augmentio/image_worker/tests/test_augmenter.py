@@ -3,7 +3,6 @@ import glob
 import os
 import unittest
 from unittest import mock
-
 import imageio
 import numpy as np
 from imgaug import augmenters as iaa
