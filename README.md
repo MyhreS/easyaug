@@ -1,5 +1,5 @@
 # easyaug
-A package to faster and easier preview, prepare and augment images. This includes 3 main components:
+A frameweork to faster and easier preview, prepare and augment images. This includes 3 main components:
 1. Preprocesser: Preprocess images before augmentation if needed.
 2. Quickviewer: Quickly preview images before augmentation.
 3. Augmenter: Augment images with different pre-made augmentation types.
