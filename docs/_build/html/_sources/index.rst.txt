@@ -15,6 +15,7 @@ Make sure to visit the homepage at `Github <https://github.com/MyhreS/easyaug.gi
 
    installation
    tutorial
+   example
    modules
 
 

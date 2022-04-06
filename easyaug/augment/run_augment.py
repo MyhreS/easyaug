@@ -83,9 +83,6 @@ def augment_images_or_iterate_folder(folder, output_path, augmentation_todo, tod
     for image_path in folder.list_of_images:
         augment_image_and_write(image_path, output_path, augmentation_todo, todo_names)
     for subfolder in folder.list_of_folders:
-        # If the subfolder does not have any images, skip it.
-        if len(subfolder.list_of_images) == 0:
-            continue
         augment_images_or_iterate_folder(subfolder, create_augment_folder(subfolder, output_path), augmentation_todo, todo_names)
 
 

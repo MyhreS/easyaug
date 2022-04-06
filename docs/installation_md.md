@@ -2,7 +2,7 @@
 Installation is simple. Just use pip to install the package.
 
 ```bash
-pip install easyaug==1.0
+pip install easyaug
 ```
 
 ## Quick setup
