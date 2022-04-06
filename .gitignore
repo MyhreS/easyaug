@@ -1,2 +1,3 @@
-/dist/*
+/dist/
 /easyaug.egg-info/
+
