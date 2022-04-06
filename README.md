@@ -4,6 +4,9 @@ A package to faster and easier preview, prepare and augment images. This include
 2. Quickviewer: Quickly preview images before augmentation.
 3. Augmenter: Augment images with different pre-made augmentation types.
 
+# Documentation
+Check out the documentation for a complete guide at: https://myhres.github.io/easyaug/
+
 ## Installation
 
 ```bash
