@@ -1,5 +1,0 @@
-# Hi
-write som code
-```
-import os
-```
