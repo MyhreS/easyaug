@@ -1,6 +1,6 @@
 """
 Scenario 7:
-Using processer resize the images in data/test/panda to 256 format and place the in the data/resized folder.
+Using  the Preprocesser class resize the images in data/test/panda to 256 format and place the in the data/resized folder.
 """
 
 from easyaug.preprocess import Preprocesser
