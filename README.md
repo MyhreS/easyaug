@@ -1,3 +1,4 @@
+https://github.com/MyhreS/easyaug
 # easyaug
 A framework to faster and easier preview, prepare and augment images. This includes 3 main components:
 1. Preprocesser: Preprocess images before augmentation if needed.
