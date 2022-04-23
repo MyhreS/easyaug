@@ -1,5 +1,5 @@
 """
-Scenario 3:
+Scenario 4:
 Quickly view the first 2 images from your folder to get an idea of what dataset you are working with.
 """
 from easyaug.quickview import Quickviewer
