@@ -4,5 +4,5 @@ Quickly view the first 2 images from your folder to get an idea of what dataset 
 """
 from easyaug.quickview import Quickviewer
 viewer = Quickviewer()
-viewer.read_first_x_images("data", 2)
+viewer.read_first_x_images("data/train", 2)
 viewer.view_images()
