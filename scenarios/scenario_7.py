@@ -1,4 +1,5 @@
 """
+Scenario 7:
 Using processer resize the images in data/test/panda to 256 format and place the in the data/resized folder.
 """
 
